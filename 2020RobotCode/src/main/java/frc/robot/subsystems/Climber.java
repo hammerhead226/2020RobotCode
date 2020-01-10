@@ -12,6 +12,7 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class Climber extends SubsystemBase {
@@ -23,7 +24,7 @@ public class Climber extends SubsystemBase {
 
   public void climber(double climbSpeed){
     
-    climberMotor1.set(ControlMode.PercentOutput, climbSpeed);
+    climberMotor1.set(TalonFXControlMode.PercentOutput, climbSpeed);
   }
   public Climber() {
 
@@ -32,7 +33,8 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber(Robot.robotContainer.getLeftTrigger());
+    climber(Robot.robotContainer.getLeftTrigger()+Robot.robotContainer.getRightTrigger());
+    
 
   }
 }
