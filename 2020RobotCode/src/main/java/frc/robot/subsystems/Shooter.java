@@ -21,10 +21,10 @@ public class Shooter extends SubsystemBase {
   private TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER_MOTOR_2);
 
   public Shooter() {
-    shooterMotor2.follow(shooterMotor1);
-      
     shooterMotor1.setInverted(true);
     shooterMotor2.setInverted(!true);
+
+    shooterMotor2.follow(shooterMotor1);
   }
 
   public void shotsfired(int speed){
