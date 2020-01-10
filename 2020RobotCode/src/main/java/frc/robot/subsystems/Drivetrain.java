@@ -7,12 +7,15 @@
 
 package frc.robot.subsystems;
 
+import java.sql.Driver;
+
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.libs.swerve.SwerveControl;
 import frc.libs.swerve.SwerveModule;
 
@@ -42,7 +45,6 @@ public class Drivetrain extends SubsystemBase {
   AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
   SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
 
-
   PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
 
   SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);  
@@ -54,6 +56,6 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
+    swerve.control(Robot.robotContainer.driver.getLeftJoystick_X(), Robot.robotContainer.driver.getLeftJoystick_Y(), Robot.robotContainer.driver.getRightJoystick_X());
   }
 }
