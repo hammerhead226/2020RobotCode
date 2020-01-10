@@ -20,14 +20,14 @@ public class Drivetrain extends SubsystemBase {
     TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
     TalonFX frontLeftSteer = new TalonFX(Constants.FRONT_LEFT_STEER);
 
-    TalonFX backLeftDrive = new TalonFX(Constants.BACK_LEFT_DRIVE);
-    TalonFX backLeftSteer = new TalonFX(Constants.BACK_LEFT_DRIVE);
+    TalonFX backLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
+    TalonFX backLeftSteer = new TalonFX(Constants.REAR_LEFT_STEER);
 
     TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
     TalonFX frontRightSteer = new TalonFX(Constants.FRONT_RIGHT_STEER);
 
-    TalonFX backRightDrive = new TalonFX(Constants.BACK_RIGHT_DRIVE);
-    TalonFX backRightSteer = new TalonFX(Constants.BACK_RIGHT_STEER);
+    TalonFX backRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
+    TalonFX backRightSteer = new TalonFX(Constants.REAR_RIGHT_STEER);
   }
 
   @Override
