@@ -8,10 +8,12 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.swerve.SwerveControl;
 import frc.robot.swerve.SwerveModule;
 
 public class Drivetrain extends SubsystemBase {
@@ -21,23 +23,29 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain() {
     TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
     TalonFX frontLeftSteer = new TalonFX(Constants.FRONT_LEFT_STEER);
-    AnalogInput encoder1;
-    SwerveModule module1;
+    AnalogInput encoder1 = new AnalogInput(Constants.FRONT_LEFT_ENCODER);
+    SwerveModule module1 = new SwerveModule(frontLeftDrive, frontLeftSteer, encoder1, 1);
 
-    TalonFX backLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
-    TalonFX backLeftSteer = new TalonFX(Constants.REAR_LEFT_STEER);
-    AnalogInput encoder2;
-    SwerveModule module2;
+
+    TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
+    TalonFX rearLeftSteer = new TalonFX(Constants.REAR_LEFT_STEER);
+    AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
+    SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
+    
 
     TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
     TalonFX frontRightSteer = new TalonFX(Constants.FRONT_RIGHT_STEER);
-    AnalogInput encoder3;
-    SwerveModule module3;
+    AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
+    SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 1);
 
-    TalonFX backRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
-    TalonFX backRightSteer = new TalonFX(Constants.REAR_RIGHT_STEER);
-    AnalogInput encoder4;
-    SwerveModule module4;
+    TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
+    TalonFX rearRightSteer = new TalonFX(Constants.REAR_RIGHT_STEER);
+    AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
+    SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
+
+    PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
+
+    SwerveControl control = new SwerveControl(module1, module2, module3, module4, pigeon);
   }
 
   @Override
