@@ -43,13 +43,15 @@ public class Drivetrain extends SubsystemBase {
     AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
     SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
 
+
     PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
 
-    SwerveControl control = new SwerveControl(module1, module2, module3, module4, pigeon);
+    SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    
   }
 }
