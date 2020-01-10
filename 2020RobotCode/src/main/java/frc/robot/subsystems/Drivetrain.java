@@ -13,8 +13,8 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.swerve.SwerveControl;
-import frc.robot.swerve.SwerveModule;
+import frc.libs.swerve.SwerveControl;
+import frc.libs.swerve.SwerveModule;
 
 public class Drivetrain extends SubsystemBase {
   /**

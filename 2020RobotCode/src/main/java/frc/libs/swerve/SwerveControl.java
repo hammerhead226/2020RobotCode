@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.swerve;
+package frc.libs.swerve;
 
 import java.util.ArrayList;
 
