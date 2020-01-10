@@ -7,31 +7,32 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
 
-public class Climber extends SubsystemBase {
+public class Shooter extends SubsystemBase {
   /**
-   * Creates a new Drivetrain.
+   * Creates a new Shooter.
    */
-  TalonFX climberMotor1 = new TalonFX(Constants.CLIMBER_MOTOR_1);
+  private TalonFX shooterMotor1 = new TalonFX(Constants.SHOOTER_MOTOR_1);
+  private TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER_MOTOR_2);
 
- 
-  public Climber() {
+  public Shooter() {
+    shooterMotor2.follow(shooterMotor1);
+      
+    shooterMotor1.setInverted(true);
+    shooterMotor2.setInverted(!true);
+  }
 
+  public void shotsfired(int speed){
+    shooterMotor1.set(ControlMode.PercentOutput, speed);
   }
-  public void climber(double climbSpeed){
-    climberMotor1.set(TalonFXControlMode.PercentOutput, climbSpeed);
-  }
-  
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber(Robot.robotContainer.driver.getTriggers());
   }
 }
