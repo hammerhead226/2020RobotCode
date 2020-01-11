@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import java.sql.Driver;
 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
@@ -54,6 +55,15 @@ public class Drivetrain extends SubsystemBase {
     frontRightSteer.setInverted(Constants.FRONT_RIGHT_STEER_INVERTED);
     rearLeftSteer.setInverted(Constants.REAR_LEFT_STEER_INVERTED);
     rearRightSteer.setInverted(Constants.REAR_RIGHT_STEER_INVERTED);
+
+    frontLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    frontLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    frontRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    frontRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    rearLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    rearLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    rearRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    rearRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
   }
 
   @Override
