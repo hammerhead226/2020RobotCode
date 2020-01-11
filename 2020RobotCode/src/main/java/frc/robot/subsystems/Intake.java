@@ -7,20 +7,21 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  TalonFX intake_motor = new TalonFX(Constants.INTAKE_MOTOR);
+  TalonFX intake = new TalonFX(Constants.INTAKE);
 
-  public void climber(double intakeSpeed){
-    intake_motor.set(TalonFXControlMode.PercentOutput, intakeSpeed);
+  public void intake(double intakeSpeed){
+    intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
   }
   public Intake() {
 
@@ -29,6 +30,7 @@ public class Intake extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
+    //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
+    intake(Robot.robotContainer.manip.getTriggers());
   }
 }
