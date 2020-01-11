@@ -7,11 +7,17 @@
 
 package frc.robot;
 
+import frc.libs.util.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
 import frc.robot.commands.RotationalControl;
+import frc.robot.commands.OuttakeBall;
+import frc.robot.commands.RollFloor;
+import frc.robot.commands.RunShooter;
+import frc.robot.commands.toggleCompressor;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -22,10 +28,10 @@ import frc.robot.commands.RotationalControl;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
   public Controller driver = new Controller(0);
-  public Controller manip = new Controller(1);
 
+  public Controller manip = new Controller(1);
+  
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -42,6 +48,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     manip.getAButton().whenPressed(new RotationalControl());
+    manip.getAButton().whileHeld(new RunShooter());
+    manip.getBButton().whileHeld(new RollFloor());
+    manip.getXButton().whileHeld(new OuttakeBall());
+    driver.getSTARTButton().whenPressed(new toggleCompressor());
   }
 
   /**
