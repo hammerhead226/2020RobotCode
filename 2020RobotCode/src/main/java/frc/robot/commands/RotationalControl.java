@@ -14,8 +14,11 @@ public class RotationalControl extends CommandBase {
   /**
    * Creates a new RotationalControl.
    */
+
+  double rots;
+
   public RotationalControl(double rotations) {
-    Robot.colorRoller.rotationalControl(rotations);
+    rots = rotations;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -27,6 +30,7 @@ public class RotationalControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.colorRoller.rotationalControl(rots);
   }
 
   // Called once the command ends or is interrupted.
@@ -37,7 +41,7 @@ public class RotationalControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Robot.colorRoller.completedRotation == true){
+    if (Robot.colorRoller.completedRotation == true) {
       return true;
     } else {
       return false;
