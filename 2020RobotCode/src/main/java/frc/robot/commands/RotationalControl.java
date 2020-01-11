@@ -41,10 +41,6 @@ public class RotationalControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Robot.colorRoller.completedRotation == true) {
-      return true;
-    } else {
-      return false;
-    }
+    return Robot.colorRoller.completedRotation;
   }
 }

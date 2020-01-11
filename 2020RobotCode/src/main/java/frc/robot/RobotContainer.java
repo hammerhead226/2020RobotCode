@@ -47,7 +47,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    manip.getAButton().whenPressed(new RotationalControl(3));
+    manip.getYButton().whenPressed(new RotationalControl(3));
     manip.getAButton().whileHeld(new RunShooter());
     manip.getBButton().whileHeld(new RollFloor());
     manip.getXButton().whileHeld(new OuttakeBall());
