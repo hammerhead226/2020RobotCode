@@ -29,8 +29,8 @@ public final class Constants {
     public static final int INTAKE = 0;
     public static final int CLIMBER = 0;
 
-    public static final int INTAKE_TOGGLE_SHIFT_1 = 0;
-    public static final int INTAKE_TOGGLE_SHIFT_2 = 0;
+    public static final int INTAKE_SHIFT_1 = 0;
+    public static final int INTAKE_SHIFT_2 = 0;
     public static final int SHOOTER_SHIFT_1 = 0;
     public static final int SHOOTER_SHIFT_2 = 0;
     public static final int COMPRESSOR = 0;
