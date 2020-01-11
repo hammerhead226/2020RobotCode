@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
+import frc.robot.commands.RollFloor;
+import frc.robot.commands.RunShooter;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -21,7 +24,6 @@ import frc.libs.util.Controller;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
   public Controller driver = new Controller(0);
   public Controller manip = new Controller(1);
 
@@ -40,6 +42,8 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    driver.getAButton().whileHeld(new RunShooter());
+    driver.getBButton().whileHeld(new RollFloor());
   }
 
   /**
