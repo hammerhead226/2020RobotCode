@@ -23,4 +23,8 @@ public final class Constants {
 
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = false;
+
+    public static final int INTAKE = 0;
+    public static final int CLIMBER = 0;
 }
+
