@@ -25,4 +25,8 @@ public final class Constants {
 
     public static final int ROLLER = 0;
     public static final int ACTIVE_FLOOR = 0;
+    
+    public static final int INTAKE = 0;
+    public static final int CLIMBER = 0;
 }
+
