@@ -14,7 +14,7 @@ import edu.wpi.first.networktables.NetworkTable;
  * Add your docs here.
  */
 public class Limelight {
-    static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
+    private static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
 
     public static double getValue(String index) {
         return limelight.getEntry(index).getDouble(0);
