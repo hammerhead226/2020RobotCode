@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
+import frc.robot.commands.RollFloor;
 import frc.robot.commands.RunShooter;
 
 /**
@@ -39,6 +40,7 @@ public Controller driver = new Controller(0);
    */
   private void configureButtonBindings() {
     driver.getAButton().whileHeld(new RunShooter());
+    driver.getBButton().whileHeld(new RollFloor());
   }
 
 
