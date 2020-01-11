@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Shoots extends CommandBase {
+public class RunShooter extends CommandBase {
   /**
    * Creates a new Shoots.
    */
-  public Shoots() {
+  public RunShooter() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.shooter);
   }
@@ -27,16 +27,13 @@ public class Shoots extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.driver.getAButtonPressed() == true){
-      Robot.shooter.shotsfired(1);
-    } else{
-      Robot.shooter.shotsfired(0);
-    }
+    Robot.shooter.runShooter(1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.shooter.runShooter(0);
   }
 
   // Returns true when the command should end.

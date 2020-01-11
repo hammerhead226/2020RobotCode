@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor2.follow(shooterMotor1);
   }
 
-  public void shotsfired(int speed){
+  public void runShooter(int speed){
     shooterMotor1.set(ControlMode.PercentOutput, speed);
   }
 
