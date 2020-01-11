@@ -57,23 +57,23 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.setInverted(Constants.REAR_LEFT_STEER_INVERTED);
     rearRightSteer.setInverted(Constants.REAR_RIGHT_STEER_INVERTED);
 
-    frontLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    frontLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    frontRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    frontRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    rearLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    rearLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    rearRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
-    rearRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+    frontLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    frontLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    frontRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    frontRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    rearLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    rearLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    rearRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
+    rearRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_TRESHOLD_TIME));
 
-    frontLeftDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
-    frontLeftSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
-    frontRightDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
-    frontRightSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
-    rearLeftDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
-    rearLeftSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
-    rearRightDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
-    rearRightSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
+    frontLeftDrive.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
+    frontLeftSteer.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
+    frontRightDrive.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
+    frontRightSteer.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
+    rearLeftDrive.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
+    rearLeftSteer.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
+    rearRightDrive.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
+    rearRightSteer.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
 
     frontLeftDrive.setNeutralMode(NeutralMode.Brake);
     frontLeftSteer.setNeutralMode(NeutralMode.Brake);

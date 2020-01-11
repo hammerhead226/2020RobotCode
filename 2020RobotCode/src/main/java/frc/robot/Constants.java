@@ -39,8 +39,6 @@ public final class Constants {
 
     public static final int PIGEON = 7;
 
-    public static final int JOYSTICK = 0;
-
     public static final int ENCODER_TICKS = 4096;
     public static final double DRIVE_REV_PER_INCH = .6614404704;
 
@@ -68,11 +66,11 @@ public final class Constants {
 
     public static final int CLIMBER_MOTOR_1 = 0;
 
-    public static final boolean CURRENT_ENABLE = false;
-    public static final double CURRENT_LIMIT = 40;
-    public static final double CURRENT_TRESHOLD_TIME = 2; 
+    public static final boolean DRIVETRAIN_CURRENT_ENABLE = false;
+    public static final double DRIVETRAIN_CURRENT_LIMIT = 40;
+    public static final double DRIVETRAIN_CURRENT_TRESHOLD_TIME = 2; 
 
-    public static final double VOLTAGE_LIMIT = 12;
-    public static final boolean VOLTAGE_ENABLE = false; 
+    public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
+    public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false; 
 
 }
