@@ -16,12 +16,12 @@ public class toggleCompressor extends InstantCommand {
    */
   public toggleCompressor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.pneumaticsSystem);
+    addRequirements(Robot.pneumatics);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.pneumaticsSystem.compressorToggle();
+    Robot.pneumatics.toggleCompressor();
   }
 }

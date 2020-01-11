@@ -22,7 +22,7 @@ public class PneumaticsSystem extends SubsystemBase {
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
   private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
 
-  public Pneumatics() {
+  public PneumaticsSystem() {
     compressor.start();
   }
 
