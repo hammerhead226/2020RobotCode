@@ -17,7 +17,7 @@ public class PneumaticsSubsytem extends SubsystemBase {
    * Creates a new Pneumatics.
    */
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
-  private DoubleSolenoid Intake = new DoubleSolenoid(Constants.INTAKE_TOGGLE_SHIFT_1, Constants.INTAKE_TOGGLE_SHIFT_2);
+  private DoubleSolenoid Intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
   private DoubleSolenoid Shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
   private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
@@ -30,7 +30,7 @@ public class PneumaticsSubsytem extends SubsystemBase {
     compressor.stop();
   }
 
-  public void intakeToggle(){
+  public void toggleIntake(){
     if (intakeVal == DoubleSolenoid.Value.kForward){
       intakeVal = DoubleSolenoid.Value.kReverse;
     }else {
