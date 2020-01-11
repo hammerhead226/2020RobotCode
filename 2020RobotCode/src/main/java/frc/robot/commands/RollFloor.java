@@ -16,7 +16,7 @@ public class RollFloor extends CommandBase {
    */
   public RollFloor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.activefloor);
+    addRequirements(Robot.activeFloor);
   }
 
   // Called when the command is initially scheduled.
