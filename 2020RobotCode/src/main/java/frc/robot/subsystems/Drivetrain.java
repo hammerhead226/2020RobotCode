@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import java.sql.Driver;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
@@ -74,7 +75,15 @@ public class Drivetrain extends SubsystemBase {
     rearRightDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
     rearRightSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
 
-    
+    frontLeftDrive.setNeutralMode(NeutralMode.Brake);
+    frontLeftSteer.setNeutralMode(NeutralMode.Brake);
+    frontRightDrive.setNeutralMode(NeutralMode.Brake);
+    frontRightSteer.setNeutralMode(NeutralMode.Brake);
+    rearLeftDrive.setNeutralMode(NeutralMode.Brake);
+    rearLeftSteer.setNeutralMode(NeutralMode.Brake);
+    rearRightDrive.setNeutralMode(NeutralMode.Brake);
+    rearRightSteer.setNeutralMode(NeutralMode.Brake);
+
 
   }
 
