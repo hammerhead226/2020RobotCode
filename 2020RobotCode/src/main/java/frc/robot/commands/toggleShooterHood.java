@@ -17,7 +17,7 @@ public class toggleShooterHood extends CommandBase {
   
   public toggleShooterHood() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.pneumaticsSystem);
+    addRequirements(Robot.pneumatics);
   }
 
   // Called when the command is initially scheduled.
@@ -28,7 +28,7 @@ public class toggleShooterHood extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.pneumaticsSystem.shooterToggle();
+    Robot.pneumatics.toggleShooter();
   }
 
   // Called once the command ends or is interrupted.

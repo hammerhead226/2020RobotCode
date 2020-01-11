@@ -16,7 +16,7 @@ public class toggleIntake extends CommandBase {
    */
   public toggleIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.pneumaticsSystem);
+    addRequirements(Robot.pneumatics);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +27,7 @@ public class toggleIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.pneumaticsSystem.intakeToggle();
+    Robot.pneumatics.toggleIntake();
   }
 
   // Called once the command ends or is interrupted.
