@@ -18,6 +18,9 @@ package frc.robot;
 public final class Constants {
     public static final int CLIMBER_MOTOR_1 = 0;
     
-    public static final int SHOOTER_MOTOR_1 = 0;
-    public static final int SHOOTER_MOTOR_2 = 0;
+    public static final int SHOOTER_1 = 0;
+    public static final int SHOOTER_2 = 0;
+
+    public static final boolean SHOOTER_1_INVERTED = true;
+    public static final boolean SHOOTER_2_INVERTED = !true;
 }

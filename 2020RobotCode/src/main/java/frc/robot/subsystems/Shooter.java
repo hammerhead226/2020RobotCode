@@ -17,18 +17,18 @@ public class Shooter extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  private TalonFX shooterMotor1 = new TalonFX(Constants.SHOOTER_MOTOR_1);
-  private TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER_MOTOR_2);
+  private TalonFX shooter1 = new TalonFX(Constants.SHOOTER_1);
+  private TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
 
   public Shooter() {
-    shooterMotor1.setInverted(true);
-    shooterMotor2.setInverted(!true);
+    shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
+    shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
 
-    shooterMotor2.follow(shooterMotor1);
+    shooter2.follow(shooter1);
   }
 
   public void runShooter(int speed){
-    shooterMotor1.set(ControlMode.PercentOutput, speed);
+    shooter1.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
