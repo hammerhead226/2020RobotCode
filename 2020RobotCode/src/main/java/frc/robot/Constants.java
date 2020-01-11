@@ -68,7 +68,8 @@ public final class Constants {
 
     public static final int CLIMBER_MOTOR_1 = 0;
 
-    public static final int CURRENT_LIMIT = 40;
-    public static final int VOLTAGE_LIMIT = 12;
+    public static final boolean CURRENT_ENABLE = false;
+    public static final double CURRENT_LIMIT = 40;
+    public static final double CURRENT_TRESHOLD_TIME = 2; 
 
 }
