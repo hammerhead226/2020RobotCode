@@ -72,4 +72,7 @@ public final class Constants {
     public static final double CURRENT_LIMIT = 40;
     public static final double CURRENT_TRESHOLD_TIME = 2; 
 
+    public static final double VOLTAGE_LIMIT = 12;
+    public static final boolean VOLTAGE_ENABLE = false; 
+
 }
