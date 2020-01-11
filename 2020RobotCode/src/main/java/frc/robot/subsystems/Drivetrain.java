@@ -64,6 +64,18 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
     rearRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
     rearRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CURRENT_ENABLE, Constants.CURRENT_LIMIT, Constants.CURRENT_LIMIT, Constants.CURRENT_TRESHOLD_TIME));
+
+    frontLeftDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
+    frontLeftSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
+    frontRightDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
+    frontRightSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
+    rearLeftDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
+    rearLeftSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
+    rearRightDrive.configVoltageCompSaturation(Constants.VOLTAGE_LIMIT);
+    rearRightSteer.enableVoltageCompensation(Constants.VOLTAGE_ENABLE);
+
+    
+
   }
 
   @Override
