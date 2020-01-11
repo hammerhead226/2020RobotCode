@@ -27,6 +27,7 @@ public final class Constants {
     public static int REAR_LEFT_ENCODER = 1;
     public static final boolean REAR_LEFT_STEER_INVERTED = false;    
     
+
     public static int FRONT_RIGHT_DRIVE = 3;
     public static int FRONT_RIGHT_STEER = 7;
     public static int FRONT_RIGHT_ENCODER = 2;
@@ -73,4 +74,16 @@ public final class Constants {
     public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
     public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false; 
 
+
+    public static final int SHOOTER_1 = 0;
+    public static final int SHOOTER_2 = 0;
+    public static final boolean SHOOTER_1_INVERTED = false;
+    public static final boolean SHOOTER_2_INVERTED = false;
+
+    public static final int ROLLER = 0;
+    public static final int ACTIVE_FLOOR = 0;
+    
+    public static final int INTAKE = 0;
+    public static final int CLIMBER = 0;
 }
+
