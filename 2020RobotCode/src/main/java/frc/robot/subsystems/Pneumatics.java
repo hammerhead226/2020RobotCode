@@ -39,7 +39,7 @@ public class PneumaticsSubsytem extends SubsystemBase {
     Intake.set(intakeVal);
   }
 
-  public void shooterToggle(){
+  public void toggleShooter(){
     if (shooterVal == DoubleSolenoid.Value.kForward){
       shooterVal = DoubleSolenoid.Value.kReverse;
     }else {
