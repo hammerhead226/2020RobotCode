@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class PneumaticsSubsytem extends SubsystemBase {
+public class PneumaticsSystem extends SubsystemBase {
   /**
    * Creates a new Pneumatics.
    */
