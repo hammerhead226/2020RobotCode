@@ -18,9 +18,9 @@ public class Pneumatics extends SubsystemBase {
    */
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
   private DoubleSolenoid Intake = new DoubleSolenoid(Constants.INTAKE_TOGGLE_SHIFT_1, Constants.INTAKE_TOGGLE_SHIFT_2);
-  private DoubleSolenoid Hood = new DoubleSolenoid(Constants.HOOD_TOGGLE_SHIFT_1, Constants.HOOD_TOGGLE_SHIFT_2);
+  private DoubleSolenoid Shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
-  private DoubleSolenoid.Value hoodVal = DoubleSolenoid.Value.kForward;
+  private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
 
   public Pneumatics() {
     compressor.start();
@@ -39,13 +39,13 @@ public class Pneumatics extends SubsystemBase {
     Intake.set(intakeVal);
   }
 
-  public void hoodToggle(){
-    if (hoodVal == DoubleSolenoid.Value.kForward){
-      hoodVal = DoubleSolenoid.Value.kReverse;
+  public void shooterToggle(){
+    if (shooterVal == DoubleSolenoid.Value.kForward){
+      shooterVal = DoubleSolenoid.Value.kReverse;
     }else {
       intakeVal = DoubleSolenoid.Value.kForward;
     }
-    Hood.set(hoodVal);
+    Shooter.set(shooterVal);
   }
   @Override
   public void periodic() {

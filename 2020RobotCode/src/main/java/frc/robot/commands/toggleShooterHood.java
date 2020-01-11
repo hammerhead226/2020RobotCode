@@ -10,13 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class CompressorToggle extends CommandBase {
+public class toggleShooterHood extends CommandBase {
   /**
-   * Creates a new CompressorToggle.
+   * Creates a new toggleShooter.
    */
-  public CompressorToggle() {
+  
+  public toggleShooterHood() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.pneu);
+    addRequirements(Robot.pneumaticsSystem);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +28,7 @@ public class CompressorToggle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.pneu.compressorToggle();
+    Robot.pneumaticsSystem.shooterToggle();
   }
 
   // Called once the command ends or is interrupted.

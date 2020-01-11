@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter = new Shooter();
   public static ActiveFloor activefloor = new ActiveFloor();
   public static Intake intake = new Intake();
-  public static Pneumatics pneu = new Pneumatics();
+  public static Pneumatics pneumaticsSystem = new Pneumatics();
 
   /**
    * This function is run when the robot is first started up and should be used

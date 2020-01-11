@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
-import frc.robot.commands.CompressorToggle;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.RollFloor;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.toggleCompressor;
 
 
 /**
@@ -47,7 +47,7 @@ public class RobotContainer {
     manip.getAButton().whileHeld(new RunShooter());
     manip.getBButton().whileHeld(new RollFloor());
     manip.getXButton().whileHeld(new OuttakeBall());
-    driver.getSTARTButton().whileHeld(new CompressorToggle());
+    driver.getSTARTButton().whenPressed(new toggleCompressor());
   }
 
   /**

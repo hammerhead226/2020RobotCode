@@ -10,15 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class HoodToggle extends CommandBase {
+public class toggleIntake extends CommandBase {
   /**
-   * Creates a new HoodToggle.
+   * Creates a new IntakeToggle.
    */
-
-
-  public HoodToggle() {
+  public toggleIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.pneu);
+    addRequirements(Robot.pneumaticsSystem);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +27,7 @@ public class HoodToggle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.pneu.hoodToggle();
+    Robot.pneumaticsSystem.intakeToggle();
   }
 
   // Called once the command ends or is interrupted.
