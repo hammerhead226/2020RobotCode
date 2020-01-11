@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -83,8 +84,17 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.setNeutralMode(NeutralMode.Brake);
     rearRightDrive.setNeutralMode(NeutralMode.Brake);
     rearRightSteer.setNeutralMode(NeutralMode.Brake);
+  }
 
-
+  public void Output(){
+    SmartDashboard.putNumber("frontLeftDrive current", frontLeftDrive.getStatorCurrent());
+    SmartDashboard.putNumber("frontLeftSteer current", frontLeftSteer.getStatorCurrent());
+    SmartDashboard.putNumber("frontRightDrive current", frontRightDrive.getStatorCurrent());
+    SmartDashboard.putNumber("frontRightSteer current", frontRightSteer.getStatorCurrent());
+    SmartDashboard.putNumber("rearLeftDrive current", rearLeftDrive.getStatorCurrent());
+    SmartDashboard.putNumber("rearLeftSteer current", rearLeftSteer.getStatorCurrent());
+    SmartDashboard.putNumber("rearRightDrive current", rearRightDrive.getStatorCurrent());
+    SmartDashboard.putNumber("rearRightSteer current", rearRightSteer.getStatorCurrent());
   }
 
   @Override
