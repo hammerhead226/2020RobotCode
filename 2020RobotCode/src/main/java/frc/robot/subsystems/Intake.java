@@ -14,25 +14,23 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class Climber extends SubsystemBase {
+public class Intake extends SubsystemBase {
   /**
-   * Creates a new Drivetrain.
+   * Creates a new Intake.
    */
-  TalonFX climber = new TalonFX(Constants.CLIMBER);
+  TalonFX intake = new TalonFX(Constants.INTAKE);
 
-  public Climber() {
-
+  public void intake(double intakeSpeed){
+    intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
   }
+  public Intake() {
 
-  public void climber(double climbSpeed) {
-    climber.set(TalonFXControlMode.PercentOutput, climbSpeed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // climber(Robot.robotContainer.getLeftTrigger()+Robot.robotContainer.getRightTrigger());
-    climber(Robot.robotContainer.driver.getTriggers());
-
+    //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
+    intake(Robot.robotContainer.manip.getTriggers());
   }
 }
