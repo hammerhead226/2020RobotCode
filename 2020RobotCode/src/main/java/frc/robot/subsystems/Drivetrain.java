@@ -50,7 +50,10 @@ public class Drivetrain extends SubsystemBase {
   SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);  
 
   public Drivetrain() {
-    
+    frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);
+    frontRightSteer.setInverted(Constants.FRONT_RIGHT_STEER_INVERTED);
+    rearLeftSteer.setInverted(Constants.REAR_LEFT_STEER_INVERTED);
+    rearRightSteer.setInverted(Constants.REAR_RIGHT_STEER_INVERTED);
   }
 
   @Override
