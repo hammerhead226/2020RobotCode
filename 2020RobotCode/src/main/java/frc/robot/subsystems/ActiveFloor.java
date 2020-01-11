@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -27,6 +28,11 @@ public class ActiveFloor extends SubsystemBase {
   public void RunRollers(int speed){
     roller.set(ControlMode.PercentOutput, speed);
     activeFloor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void Output(){
+    SmartDashboard.putNumber("roller current", roller.getStatorCurrent());
+    SmartDashboard.putNumber("activeFloor current", roller.getStatorCurrent());
   }
 
   @Override

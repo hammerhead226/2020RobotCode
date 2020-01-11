@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -29,6 +30,11 @@ public class Shooter extends SubsystemBase {
 
   public void runShooter(int speed){
     shooter1.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void Output(){
+    SmartDashboard.putNumber("shooter1 current", shooter1.getStatorCurrent());
+    SmartDashboard.putNumber("shooter2 current", shooter2.getStatorCurrent());
   }
 
   @Override
