@@ -14,7 +14,8 @@ public class RotationalControl extends CommandBase {
   /**
    * Creates a new RotationalControl.
    */
-  public RotationalControl() {
+  public RotationalControl(double rotations) {
+    Robot.colorRoller.rotationalControl(rotations);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,7 +27,6 @@ public class RotationalControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.colorRoller.rotationalControl(3);
   }
 
   // Called once the command ends or is interrupted.
