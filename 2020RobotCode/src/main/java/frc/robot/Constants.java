@@ -20,5 +20,7 @@ public final class Constants {
     public static final int INTAKE = 0;
     public static final int CLIMBER = 0;
 
+    public static final double TICKS_PER_REV_COLORWHEEL = 0;
+
 }
 
