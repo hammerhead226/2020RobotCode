@@ -14,21 +14,49 @@ import edu.wpi.first.networktables.NetworkTable;
  * Add your docs here.
  */
 public class Limelight {
-    NetworkTable limelight =  NetworkTableInstance.getDefault().getTable("limelight");
+    static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
 
-    public double getValue(String index){
+    public static double getValue(String index) {
         return limelight.getEntry(index).getDouble(0);
     }
 
-    public double getNumTargets(){
+    public static double getNumTargets(){
         return limelight.getEntry("tv").getDouble(0);
     }
 
-    public double getHorizontalOffset(){
+    public static double getHorizontalOffset(){
         return limelight.getEntry("tx").getDouble(0);
     }
 
-    public double getVerticallOffset(){
+    public static double getVerticallOffset(){
         return limelight.getEntry("ty").getDouble(0);
     }
+    public static double getTargetArea(){
+        return limelight.getEntry("ta").getDouble(0);
+    }
+    public static double getSkew(){
+        return limelight.getEntry("ts").getDouble(0);
+    }
+    public static double getPipelineContr(){
+        return limelight.getEntry("tl").getDouble(0);
+    }
+    public static double getShortSidelength(){
+        return limelight.getEntry("tshort").getDouble(0);
+    }
+    public static double getLongSidelength(){
+        return limelight.getEntry("tlong").getDouble(0);
+    }
+    public static double getHorizontalSidelength(){
+        return limelight.getEntry("thor").getDouble(0);
+    }
+    public static double getVerticalSidelength(){
+        return limelight.getEntry("tvert").getDouble(0);
+    }
+    public static double getPipe(){
+        return limelight.getEntry("getpipe").getDouble(0);
+    }
+    public static double getPos(){
+        return limelight.getEntry("camtran").getDouble(0);
+    }
+    
 }
