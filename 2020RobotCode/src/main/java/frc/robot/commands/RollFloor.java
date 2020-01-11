@@ -16,7 +16,7 @@ public class RollFloor extends CommandBase {
    */
   public RollFloor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.activefloor);
+    addRequirements(Robot.activeFloor);
   }
 
   // Called when the command is initially scheduled.
@@ -27,13 +27,13 @@ public class RollFloor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.activefloor.RunRollers(1);
+    Robot.activeFloor.RunRollers(1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.activefloor.RunRollers(0);
+    Robot.activeFloor.RunRollers(0);
   }
 
   // Returns true when the command should end.
