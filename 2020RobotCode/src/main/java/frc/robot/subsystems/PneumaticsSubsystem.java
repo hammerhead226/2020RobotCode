@@ -26,7 +26,7 @@ public class PneumaticsSubsytem extends SubsystemBase {
     compressor.start();
   }
 
-  public void compressorToggle(){
+  public void toggleCompressor(){
     compressor.stop();
   }
 
