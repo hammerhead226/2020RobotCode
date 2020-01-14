@@ -10,16 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class RotationalControl extends CommandBase {
+public class ColorAlignment extends CommandBase {
   /**
-   * Creates a new RotationalControl.
+   * Creates a new ColorAlignment.
    */
-
-  double rots;
-
-  public RotationalControl(double rotations) {
-    rots = rotations;
+  double spd;
+  public ColorAlignment(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
+    spd = speed;
   }
 
   // Called when the command is initially scheduled.
@@ -30,7 +28,7 @@ public class RotationalControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.colorRoller.rotationalControl(rots);
+    Robot.colorRoller.rotationalControl(spd);
   }
 
   // Called once the command ends or is interrupted.
@@ -41,6 +39,6 @@ public class RotationalControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Robot.colorRoller.completedRotations;
+    return false;
   }
 }

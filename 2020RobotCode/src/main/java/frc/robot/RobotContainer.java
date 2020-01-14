@@ -12,9 +12,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
-import frc.robot.commands.RotationalControl;
+import frc.robot.commands.ColorAlignment;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.RollFloor;
+import frc.robot.commands.RotationalControl;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.toggleCompressor;
 
@@ -48,6 +49,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     manip.getYButton().whenPressed(new RotationalControl(3));
+    manip.getSTARTButton().whenPressed(new ColorAlignment(0.25));
     manip.getAButton().whileHeld(new RunShooter());
     manip.getBButton().whileHeld(new RollFloor());
     manip.getXButton().whileHeld(new OuttakeBall());

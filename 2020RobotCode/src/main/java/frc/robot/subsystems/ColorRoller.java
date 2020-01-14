@@ -9,9 +9,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -23,12 +27,59 @@ public class ColorRoller extends SubsystemBase {
   
   ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
-  public boolean completedRotation;
+  public boolean completedRotations;
+
+  public Color currentColor = colorSensor.getColor();;
+  public String currentColorString;
+  
+  public Color neededColor;
+  public String neededColorString = DriverStation.getInstance().getGameSpecificMessage();
+
+  private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
+  private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
+  private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
+  private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
   
   public void rotationalControl(double rotations) {
     color_Roller.set(ControlMode.Position, rotations * Constants.TICKS_PER_REV_COLORWHEEL);
-    completedRotation = true;
+    completedRotations = true;
   }
+
+  public void getNameOfColor(Color color) {
+    if (colorSensor.getColor() == kBlueTarget) {
+      currentColorString = "B";
+    } else if (colorSensor.getColor() == kGreenTarget) {
+      currentColorString = "G";
+    } else if (colorSensor.getColor() == kRedTarget) {
+      currentColorString = "R";
+    } else if (colorSensor.getColor() == kRedTarget){
+      currentColorString = "Y";
+    }
+    SmartDashboard.putString("Current Color", currentColorString);
+  }
+
+  public void getColorValue(String color) {
+    if (color == "B") {
+      neededColor = kBlueTarget;
+    } else if (color == "G") {
+      neededColor = kGreenTarget;
+    } else if (color == "R") {
+      neededColor = kRedTarget;
+    } else if (color == "Y") {
+      neededColor = kYellowTarget;
+    }
+  }
+
+  public void colorAlignment(double speed) {
+    SmartDashboard.putString("Needed Color", neededColorString);
+
+    if (currentColor == neededColor) {
+      speed = 0;
+    } else {
+      speed = speed/2;
+    }
+  }
+
 
   public ColorRoller() {
 
