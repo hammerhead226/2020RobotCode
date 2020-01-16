@@ -32,9 +32,17 @@ public class Shooter extends SubsystemBase {
     shooter1.set(ControlMode.PercentOutput, speed);
   }
 
-  public void Output(){
+  public void Output(int caseNumber){
     SmartDashboard.putNumber("shooter1 current", shooter1.getStatorCurrent());
     SmartDashboard.putNumber("shooter2 current", shooter2.getStatorCurrent());
+  }
+
+  public void Ball_Counter(){
+    double ball_Num = 0;
+    if (shooter1.getStatorCurrent() > Constants.BALL_CURRENT && shooter2.getStatorCurrent() > Constants.BALL_CURRENT){
+      ball_Num++;
+    }
+    SmartDashboard.putNumber("balls: ", ball_Num);
   }
 
   @Override

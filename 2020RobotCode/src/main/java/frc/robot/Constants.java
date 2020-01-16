@@ -80,6 +80,8 @@ public final class Constants {
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = false;
 
+    public static final int BALL_CURRENT = 20;
+
     public static final int ROLLER = 0;
     public static final int ACTIVE_FLOOR = 0;
     

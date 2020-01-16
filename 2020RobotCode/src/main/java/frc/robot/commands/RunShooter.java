@@ -28,6 +28,7 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     Robot.shooter.runShooter(1);
+    Robot.shooter.Ball_Counter();
   }
 
   // Called once the command ends or is interrupted.
