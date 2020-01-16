@@ -28,35 +28,64 @@ public class Limelight {
         return limelight.getEntry("tx").getDouble(0);
     }
 
-    public static double getVerticallOffset(){
+    public static double getVerticalOffset(){
         return limelight.getEntry("ty").getDouble(0);
     }
+
     public static double getTargetArea(){
         return limelight.getEntry("ta").getDouble(0);
     }
+
     public static double getSkew(){
         return limelight.getEntry("ts").getDouble(0);
     }
+    
     public static double getPipelineContr(){
         return limelight.getEntry("tl").getDouble(0);
     }
+
     public static double getShortSidelength(){
         return limelight.getEntry("tshort").getDouble(0);
     }
+
     public static double getLongSidelength(){
         return limelight.getEntry("tlong").getDouble(0);
     }
+
     public static double getHorizontalSidelength(){
         return limelight.getEntry("thor").getDouble(0);
     }
+
     public static double getVerticalSidelength(){
         return limelight.getEntry("tvert").getDouble(0);
     }
+
     public static double getPipe(){
         return limelight.getEntry("getpipe").getDouble(0);
     }
+
     public static double getPos(){
         return limelight.getEntry("camtran").getDouble(0);
     }
-    
+
+    public static void setLEDMode(int mode){
+        limelight.getEntry("ledMode").setNumber(mode);
+    }
+
+    public static void setCamMode(int mode){
+        limelight.getEntry("camMode").setNumber(mode);
+    }
+
+    public static void setPipeline(int line){
+        limelight.getEntry("pipeline").setNumber(line);
+    }
+
+    public static void setStreamMode(int mode){
+        limelight.getEntry("stream").setNumber(mode);
+    }
+
+    public static void takeSnapshot(int mode){
+        limelight.getEntry("snapshot").setNumber(mode);
+    }
+
 }
