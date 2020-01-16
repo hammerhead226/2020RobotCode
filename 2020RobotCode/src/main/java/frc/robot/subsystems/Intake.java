@@ -31,11 +31,20 @@ public class Intake extends SubsystemBase {
   public void Output(){
     SmartDashboard.putNumber("intake current", intake.getStatorCurrent());
   }
+  
+  public void ballCounter(){
+    double ball_Num = 0;
+    if (intake.getStatorCurrent() > Constants.BALL_CURRENT){
+      ball_Num++;
+    }
+    SmartDashboard.putNumber("balls: ", ball_Num);
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
     intake(Robot.robotContainer.manip.getTriggers());
+    ballCounter();
   }
 }
