@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,6 +36,11 @@ public class Shooter extends SubsystemBase {
   public void Output(){
     SmartDashboard.putNumber("shooter1 current", shooter1.getStatorCurrent());
     SmartDashboard.putNumber("shooter2 current", shooter2.getStatorCurrent());
+  }
+
+  public void ShooterSpeedPID(double velocity){
+    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+    shooter1.set(ControlMode.Velocity, velocity);
   }
 
   @Override

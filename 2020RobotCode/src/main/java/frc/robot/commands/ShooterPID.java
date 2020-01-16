@@ -27,7 +27,7 @@ public class ShooterPID extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooterPID.ShooterSpeedPID(Constants.SHOOTER_MAX_RPM);
+    Robot.shooter.ShooterSpeedPID(Constants.SHOOTER_MAX_RPM);
   }
 
   // Called once the command ends or is interrupted.
