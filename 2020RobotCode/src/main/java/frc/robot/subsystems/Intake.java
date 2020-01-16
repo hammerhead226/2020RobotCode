@@ -24,6 +24,7 @@ public class Intake extends SubsystemBase {
   public void intake(double intakeSpeed){
     intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
   }
+
   public Intake() {
 
   }
