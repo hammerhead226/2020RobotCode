@@ -91,5 +91,10 @@ public final class Constants {
     public static final int SHOOTER_SHIFT_1 = 0;
     public static final int SHOOTER_SHIFT_2 = 0;
     public static final int COMPRESSOR = 0;
+
+    public static final double SHOOTER_SENSITIVITY = 0.1;
+    public static final double SHOOTER_TOLERANCE = 0.2;
+    public static final int SHOOTER_ENCODER_PIDIDX = 0;
+    public static final int SHOOTER_ENCODER_TIMEOUT = 10;
 }
 
