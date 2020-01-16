@@ -91,5 +91,8 @@ public final class Constants {
     public static final int SHOOTER_SHIFT_1 = 0;
     public static final int SHOOTER_SHIFT_2 = 0;
     public static final int COMPRESSOR = 0;
+
+    public static final int SHOOTER = 0;
+    public static final int SHOOTER_MAX_RPM = 5000;
 }
 
