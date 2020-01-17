@@ -38,8 +38,8 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("shooter2 current", shooter2.getStatorCurrent());
   }
 
-  public void ShooterSpeedPID(double velocity){
-    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+  public void setShooterSpeed(double velocity){
+    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.PID_INDEX, Constants.PID_TIMEOUT);
     shooter1.set(ControlMode.Velocity, velocity);
   }
 

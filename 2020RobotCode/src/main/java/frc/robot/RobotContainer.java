@@ -15,7 +15,6 @@ import frc.libs.util.Controller;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.RollFloor;
 import frc.robot.commands.RunShooter;
-import frc.robot.commands.ShooterPID;
 import frc.robot.commands.toggleCompressor;
 
 
@@ -51,7 +50,6 @@ public class RobotContainer {
     manip.getBButton().whileHeld(new RollFloor());
     manip.getXButton().whileHeld(new OuttakeBall());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
-    driver.getAButton().whenPressed(new ShooterPID());
   }
 
   /**

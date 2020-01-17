@@ -94,5 +94,8 @@ public final class Constants {
 
     public static final int SHOOTER = 0;
     public static final int SHOOTER_MAX_RPM = 5000;
+
+    public static final int PID_INDEX = 0;
+    public static final int PID_TIMEOUT = 10;
 }
 

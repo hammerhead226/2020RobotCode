@@ -16,7 +16,7 @@ import frc.robot.subsystems.Intake;
 
 import frc.robot.subsystems.PneumaticsSystem;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.ShooterPID;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
   public static ActiveFloor activeFloor = new ActiveFloor();
-  public static ShooterPID shooterPID = new ShooterPID();
+  
 
   /**
    * This function is run when the robot is first started up and should be used
