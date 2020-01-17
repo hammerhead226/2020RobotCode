@@ -19,7 +19,7 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  TalonFX intake = new TalonFX(Constants.INTAKE);
+  private TalonFX intake = new TalonFX(Constants.INTAKE);
 
   public void intake(double intakeSpeed){
     intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
