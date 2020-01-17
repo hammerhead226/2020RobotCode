@@ -19,10 +19,10 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  TalonFX intake = new TalonFX(Constants.INTAKE);
+  TalonFX intakeActiveFloor = new TalonFX(Constants.INTAKE);
 
   public void intake(double intakeSpeed){
-    intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
+    intakeActiveFloor.set(TalonFXControlMode.PercentOutput, intakeSpeed);
   }
 
   public Intake() {
@@ -30,7 +30,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void Output(){
-    SmartDashboard.putNumber("intake current", intake.getStatorCurrent());
+    SmartDashboard.putNumber("intake current", intakeActiveFloor.getStatorCurrent());
   }
 
   @Override
