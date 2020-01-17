@@ -26,6 +26,8 @@ public class Shooter extends SubsystemBase {
     shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
     shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
 
+    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.PID_INDEX, Constants.PID_TIMEOUT);
+
     shooter2.follow(shooter1);
   }
 
@@ -39,7 +41,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double velocity){
-    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.PID_INDEX, Constants.PID_TIMEOUT);
+    
     shooter1.set(ControlMode.Velocity, velocity);
   }
 
