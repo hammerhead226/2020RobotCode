@@ -19,24 +19,17 @@ import frc.robot.Constants;
 public class SwerveModule {
 
     private TalonFX drive;
-    private TalonFX steer;
-    private TalonSRX steersrx;
+    private TalonSRX steer;
     private EncoderWrapper steercoder;
     private int module;
 
-    public SwerveModule(TalonFX drive, TalonFX steer, AnalogInput steercoder, int module) {
+    public SwerveModule(TalonFX drive, TalonSRX steer, AnalogInput steercoder, int module) {
         this.drive = drive;
         this.steer = steer;
         this.steercoder = new EncoderWrapper(steercoder);
         this.module = module;
     }
 
-    public SwerveModule(TalonFX drive, TalonSRX steersrx, AnalogInput steercoder, int module){
-        this.drive = drive;
-        this.steersrx = steersrx;
-        this.steercoder = new EncoderWrapper(steercoder);
-        this.module = module;
-    }
 
     public void drive(double r, double theta) {
         steercoder.update();
@@ -59,8 +52,7 @@ public class SwerveModule {
             error = error + (Constants.ENCODER_TICKS / 2);
         }
         drive.set(TalonFXControlMode.PercentOutput, r);
-        steer.set(TalonFXControlMode.PercentOutput, error * Constants.STEER_KP);
-        steersrx.set(ControlMode.PercentOutput, error * Constants.STEER_KP);
+        steer.set(ControlMode.PercentOutput, error * Constants.STEER_KP);
     }
 
    
