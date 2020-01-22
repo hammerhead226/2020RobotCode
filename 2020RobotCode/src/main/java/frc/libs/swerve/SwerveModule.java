@@ -7,8 +7,10 @@
 
 package frc.libs.swerve;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
@@ -18,12 +20,20 @@ public class SwerveModule {
 
     private TalonFX drive;
     private TalonFX steer;
+    private TalonSRX steersrx;
     private EncoderWrapper steercoder;
     private int module;
 
     public SwerveModule(TalonFX drive, TalonFX steer, AnalogInput steercoder, int module) {
         this.drive = drive;
         this.steer = steer;
+        this.steercoder = new EncoderWrapper(steercoder);
+        this.module = module;
+    }
+
+    public SwerveModule(TalonFX drive, TalonSRX steersrx, AnalogInput steercoder, int module){
+        this.drive = drive;
+        this.steersrx = steersrx;
         this.steercoder = new EncoderWrapper(steercoder);
         this.module = module;
     }
@@ -50,6 +60,7 @@ public class SwerveModule {
         }
         drive.set(TalonFXControlMode.PercentOutput, r);
         steer.set(TalonFXControlMode.PercentOutput, error * Constants.STEER_KP);
+        steersrx.set(ControlMode.PercentOutput, error * Constants.STEER_KP);
     }
 
    
