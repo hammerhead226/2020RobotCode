@@ -1,0 +1,88 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
+package frc.robot.subsystems;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorSensorV3;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class ColorRoller extends SubsystemBase {
+  /**
+   * Creates a new ColorRoller.
+   */
+
+  TalonSRX color_Roller = new TalonSRX(0);
+  
+  ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+
+  public boolean completedRotations;
+
+  public Color currentColor = colorSensor.getColor();;
+  public String currentColorString;
+  
+  public Color neededColor;
+  public String neededColorString = DriverStation.getInstance().getGameSpecificMessage();
+
+  public int counter;
+
+  private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
+  private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
+  private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
+  private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+
+  public void getNameOfColor(Color color) {
+    if (colorSensor.getColor() == kBlueTarget) {
+      currentColorString = "B";
+    } else if (colorSensor.getColor() == kGreenTarget) {
+      currentColorString = "G";
+    } else if (colorSensor.getColor() == kRedTarget) {
+      currentColorString = "R";
+    } else if (colorSensor.getColor() == kRedTarget){
+      currentColorString = "Y";
+    }
+    SmartDashboard.putString("Current Color", currentColorString);
+  }
+  
+  public void getColorValue(String color) {
+    if (color == "B") {
+      neededColor = kBlueTarget;
+    } else if (color == "G") {
+      neededColor = kGreenTarget;
+    } else if (color == "R") {
+      neededColor = kRedTarget;
+    } else if (color == "Y") {
+      neededColor = kYellowTarget;
+    }
+  }
+  
+  public void moveMotor(){
+    color_Roller.set(ControlMode.PercentOutput, 0.5);
+    if (colorSensor.getColor() == currentColor) {
+      counter++;
+    }
+    if (counter == 6) {
+      color_Roller.set(ControlMode.PercentOutput, 0);
+    }
+  }
+
+  public ColorRoller() {
+
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
+}
