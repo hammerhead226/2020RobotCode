@@ -23,6 +23,7 @@ public class Leds{
 
   //change to real port number
   AddressableLED Led1 = new AddressableLED(5);
+  //change length to real length
   AddressableLEDBuffer Led1Buffer = new AddressableLEDBuffer(500);
 
   public void LEDS(){
@@ -30,7 +31,6 @@ public class Leds{
   //change length to real length
   Led1.setLength(500);
 
-  // Set the data
   Led1.setData(Led1Buffer);
   Led1.start();
   }{
@@ -65,28 +65,39 @@ public class Leds{
     }
     }if(color=="alternate"){
       for (int x = 0; x < Led1Buffer.getLength(); x+=2) {
-        // Sets the LED to blue for every 0,2,4, (even number)
+        // Sets the LED by number for every 0,2,4, (even number index)
         Led1Buffer.setRGB(x, 0,0,255);
       for (int y = 1; y < Led1Buffer.getLength(); y+=2) {
-        // Sets the LED to red for every 1,3,5, (odd number)
+        // Sets the LED by number for every 1,3,5, (odd number index)
         Led1Buffer.setRGB(y, 255,0,0 );
     }
     }if(color=="wave"){
       for (int x = 0; x < Led1Buffer.getLength(); x+=2) {
-        // Sets the LED to blue starting from 1
+        // Sets the LED by number starting from 1
         Led1Buffer.setRGB(x, 0,0,255);
       for (int y = 1; y < Led1Buffer.getLength(); y+=2) {
-        // Sets the LED to red starting from 0 
+        // Sets the LED by number starting from 0 
         //The red trailing behind the blue gives the impression that the leds are moving like a wave
         Led1Buffer.setRGB(y, 255,0,0 );
     }
     }{
         System.out.println("Color is Invalid");
+        //The color doesn't exist as an option or it was spelled incorrectly 
     }
   Led1.setData(Led1Buffer);
+                    }
                 }
             }
         }
     }
 }
   
+//rgb comments
+//red= (255,0,0)
+//green= (0,255,0)
+//blue= (0,0,255)
+//purple= (125,0,255)
+//yellow= (255,255,0)
+//light blue= (0,255,255)
+//pink= (255,0,255)
+//orange= (255,125,0)
