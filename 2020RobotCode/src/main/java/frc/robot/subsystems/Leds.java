@@ -15,17 +15,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
-public class Leds extends Object implements AutoCloseable {
+public class Leds{
   /**
    * A class for driving addressable LEDs.
    */
 
   //change to real port number
-  Led1 = new AddressableLED(5);
+  AddressableLED Led1 = new AddressableLED(5);
+  AddressableLEDBuffer Led1Buffer = new AddressableLEDBuffer(500);
 
+  public void LEDS(){
 
-  Led1Buffer = new AddressableLEDBuffer(500);
   //change length to real length
   Led1.setLength(500);
 
@@ -34,8 +36,8 @@ public class Leds extends Object implements AutoCloseable {
   Led1.start();
   }{
 
-  for (i = 0; i < Led1Buffer.getLength(); i++) {
-  // Sets the specified LED to the RGB values for red
+  for (int i = 0; i < Led1Buffer.getLength(); i++) {
+  // Sets the LED to red
   Led1Buffer.setRGB(i, 0,255,255);
   }
 
