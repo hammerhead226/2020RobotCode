@@ -5,17 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
-
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
+package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+
+//import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+//import com.ctre.phoenix.motorcontrol.can.TalonFX;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj2.command.SubsystemBase;
+//import frc.robot.Constants;
+//import frc.robot.Robot;
 
 public class Leds{
   /**
@@ -65,12 +64,9 @@ public class Leds{
       Led1Buffer.setRGB(i, 125,0,255);
     }
     }else{
-        System.out.println("Color is Invalid")
+        System.out.println("Color is Invalid");
     }
-
-
   Led1.setData(Led1Buffer);
-
   
   }
 }
