@@ -36,7 +36,7 @@ public class Leds{
   }{
 
     final String color = new String("set");
-      //options include "set,red,blue,green,purple,alternate,rainbow"
+      //options include "set,red,blue,green,purple,alternate,wave"
 
     if(color=="set"){
       for (int i = 0; i < Led1Buffer.getLength(); i++) {
@@ -69,6 +69,15 @@ public class Leds{
         Led1Buffer.setRGB(x, 0,0,255);
       for (int y = 1; y < Led1Buffer.getLength(); y+=2) {
         // Sets the LED to red for every 1,3,5, (odd number)
+        Led1Buffer.setRGB(y, 255,0,0 );
+    }
+    }if(color=="wave"){
+      for (int x = 0; x < Led1Buffer.getLength(); x+=2) {
+        // Sets the LED to blue starting from 1
+        Led1Buffer.setRGB(x, 0,0,255);
+      for (int y = 1; y < Led1Buffer.getLength(); y+=2) {
+        // Sets the LED to red starting from 0 
+        //The red trailing behind the blue gives the impression that the leds are moving like a wave
         Led1Buffer.setRGB(y, 255,0,0 );
     }
     }{
