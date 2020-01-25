@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -36,13 +36,44 @@ public class Leds{
   Led1.start();
   }{
 
-  for (int i = 0; i < Led1Buffer.getLength(); i++) {
-  // Sets the LED to red
-  Led1Buffer.setRGB(i, 0,255,255);
-  }
+    final String color = new String("set");
+      //options include "set,red,blue,green,purple,rainbow"
+
+    if(color=="set"){
+      for (int i = 0; i < Led1Buffer.getLength(); i++) {
+      // Sets the LED by number
+      Led1Buffer.setRGB(i, 0,0,0);
+      }
+    if(color=="red"){
+      for (int i = 0; i < Led1Buffer.getLength(); i++) {
+      // Sets the LED to red
+      Led1Buffer.setRGB(i, 255,0,0);
+      }
+    if(color=="blue"){
+      for (int i = 0; i < Led1Buffer.getLength(); i++) {
+      // Sets the LED to blue
+      Led1Buffer.setRGB(i, 0,0,255);
+      }
+    }if(color=="green"){
+      for (int i = 0; i < Led1Buffer.getLength(); i++) {
+      // Sets the LED to green
+      Led1Buffer.setRGB(i, 0,255,0);
+    }
+    }if(color=="purple"){
+      for (int i = 0; i < Led1Buffer.getLength(); i++) {
+      // Sets the LED to purple
+      Led1Buffer.setRGB(i, 125,0,255);
+    }
+    }else{
+        System.out.println("Color is Invalid")
+    }
+
 
   Led1.setData(Led1Buffer);
 
   
   }
 }
+  }
+}
+  
