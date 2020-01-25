@@ -36,7 +36,7 @@ public class Leds{
   }{
 
     final String color = new String("set");
-      //options include "set,red,blue,green,purple,rainbow"
+      //options include "set,red,blue,green,purple,alternate,rainbow"
 
     if(color=="set"){
       for (int i = 0; i < Led1Buffer.getLength(); i++) {
@@ -63,13 +63,21 @@ public class Leds{
       // Sets the LED to purple
       Led1Buffer.setRGB(i, 125,0,255);
     }
-    }else{
+    }if(color=="alternate"){
+      for (int x = 0; x < Led1Buffer.getLength(); x+=2) {
+        // Sets the LED to blue for every 0,2,4, (even number)
+        Led1Buffer.setRGB(x, 0,0,255);
+      for (int y = 1; y < Led1Buffer.getLength(); y+=2) {
+        // Sets the LED to red for every 1,3,5, (odd number)
+        Led1Buffer.setRGB(y, 255,0,0 );
+    }
+    }{
         System.out.println("Color is Invalid");
     }
   Led1.setData(Led1Buffer);
-  
-  }
-}
-  }
+                }
+            }
+        }
+    }
 }
   
