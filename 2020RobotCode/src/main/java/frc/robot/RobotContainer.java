@@ -16,7 +16,6 @@ import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.RollFloor;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.toggleCompressor;
-import frc.robot.commands.toggleQueuer;
 
 
 /**
@@ -51,10 +50,7 @@ public class RobotContainer {
     manip.getBButton().whileHeld(new RollFloor());
     manip.getXButton().whileHeld(new OuttakeBall());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
-    if (driver.getRightTrigger() > 0.25) {
-      new toggleQueuer();
     }
-  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
