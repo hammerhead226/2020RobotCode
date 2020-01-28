@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
+import frc.robot.commands.LedControl;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.RollFloor;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.toggleCompressor;
+import frc.robot.subsystems.Leds;
 
 
 /**
@@ -28,7 +30,6 @@ import frc.robot.commands.toggleCompressor;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public Controller driver = new Controller(0);
-
   public Controller manip = new Controller(1);
   
   /**
@@ -50,6 +51,14 @@ public class RobotContainer {
     manip.getBButton().whileHeld(new RollFloor());
     manip.getXButton().whileHeld(new OuttakeBall());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
+    driver.getAButton().whenPressed(new LedControl(), true);
+    driver.getBButton().whenPressed(new LedControl(),true);
+    driver.getXButton().whenPressed(new LedControl(), true);
+    driver.getYButton().whenPressed(new LedControl(), true);
+    driver.getLBButton().whenPressed(new LedControl(), true);
+    driver.getRBButton().whenPressed(new LedControl(), true);
+
+
   }
 
   /**
