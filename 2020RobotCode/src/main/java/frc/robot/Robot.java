@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.ActiveFloor;
+
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorRoller;
 import frc.robot.subsystems.Intake;
@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   public static ColorRoller colorRoller = new ColorRoller();
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
-  public static ActiveFloor activeFloor = new ActiveFloor();
+  
 
   /**
    * This function is run when the robot is first started up and should be used

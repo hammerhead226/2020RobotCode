@@ -51,8 +51,6 @@ public class RobotContainer {
     manip.getYButton().whenPressed(new RotationalControl(3));
     manip.getSTARTButton().whenPressed(new ColorAlignment(0.25));
     manip.getAButton().whileHeld(new RunShooter());
-    manip.getBButton().whileHeld(new RollFloor());
-    manip.getXButton().whileHeld(new OuttakeBall());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
   }
 
