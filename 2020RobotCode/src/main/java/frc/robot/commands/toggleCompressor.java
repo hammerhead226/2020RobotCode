@@ -22,6 +22,6 @@ public class toggleCompressor extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.pneumatics.toggleClimber();
+    Robot.pneumatics.toggleCompressor();
   }
 }
