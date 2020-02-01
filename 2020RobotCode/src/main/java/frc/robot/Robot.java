@@ -33,7 +33,6 @@ public class Robot extends TimedRobot {
   public static ColorRoller colorRoller = new ColorRoller();
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
-  public static ActiveFloor activeFloor = new ActiveFloor();
   public static Queuer queuer = new Queuer();
 
   /**

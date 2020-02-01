@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void Output(){
-    SmartDashboard.putNumber("intake current", intakeActiveFloor.getStatorCurrent());
+    SmartDashboard.putNumber("intake current", intake.getStatorCurrent());
   }
 
   @Override
