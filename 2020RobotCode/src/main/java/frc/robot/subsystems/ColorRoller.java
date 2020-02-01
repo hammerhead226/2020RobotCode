@@ -23,8 +23,8 @@ public class ColorRoller extends SubsystemBase {
   /**
    * Creates a new ColorRoller.
    */
-  TalonSRX color_Roller = new TalonSRX(0);
-  
+
+  TalonSRX colorRoller = new TalonSRX(0);
   ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
   public boolean completedRotations;
@@ -35,14 +35,15 @@ public class ColorRoller extends SubsystemBase {
   public Color neededColor;
   public String neededColorString = DriverStation.getInstance().getGameSpecificMessage();
 
+  public int counter;
+
   private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
   private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
   private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
   private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
-  
-  public void rotationalControl(double rotations) {
-    color_Roller.set(ControlMode.Position, rotations * Constants.TICKS_PER_REV_COLORWHEEL);
-    completedRotations = true;
+
+  public ColorRoller() {
+
   }
 
   public void getNameOfColor(Color color) {
@@ -69,20 +70,25 @@ public class ColorRoller extends SubsystemBase {
       neededColor = kYellowTarget;
     }
   }
+  
+  public void moveMotor(){
+    colorRoller.set(ControlMode.PercentOutput, 0.5);
+    if (colorSensor.getColor() == currentColor) {
+      counter++;
+    }
+    if (counter == 6) {
+      colorRoller.set(ControlMode.PercentOutput, 0);
+    }
+  }
+
 
   public void colorAlignment(double speed) {
     SmartDashboard.putString("Needed Color", neededColorString);
-
     if (currentColor == neededColor) {
       speed = 0;
     } else {
       speed = speed/2;
     }
-  }
-
-
-  public ColorRoller() {
-
   }
 
   @Override
