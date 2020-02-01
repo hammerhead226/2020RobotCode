@@ -69,10 +69,16 @@ public final class Constants {
 
     public static final boolean DRIVETRAIN_CURRENT_ENABLE = false;
     public static final double DRIVETRAIN_CURRENT_LIMIT = 40;
-    public static final double DRIVETRAIN_CURRENT_THRESHOLD_TIME = 2; 
+    public static final double DRIVETRAIN_CURRENT_THRESHOLD_TIME = 2;
+    public static final boolean CLIMBER_CURRENT_ENABLE = false;
+    public static final double CLIMBER_CURRENT_LIMIT = 40;
+    public static final double CLIMBER_CURRENT_THRESHOLD_TIME = 2;
+    
 
     public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
-    public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false; 
+    public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false;
+    public static final double CLIMBER_VOLTAGE_LIMIT = 12;
+    public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
     public static final int SHOOTER_1 = 0;
     public static final int SHOOTER_2 = 0;
