@@ -32,8 +32,8 @@ public class Shooter extends SubsystemBase {
     shooter2.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.SHOOTER_2_CURRENT_ENABLE, Constants.SHOOTER_2_CURRENT_LIMIT,
             Constants.SHOOTER_2_CURRENT_THRESHOLD_LIMIT, Constants.SHOOTER_2_CURRENT_THRESHOLD_TIME));
     
-    shooter1.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
-    shooter2.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
+    shooter1.configVoltageCompSaturation(Constants.SHOOTER_1_VOLTAGE_LIMIT);
+    shooter2.enableVoltageCompensation(Constants.SHOOTER_2_VOLTAGE_ENABLE);
 
     shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
     shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
