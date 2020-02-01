@@ -37,10 +37,10 @@ public class Shooter extends SubsystemBase {
 
     while(shooter1.getSelectedSensorVelocity(0) != speed){
         if (shooter1.getSelectedSensorVelocity(0) > (speed + tolerance)){
-          shooter1.set(ControlMode.PercentOutput, speed-sensitivity);
+          shooter1.set(ControlMode.Velocity, speed-sensitivity);
         }
         else if (shooter1.getSelectedSensorVelocity(0) < (speed - tolerance)){
-          shooter1.set(ControlMode.PercentOutput, speed+sensitivity);
+          shooter1.set(ControlMode.Velocity, speed+sensitivity);
         }
     }
   }
