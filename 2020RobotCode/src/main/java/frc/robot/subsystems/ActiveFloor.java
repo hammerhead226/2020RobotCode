@@ -7,36 +7,35 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 public class ActiveFloor extends SubsystemBase {
   /**
-   * Creates a new MovingFloor.
+   * Creates a new ActiveFloor.
    */
-  private TalonFX roller = new TalonFX(Constants.ROLLER);
-  private TalonFX activeFloor = new TalonFX(Constants.ACTIVE_FLOOR);
-
+  private TalonSRX activeFloor = new TalonSRX(Constants.ACTIVE_FLOOR_MOTOR);
   public ActiveFloor() {
-
+    activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
+    activeFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.ACTIVE_FLOOR_CURRENT_ENABLE, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME));
+    activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
+    activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
+    activeFloor.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void RunRollers(int speed){
-    roller.set(ControlMode.PercentOutput, speed);
+  public void activeFloor(double speed){
     activeFloor.set(ControlMode.PercentOutput, speed);
-  }
-
-  public void Output(){
-    SmartDashboard.putNumber("roller current", roller.getStatorCurrent());
-    SmartDashboard.putNumber("activeFloor current", roller.getStatorCurrent());
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    
+
   }
 }
