@@ -22,12 +22,13 @@ public class toggleIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.pneumatics.toggleIntake();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.pneumatics.toggleIntake();
+    
   }
 
   // Called once the command ends or is interrupted.

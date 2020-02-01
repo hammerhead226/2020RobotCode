@@ -12,7 +12,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
+import frc.robot.commands.RunShooter;
+import frc.robot.commands.parallelIntakeSystem;
+import frc.robot.commands.parallelShooter;
+import frc.robot.commands.toggleActiveFloor;
 import frc.robot.commands.toggleCompressor;
+import frc.robot.commands.toggleShooterHood;
 
 
 /**
@@ -42,8 +47,16 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    driver.getAButton().whileHeld(new parallelShooter());
+    driver.getBButton().whileHeld(new parallelShooter());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
+    
     }
+  
+  public boolean getDriverAButton() {
+    return driver.getAButtonPressed();
+  }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

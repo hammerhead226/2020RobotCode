@@ -44,11 +44,22 @@ public class PneumaticsSystem extends SubsystemBase {
   }
 
   public void toggleShooter(){
-    if (shooterVal == DoubleSolenoid.Value.kForward){
-      shooterVal = DoubleSolenoid.Value.kReverse;
-    }else {
-      intakeVal = DoubleSolenoid.Value.kForward;
+    if(shooterVal == DoubleSolenoid.Value.kReverse){
+      shooterVal = DoubleSolenoid.Value.kForward;
     }
+    else {
+      shooterVal = DoubleSolenoid.Value.kReverse;
+    }
+    Shooter.set(shooterVal);
+  }
+
+  public void shooterUp() {
+    shooterVal = DoubleSolenoid.Value.kForward;
+    Shooter.set(shooterVal);
+  }
+
+  public void shooterDown() {
+    shooterVal = DoubleSolenoid.Value.kReverse;
     Shooter.set(shooterVal);
   }
   @Override

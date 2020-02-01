@@ -20,6 +20,7 @@ public class ActiveFloor extends SubsystemBase {
    * Creates a new ActiveFloor.
    */
   private TalonSRX activeFloor = new TalonSRX(Constants.ACTIVE_FLOOR_MOTOR);
+  
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
     activeFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.ACTIVE_FLOOR_CURRENT_ENABLE, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME));
@@ -35,7 +36,5 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
-
   }
 }

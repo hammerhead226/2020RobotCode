@@ -147,5 +147,9 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false; 
 
+    public static final double ACTIVE_FLOOR_SPEED = 1;
+    public static final double QUEUER_SPEED = 1;
+    
+
 }
 
