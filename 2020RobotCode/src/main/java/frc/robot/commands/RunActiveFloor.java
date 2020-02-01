@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class toggleActiveFloor extends CommandBase {
+public class RunActiveFloor extends CommandBase {
   /**
    * Creates a new toggleActiveFloor.
    */
-  public toggleActiveFloor() {
+  public RunActiveFloor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.activeFloor);
   }

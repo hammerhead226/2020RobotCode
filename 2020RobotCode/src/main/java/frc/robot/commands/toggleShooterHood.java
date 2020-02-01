@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class toggleShooterHood extends CommandBase {
+public class ToggleShooterHood extends CommandBase {
   /**
    * Creates a new toggleShooter.
    */
   
-  public toggleShooterHood() {
+  public ToggleShooterHood() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.pneumatics);
   }

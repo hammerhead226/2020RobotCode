@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class toggleQueuer extends CommandBase {
+public class RunQueuer extends CommandBase {
   /**
    * Creates a new toggleQueuer.
    */
-  public toggleQueuer() {
+  public RunQueuer() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.queuer);
   }

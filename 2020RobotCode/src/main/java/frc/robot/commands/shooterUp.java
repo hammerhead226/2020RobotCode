@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
 
-public class shooterUp extends InstantCommand {
+public class ShooterUp extends InstantCommand {
   /**
    * Creates a new shooterUp.
    */
-  public shooterUp() {
+  public ShooterUp() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.pneumatics);
   }

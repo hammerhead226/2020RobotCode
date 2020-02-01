@@ -12,13 +12,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
-import frc.robot.commands.RunShooter;
-import frc.robot.commands.parallelIntakeSystem;
-import frc.robot.commands.parallelShooterDown;
-import frc.robot.commands.parallelShooterUp;
-import frc.robot.commands.toggleActiveFloor;
-import frc.robot.commands.toggleCompressor;
-import frc.robot.commands.toggleShooterHood;
+import frc.robot.commands.ParallelShooterDown;
+import frc.robot.commands.ParallelShooterUp;
+import frc.robot.commands.ToggleCompressor;
 
 
 /**
@@ -48,9 +44,9 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driver.getAButton().whileHeld(new parallelShooterUp());
-    driver.getBButton().whileHeld(new parallelShooterDown());
-    driver.getSTARTButton().whenPressed(new toggleCompressor());
+    driver.getAButton().whileHeld(new ParallelShooterUp());
+    driver.getBButton().whileHeld(new ParallelShooterDown());
+    driver.getSTARTButton().whenPressed(new ToggleCompressor());
     
     }
   
