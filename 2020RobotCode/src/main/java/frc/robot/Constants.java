@@ -70,14 +70,44 @@ public final class Constants {
     public static final boolean DRIVETRAIN_CURRENT_ENABLE = false;
     public static final double DRIVETRAIN_CURRENT_LIMIT = 40;
     public static final double DRIVETRAIN_CURRENT_THRESHOLD_TIME = 2;
+
+    public static final boolean INTAKE_CURRENT_ENABLE = false;
+    public static final double INTAKE_CURRENT_LIMIT = 40; 
+    public static final double INTAKE_CURRENT_THRESHOLD_TIME = 2;
+    public static final double INTAKE_CURRENT_THRESHOLD_LIMIT = 60;
+
+
+    public static final boolean SHOOTER_1_CURRENT_ENABLE = false;
+    public static final double SHOOTER_1_CURRENT_LIMIT = 40; 
+    public static final double SHOOTER_1_CURRENT_THRESHOLD_TIME = 2;
+    public static final double SHOOTER_1_CURRENT_THRESHOLD_LIMIT = 60;
+
+    public static final boolean SHOOTER_2_CURRENT_ENABLE = false;
+    public static final double SHOOTER_2_CURRENT_LIMIT = 40; 
+    public static final double SHOOTER_2_CURRENT_THRESHOLD_TIME = 2;
+    public static final double SHOOTER_2_CURRENT_THRESHOLD_LIMIT = 60;
+
+
+
+    public static final double INTAKE_VOLTAGE_LIMIT = 12; 
+    public static final boolean INTAKE_VOLTAGE_ENABLE = false;
+
+    public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
+    public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false; 
+    public static final double DRIVETRAIN_CURRENT_THRESHOLD_LIMIT = 60;
+
+    public static final double SHOOTER_1_VOLTAGE_LIMIT = 12; 
+    public static final boolean SHOOTER_1_VOLTAGE_ENABLE = false;
+
+    public static final double SHOOTER_2_VOLTAGE_LIMIT = 12; 
+    public static final boolean SHOOTER_2_VOLTAGE_ENABLE = false;
     public static final boolean CLIMBER_CURRENT_ENABLE = false;
     public static final double CLIMBER_CURRENT_LIMIT = 40;
     public static final double CLIMBER_CURRENT_THRESHOLD_TIME = 2;
     public static final double CLIMBER_CURRENT_THRESHOLD_LIMIT= 60;
     
 
-    public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
-    public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false;
+  
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
