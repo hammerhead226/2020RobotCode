@@ -80,12 +80,12 @@ public final class Constants {
     public static final boolean SHOOTER_1_CURRENT_ENABLE = false;
     public static final double SHOOTER_1_CURRENT_LIMIT = 40; 
     public static final double SHOOTER_1_CURRENT_THRESHOLD_TIME = 2;
-    public static final double SHOOTER_1_CURRENT_THRESHOLD_CURRENT = 60;
+    public static final double SHOOTER_1_CURRENT_THRESHOLD_LIMIT = 60;
 
     public static final boolean SHOOTER_2_CURRENT_ENABLE = false;
     public static final double SHOOTER_2_CURRENT_LIMIT = 40; 
     public static final double SHOOTER_2_CURRENT_THRESHOLD_TIME = 2;
-    public static final double SHOOTER_2_CURRENT_THRESHOLD_CURRENT = 60;
+    public static final double SHOOTER_2_CURRENT_THRESHOLD_LIMIT = 60;
 
 
 

@@ -28,9 +28,9 @@ public class Shooter extends SubsystemBase {
     shooter2.setNeutralMode(NeutralMode.Brake);
 
     shooter1.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.SHOOTER_1_CURRENT_ENABLE, Constants.SHOOTER_1_CURRENT_LIMIT,
-            Constants.SHOOTER_1_CURRENT_THRESHOLD_CURRENT, Constants.SHOOTER_1_CURRENT_THRESHOLD_TIME));
+            Constants.SHOOTER_1_CURRENT_THRESHOLD_LIMIT, Constants.SHOOTER_1_CURRENT_THRESHOLD_TIME));
     shooter2.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.SHOOTER_2_CURRENT_ENABLE, Constants.SHOOTER_2_CURRENT_LIMIT,
-            Constants.SHOOTER_2_CURRENT_THRESHOLD_CURRENT, Constants.SHOOTER_2_CURRENT_THRESHOLD_TIME));
+            Constants.SHOOTER_2_CURRENT_THRESHOLD_LIMIT, Constants.SHOOTER_2_CURRENT_THRESHOLD_TIME));
     
     shooter1.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
     shooter2.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
