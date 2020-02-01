@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
-import frc.robot.commands.RunShooter;
 import frc.robot.commands.toggleCompressor;
-import frc.robot.commands.toggleIntake;
 
 
 /**
