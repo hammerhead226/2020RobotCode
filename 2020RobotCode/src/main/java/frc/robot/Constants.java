@@ -94,9 +94,11 @@ public final class Constants {
 
     public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
     public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false; 
+    public static final double DRIVETRAIN_CURRENT_THRESHOLD_LIMIT = 60;
 
     public static final double SHOOTER_1_VOLTAGE_LIMIT = 12; 
     public static final boolean SHOOTER_1_VOLTAGE_ENABLE = false;
+
     public static final double SHOOTER_2_VOLTAGE_LIMIT = 12; 
     public static final boolean SHOOTER_2_VOLTAGE_ENABLE = false;
 
