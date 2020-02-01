@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -26,24 +26,24 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new Drivetrain.
    */
   private TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
-  private TalonSRX frontLeftSteer = new TalonSRX(Constants.FRONT_LEFT_STEER);
+  private VictorSPX frontLeftSteer = new VictorSPX(Constants.FRONT_LEFT_STEER);
   private AnalogInput encoder1 = new AnalogInput(Constants.FRONT_LEFT_ENCODER);
   private SwerveModule module1 = new SwerveModule(frontLeftDrive, frontLeftSteer, encoder1, 1);
 
 
   private TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
-  private TalonSRX rearLeftSteer = new TalonSRX(Constants.REAR_LEFT_STEER);
+  private VictorSPX rearLeftSteer = new VictorSPX(Constants.REAR_LEFT_STEER);
   private AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
   private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
   
 
   private TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
-  private TalonSRX frontRightSteer = new TalonSRX(Constants.FRONT_RIGHT_STEER);
+  private VictorSPX frontRightSteer = new VictorSPX(Constants.FRONT_RIGHT_STEER);
   private AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
   private SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 1);
 
   private TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
-  private TalonSRX rearRightSteer = new TalonSRX(Constants.REAR_RIGHT_STEER);
+  private VictorSPX rearRightSteer = new VictorSPX(Constants.REAR_RIGHT_STEER);
   private AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
   private SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
 
@@ -58,13 +58,9 @@ public class Drivetrain extends SubsystemBase {
     rearRightSteer.setInverted(Constants.REAR_RIGHT_STEER_INVERTED);
 
     frontLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
-    frontLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
     frontRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
-    frontRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
     rearLeftDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
-    rearLeftSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
     rearRightDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
-    rearRightSteer.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.DRIVETRAIN_CURRENT_ENABLE, Constants.DRIVETRAIN_CURRENT_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_LIMIT, Constants.DRIVETRAIN_CURRENT_THRESHOLD_TIME));
 
     frontLeftDrive.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
     frontLeftSteer.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
@@ -87,13 +83,9 @@ public class Drivetrain extends SubsystemBase {
 
   public void Output(){
     SmartDashboard.putNumber("frontLeftDrive current", frontLeftDrive.getStatorCurrent());
-    SmartDashboard.putNumber("frontLeftSteer current", frontLeftSteer.getStatorCurrent());
     SmartDashboard.putNumber("frontRightDrive current", frontRightDrive.getStatorCurrent());
-    SmartDashboard.putNumber("frontRightSteer current", frontRightSteer.getStatorCurrent());
     SmartDashboard.putNumber("rearLeftDrive current", rearLeftDrive.getStatorCurrent());
-    SmartDashboard.putNumber("rearLeftSteer current", rearLeftSteer.getStatorCurrent());
     SmartDashboard.putNumber("rearRightDrive current", rearRightDrive.getStatorCurrent());
-    SmartDashboard.putNumber("rearRightSteer current", rearRightSteer.getStatorCurrent());
   }
 
   @Override
