@@ -12,6 +12,7 @@ import java.sql.Driver;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,24 +28,24 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new Drivetrain.
    */
   private TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
-  private TalonFX frontLeftSteer = new TalonFX(Constants.FRONT_LEFT_STEER);
+  private TalonSRX frontLeftSteer = new TalonSRX(Constants.FRONT_LEFT_STEER);
   private AnalogInput encoder1 = new AnalogInput(Constants.FRONT_LEFT_ENCODER);
   private SwerveModule module1 = new SwerveModule(frontLeftDrive, frontLeftSteer, encoder1, 1);
 
 
   private TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
-  private TalonFX rearLeftSteer = new TalonFX(Constants.REAR_LEFT_STEER);
+  private TalonSRX rearLeftSteer = new TalonSRX(Constants.REAR_LEFT_STEER);
   private AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
   private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
   
 
   private TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
-  private TalonFX frontRightSteer = new TalonFX(Constants.FRONT_RIGHT_STEER);
+  private TalonSRX frontRightSteer = new TalonSRX(Constants.FRONT_RIGHT_STEER);
   private AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
   private SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 1);
 
   private TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
-  private TalonFX rearRightSteer = new TalonFX(Constants.REAR_RIGHT_STEER);
+  private TalonSRX rearRightSteer = new TalonSRX(Constants.REAR_RIGHT_STEER);
   private AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
   private SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
 

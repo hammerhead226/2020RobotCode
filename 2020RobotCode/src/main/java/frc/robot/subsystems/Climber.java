@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,7 +19,7 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Drivetrain.
    */
-  private TalonSRX climber = new TalonSRX(Constants.CLIMBER);
+  private TalonFX climber = new TalonFX(Constants.CLIMBER);
 
   public Climber() {
 
