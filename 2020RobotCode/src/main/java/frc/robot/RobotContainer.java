@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.parallelIntakeSystem;
-import frc.robot.commands.parallelShooter;
+import frc.robot.commands.parallelShooterDown;
+import frc.robot.commands.parallelShooterUp;
 import frc.robot.commands.toggleActiveFloor;
 import frc.robot.commands.toggleCompressor;
 import frc.robot.commands.toggleShooterHood;
@@ -47,14 +48,18 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driver.getAButton().whileHeld(new parallelShooter());
-    driver.getBButton().whileHeld(new parallelShooter());
+    driver.getAButton().whileHeld(new parallelShooterUp());
+    driver.getBButton().whileHeld(new parallelShooterDown());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
     
     }
   
   public boolean getDriverAButton() {
     return driver.getAButtonPressed();
+  }
+
+  public double getDriverLeftTrigger() {
+    return driver.getLeftTrigger();
   }
 
 

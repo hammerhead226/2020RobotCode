@@ -23,6 +23,12 @@ public class toggleShooterHood extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if(Robot.robotContainer.getDriverAButton()) {
+      Robot.pneumatics.shooterUp();
+    }
+    else {
+      Robot.pneumatics.shooterDown();
+    }
     Robot.pneumatics.toggleShooter();
   }
 

@@ -48,5 +48,6 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
     //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
     intake(Robot.robotContainer.manip.getTriggers());
+
   }
 }
