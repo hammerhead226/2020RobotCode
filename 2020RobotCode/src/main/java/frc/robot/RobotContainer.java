@@ -44,7 +44,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     driver.getSTARTButton().whenPressed(new toggleCompressor());
-    manip.getYButton().whileHeld(new toggleClimber());
+    manip.getYButton().whenPressed(new toggleClimber());
     }
 
   /**
