@@ -21,23 +21,23 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  TalonFX intakeActiveFloor = new TalonFX(Constants.INTAKE);
+  TalonFX intake = new TalonFX(Constants.INTAKE);
 
   public void intake(double intakeSpeed){
-    intakeActiveFloor.set(TalonFXControlMode.PercentOutput, intakeSpeed);
+    intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
   }
 
   public Intake() {
-    intakeActiveFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.INTAKE_CURRENT_ENABLE, Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_CURRENT_THRESHOLD_LIMIT, Constants.INTAKE_CURRENT_THRESHOLD_TIME));
-    intakeActiveFloor.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT);
-    intakeActiveFloor.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_ENABLE);
-    intakeActiveFloor.setInverted(Constants.ACTIVEFLOOR_INVERTED);
-    intakeActiveFloor.setNeutralMode(NeutralMode.Brake);
+    intake.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.INTAKE_CURRENT_ENABLE, Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_CURRENT_THRESHOLD_LIMIT, Constants.INTAKE_CURRENT_THRESHOLD_TIME));
+    intake.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT);
+    intake.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_ENABLE);
+    intake.setInverted(Constants.INTAKE_INVERTED);
+    intake.setNeutralMode(NeutralMode.Brake);
   }
 
 
   public void Output() {
-    SmartDashboard.putNumber("intake current", intakeActiveFloor.getStatorCurrent());
+    SmartDashboard.putNumber("intake current", intake.getStatorCurrent());
   }
 
   @Override

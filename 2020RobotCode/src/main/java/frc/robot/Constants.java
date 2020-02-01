@@ -99,8 +99,9 @@ public final class Constants {
     public static final double SHOOTER_1_VOLTAGE_LIMIT = 12; 
     public static final boolean SHOOTER_1_VOLTAGE_ENABLE = false;
 
-    public static final double SHOOTER_2_VOLTAGE_LIMIT = 12; 
+    public static final double SHOOTER_2_VOLTAGE_LIMIT = 12;
     public static final boolean SHOOTER_2_VOLTAGE_ENABLE = false;
+
     public static final boolean CLIMBER_CURRENT_ENABLE = false;
     public static final double CLIMBER_CURRENT_LIMIT = 40;
     public static final double CLIMBER_CURRENT_THRESHOLD_TIME = 2;
@@ -117,10 +118,9 @@ public final class Constants {
     public static final boolean SHOOTER_2_INVERTED = false;
 
     public static final int ROLLER = 0;
-    public static final int ACTIVE_FLOOR = 0;
-    public static final boolean ACTIVEFLOOR_INVERTED = false;  
-    
     public static final int INTAKE = 0;
+    public static final boolean INTAKE_INVERTED = false;  
+    
     public static final int CLIMBER = 0;
     public static final boolean CLIMBER_INVERTED = false;
 
