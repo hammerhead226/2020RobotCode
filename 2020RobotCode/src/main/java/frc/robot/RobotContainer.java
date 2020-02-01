@@ -43,7 +43,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     driver.getSTARTButton().whenPressed(new toggleCompressor());
-  }
+    }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

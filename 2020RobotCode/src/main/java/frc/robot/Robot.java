@@ -10,11 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ColorRoller;
 import frc.robot.subsystems.Intake;
-
 import frc.robot.subsystems.PneumaticsSystem;
+import frc.robot.subsystems.Queuer;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -30,9 +30,10 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
   public static Climber climber = new Climber();
   public static Intake intake = new Intake();
+  public static ColorRoller colorRoller = new ColorRoller();
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
-  
+  public static Queuer queuer = new Queuer();
 
   /**
    * This function is run when the robot is first started up and should be used

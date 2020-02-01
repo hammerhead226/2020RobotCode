@@ -11,6 +11,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,10 +24,11 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  TalonFX intake = new TalonFX(Constants.INTAKE);
+
+  private TalonSRX intake = new TalonSRX(Constants.INTAKE);
 
   public void intake(double intakeSpeed){
-    intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
+    intake.set(ControlMode.PercentOutput, intakeSpeed);
   }
 
   public Intake() {
@@ -34,7 +38,6 @@ public class Intake extends SubsystemBase {
     intake.setInverted(Constants.INTAKE_INVERTED);
     intake.setNeutralMode(NeutralMode.Brake);
   }
-
 
   public void Output() {
     SmartDashboard.putNumber("intake current", intake.getStatorCurrent());

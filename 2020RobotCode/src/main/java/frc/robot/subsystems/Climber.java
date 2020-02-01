@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,7 +22,7 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Drivetrain.
    */
-  TalonFX climber = new TalonFX(Constants.CLIMBER);
+  private TalonFX climber = new TalonFX(Constants.CLIMBER);
 
   public Climber() {
     climber.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CLIMBER_CURRENT_ENABLE, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_TIME));
@@ -35,7 +36,7 @@ public class Climber extends SubsystemBase {
   }
 
   public void climber(double climbSpeed) {
-    climber.set(TalonFXControlMode.PercentOutput, climbSpeed);
+    climber.set(ControlMode.PercentOutput, climbSpeed);
   }
 
   public void Output(){
