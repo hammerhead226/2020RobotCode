@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -27,11 +28,15 @@ public class Intake extends SubsystemBase {
   }
 
   public Intake() {
+    intakeActiveFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.INTAKE_CURRENT_ENABLE, Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE, Constants.INTAKE_CURRENT_THRESHOLD_TIME));
+    intakeActiveFloor.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT);
+    intakeActiveFloor.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_ENABLE);
     intakeActiveFloor.setInverted(Constants.ACTIVEFLOOR_INVERTED);
     intakeActiveFloor.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void Output(){
+
+  public void Output() {
     SmartDashboard.putNumber("intake current", intakeActiveFloor.getStatorCurrent());
   }
 
