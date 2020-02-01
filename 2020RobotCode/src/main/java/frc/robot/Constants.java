@@ -73,6 +73,7 @@ public final class Constants {
     public static final boolean CLIMBER_CURRENT_ENABLE = false;
     public static final double CLIMBER_CURRENT_LIMIT = 40;
     public static final double CLIMBER_CURRENT_THRESHOLD_TIME = 2;
+    public static final double CLIMBER_CURRENT_THRESHOLD_LIMIT= 60;
     
 
     public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;

@@ -24,7 +24,7 @@ public class Climber extends SubsystemBase {
   TalonFX climber = new TalonFX(Constants.CLIMBER);
 
   public Climber() {
-    climber.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CLIMBER_CURRENT_ENABLE, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_TIME));
+    climber.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CLIMBER_CURRENT_ENABLE, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_TIME));
 
     climber.configVoltageCompSaturation(Constants.CLIMBER_VOLTAGE_LIMIT);
     climber.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
