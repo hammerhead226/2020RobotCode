@@ -17,6 +17,7 @@ import frc.robot.subsystems.PneumaticsSystem;
 import frc.robot.subsystems.Queuer;
 import frc.robot.subsystems.Shooter;
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
   public static ColorRoller colorRoller = new ColorRoller();
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
+  public static ActiveFloor activeFloor = new ActiveFloor();
   public static Queuer queuer = new Queuer();
 
   /**

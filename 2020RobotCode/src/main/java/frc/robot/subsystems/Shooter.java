@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -42,6 +43,8 @@ public class Shooter extends SubsystemBase {
     shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
     shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
 
+    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.PID_INDEX, Constants.PID_TIMEOUT);
+
     shooter2.follow(shooter1);
   }
 
@@ -52,6 +55,11 @@ public class Shooter extends SubsystemBase {
   public void Output(){
     SmartDashboard.putNumber("shooter1 current", shooter1.getStatorCurrent());
     SmartDashboard.putNumber("shooter2 current", shooter2.getStatorCurrent());
+  }
+
+  public void setShooterSpeed(double velocity){
+    
+    shooter1.set(ControlMode.Velocity, velocity);
   }
 
   @Override

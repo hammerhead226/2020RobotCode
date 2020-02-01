@@ -132,6 +132,11 @@ public final class Constants {
     public static final int SHOOTER_SHIFT_2 = 0;
     public static final int COMPRESSOR = 0;
 
+    public static final int SHOOTER_MAX_RPM = 5000;
+
+    public static final int PID_INDEX = 0;
+    public static final int PID_TIMEOUT = 10;
+  
     public static final int QUEUER = 0;
 
     public static final int ACTIVE_FLOOR_MOTOR = 0;
@@ -141,5 +146,6 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME = 2;
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false; 
+
 }
 
