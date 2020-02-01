@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,20 +20,28 @@ public class Shooter extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  private TalonFX shooter1 = new TalonFX(Constants.SHOOTER_1);
-  private TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
+  private final TalonFX shooter1 = new TalonFX(Constants.SHOOTER_1);
+  private final TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
     shooter2.setNeutralMode(NeutralMode.Brake);
+
+    shooter1.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.SHOOTER_1_CURRENT_ENABLE, Constants.SHOOTER_1_CURRENT_LIMIT,
+            Constants.SHOOTER_1_CURRENT_THRESHOLD_CURRENT, Constants.SHOOTER_1_CURRENT_THRESHOLD_TIME));
+    shooter2.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.SHOOTER_2_CURRENT_ENABLE, Constants.SHOOTER_2_CURRENT_LIMIT,
+            Constants.SHOOTER_2_CURRENT_THRESHOLD_CURRENT, Constants.SHOOTER_2_CURRENT_THRESHOLD_TIME));
     
+    shooter1.configVoltageCompSaturation(Constants.DRIVETRAIN_VOLTAGE_LIMIT);
+    shooter2.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
+
     shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
     shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
 
     shooter2.follow(shooter1);
   }
 
-  public void runShooter(int speed){
+  public void runShooter(final int speed){
     shooter1.set(ControlMode.PercentOutput, speed);
   }
 

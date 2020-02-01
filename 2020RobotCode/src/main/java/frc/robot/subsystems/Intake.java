@@ -28,7 +28,7 @@ public class Intake extends SubsystemBase {
   }
 
   public Intake() {
-    intakeActiveFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.INTAKE_CURRENT_ENABLE, Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE, Constants.INTAKE_CURRENT_THRESHOLD_TIME));
+    intakeActiveFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.INTAKE_CURRENT_ENABLE, Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_CURRENT_THRESHOLD_LIMIT, Constants.INTAKE_CURRENT_THRESHOLD_TIME));
     intakeActiveFloor.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT);
     intakeActiveFloor.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_ENABLE);
     intakeActiveFloor.setInverted(Constants.ACTIVEFLOOR_INVERTED);
