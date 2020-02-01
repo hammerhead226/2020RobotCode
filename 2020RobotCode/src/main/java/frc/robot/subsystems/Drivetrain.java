@@ -7,21 +7,19 @@
 
 package frc.robot.subsystems;
 
-import java.sql.Driver;
-
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.libs.swerve.SwerveControl;
 import frc.libs.swerve.SwerveModule;
+import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Drivetrain extends SubsystemBase {
   /**

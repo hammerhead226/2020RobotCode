@@ -19,17 +19,19 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
+
   private TalonSRX intake = new TalonSRX(Constants.INTAKE);
 
   public void intake(double intakeSpeed){
     intake.set(ControlMode.PercentOutput, intakeSpeed);
   }
+
   public Intake() {
 
   }
 
   public void Output(){
-    SmartDashboard.putNumber("intake current", intake.getStatorCurrent());
+    SmartDashboard.putNumber("intake current", intakeActiveFloor.getStatorCurrent());
   }
 
   @Override
