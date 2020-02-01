@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
 
@@ -19,11 +19,11 @@ import frc.robot.Constants;
 public class SwerveModule {
 
     private TalonFX drive;
-    private TalonSRX steer;
+    private VictorSPX steer;
     private EncoderWrapper steercoder;
     private int module;
 
-    public SwerveModule(TalonFX drive, TalonSRX steer, AnalogInput steercoder, int module) {
+    public SwerveModule(TalonFX drive, VictorSPX steer, AnalogInput steercoder, int module) {
         this.drive = drive;
         this.steer = steer;
         this.steercoder = new EncoderWrapper(steercoder);

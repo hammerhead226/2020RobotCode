@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
 
@@ -17,14 +17,13 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 public class ColorRoller extends SubsystemBase {
   /**
    * Creates a new ColorRoller.
    */
 
-  TalonSRX colorRoller = new TalonSRX(0);
+  VictorSPX colorRoller = new VictorSPX(0);
   ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
   public boolean completedRotations;
