@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -22,7 +23,8 @@ public class Climber extends SubsystemBase {
   TalonFX climber = new TalonFX(Constants.CLIMBER);
 
   public Climber() {
-
+    climber.setInverted(Constants.CLIMBER_INVERTED);
+    climber.setNeutralMode(NeutralMode.Brake);
   }
 
   public void climber(double climbSpeed) {

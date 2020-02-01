@@ -69,11 +69,10 @@ public final class Constants {
 
     public static final boolean DRIVETRAIN_CURRENT_ENABLE = false;
     public static final double DRIVETRAIN_CURRENT_LIMIT = 40;
-    public static final double DRIVETRAIN_CURRENT_TRESHOLD_TIME = 2; 
+    public static final double DRIVETRAIN_CURRENT_THRESHOLD_TIME = 2; 
 
     public static final double DRIVETRAIN_VOLTAGE_LIMIT = 12;
     public static final boolean DRIVETRAIN_VOLTAGE_ENABLE = false; 
-
 
     public static final int SHOOTER_1 = 0;
     public static final int SHOOTER_2 = 0;
@@ -82,9 +81,11 @@ public final class Constants {
 
     public static final int ROLLER = 0;
     public static final int ACTIVE_FLOOR = 0;
+    public static final boolean ACTIVEFLOOR_INVERTED = false;  
     
     public static final int INTAKE = 0;
     public static final int CLIMBER = 0;
+    public static final boolean CLIMBER_INVERTED = false;
 
     public static final int INTAKE_SHIFT_1 = 0;
     public static final int INTAKE_SHIFT_2 = 0;

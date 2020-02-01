@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -26,7 +27,8 @@ public class Intake extends SubsystemBase {
   }
 
   public Intake() {
-
+    intakeActiveFloor.setInverted(Constants.ACTIVEFLOOR_INVERTED);
+    intakeActiveFloor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void Output(){

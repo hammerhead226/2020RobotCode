@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,6 +23,9 @@ public class Shooter extends SubsystemBase {
   private TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
 
   public Shooter() {
+    shooter1.setNeutralMode(NeutralMode.Brake);
+    shooter2.setNeutralMode(NeutralMode.Brake);
+    
     shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
     shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
 
