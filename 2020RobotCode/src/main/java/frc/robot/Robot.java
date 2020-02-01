@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
   public static Climber climber = new Climber();
   public static Intake intake = new Intake();
+  public static ColorRoller colorRoller = new ColorRoller();
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
   public static ColorRoller colorRoller = new ColorRoller();

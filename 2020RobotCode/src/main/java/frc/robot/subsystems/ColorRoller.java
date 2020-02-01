@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ColorRoller extends SubsystemBase {
   /**
@@ -44,6 +45,7 @@ public class ColorRoller extends SubsystemBase {
   public ColorRoller() {
 
   }
+
   public void getNameOfColor(Color color) {
     if (colorSensor.getColor() == kBlueTarget) {
       currentColorString = "B";
@@ -56,7 +58,7 @@ public class ColorRoller extends SubsystemBase {
     }
     SmartDashboard.putString("Current Color", currentColorString);
   }
-  
+
   public void getColorValue(String color) {
     if (color == "B") {
       neededColor = kBlueTarget;
@@ -79,6 +81,15 @@ public class ColorRoller extends SubsystemBase {
     }
   }
 
+
+  public void colorAlignment(double speed) {
+    SmartDashboard.putString("Needed Color", neededColorString);
+    if (currentColor == neededColor) {
+      speed = 0;
+    } else {
+      speed = speed/2;
+    }
+  }
 
   @Override
   public void periodic() {
