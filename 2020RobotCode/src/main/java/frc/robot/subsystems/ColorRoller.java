@@ -41,6 +41,9 @@ public class ColorRoller extends SubsystemBase {
   private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
   private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
+  public ColorRoller() {
+
+  }
   public void getNameOfColor(Color color) {
     if (colorSensor.getColor() == kBlueTarget) {
       currentColorString = "B";
@@ -76,9 +79,6 @@ public class ColorRoller extends SubsystemBase {
     }
   }
 
-  public ColorRoller() {
-
-  }
 
   @Override
   public void periodic() {
