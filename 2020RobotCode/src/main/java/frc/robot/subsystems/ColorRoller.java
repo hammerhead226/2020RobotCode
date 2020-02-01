@@ -23,8 +23,7 @@ public class ColorRoller extends SubsystemBase {
    * Creates a new ColorRoller.
    */
 
-  TalonSRX color_Roller = new TalonSRX(0);
-  
+  TalonSRX colorRoller = new TalonSRX(0);
   ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
   public boolean completedRotations;
@@ -68,12 +67,12 @@ public class ColorRoller extends SubsystemBase {
   }
   
   public void moveMotor(){
-    color_Roller.set(ControlMode.PercentOutput, 0.5);
+    colorRoller.set(ControlMode.PercentOutput, 0.5);
     if (colorSensor.getColor() == currentColor) {
       counter++;
     }
     if (counter == 6) {
-      color_Roller.set(ControlMode.PercentOutput, 0);
+      colorRoller.set(ControlMode.PercentOutput, 0);
     }
   }
 
