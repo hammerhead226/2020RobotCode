@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -22,7 +25,14 @@ public class Climber extends SubsystemBase {
   private TalonFX climber = new TalonFX(Constants.CLIMBER);
 
   public Climber() {
+    climber.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CLIMBER_CURRENT_ENABLE, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_TIME));
 
+    climber.configVoltageCompSaturation(Constants.CLIMBER_VOLTAGE_LIMIT);
+    climber.enableVoltageCompensation(Constants.CLIMBER_VOLTAGE_ENABLE);
+
+    climber.setInverted(Constants.CLIMBER_INVERTED);
+    
+    climber.setNeutralMode(NeutralMode.Brake);
   }
 
   public void climber(double climbSpeed) {
