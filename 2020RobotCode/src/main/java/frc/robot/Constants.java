@@ -133,5 +133,13 @@ public final class Constants {
     public static final int COMPRESSOR = 0;
 
     public static final int QUEUER = 0;
+
+    public static final int ACTIVE_FLOOR_MOTOR = 0;
+    public static final boolean ACTIVE_FLOOR_INVERTED = false;
+    public static final boolean ACTIVE_FLOOR_CURRENT_ENABLE = false;
+    public static final double ACTIVE_FLOOR_CURRENT_LIMIT = 40;
+    public static final double ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME = 2;
+    public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
+    public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false; 
 }
 
