@@ -19,8 +19,10 @@ public class PneumaticsSystem extends SubsystemBase {
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
   private DoubleSolenoid Intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
   private DoubleSolenoid Shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
+  private DoubleSolenoid Climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
   private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
+  private DoubleSolenoid.Value climberVal = DoubleSolenoid.Value.kForward;
 
   public PneumaticsSystem() {
     compressor.start();
@@ -51,6 +53,17 @@ public class PneumaticsSystem extends SubsystemBase {
     }
     Shooter.set(shooterVal);
   }
+
+  public void toggleClimber(){
+    if (climberVal == DoubleSolenoid.Value.kForward){
+      climberVal = DoubleSolenoid.Value.kReverse;
+    }else {
+      climberVal = DoubleSolenoid.Value.kForward;
+    }
+    Climber.set(climberVal);
+
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
