@@ -27,7 +27,11 @@ public class PneumaticsSystem extends SubsystemBase {
   }
 
   public void toggleCompressor(){
-    compressor.stop();
+    if(compressor.enabled()){
+      compressor.stop();
+    }else{
+      compressor.start();
+    }
   }
 
   public void toggleIntake(){
