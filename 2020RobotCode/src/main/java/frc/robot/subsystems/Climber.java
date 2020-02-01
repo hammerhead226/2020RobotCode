@@ -27,7 +27,7 @@ public class Climber extends SubsystemBase {
     climber.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CLIMBER_CURRENT_ENABLE, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_TIME));
 
     climber.configVoltageCompSaturation(Constants.CLIMBER_VOLTAGE_LIMIT);
-    climber.enableVoltageCompensation(Constants.DRIVETRAIN_VOLTAGE_ENABLE);
+    climber.enableVoltageCompensation(Constants.CLIMBER_VOLTAGE_ENABLE);
 
     climber.setInverted(Constants.CLIMBER_INVERTED);
     

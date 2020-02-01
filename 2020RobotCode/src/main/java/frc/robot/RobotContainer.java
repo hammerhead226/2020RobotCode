@@ -44,10 +44,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    manip.getAButton().whileHeld(new RunShooter());
     driver.getSTARTButton().whenPressed(new toggleCompressor());
-    driver.getBButton().whenPressed(new toggleCompressor());
-    driver.getXButton().whenPressed(new toggleIntake());
   }
 
   /**
