@@ -13,8 +13,8 @@ import frc.robot.Robot;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class toggleCompressor extends InstantCommand {
-  public toggleCompressor() {
+public class toggleClimber extends InstantCommand {
+  public toggleClimber() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.pneumatics);
   }
@@ -22,6 +22,6 @@ public class toggleCompressor extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.pneumatics.toggleCompressor();
+    Robot.pneumatics.toggleClimber();
   }
 }
