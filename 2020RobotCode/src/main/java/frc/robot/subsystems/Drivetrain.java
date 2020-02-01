@@ -25,31 +25,31 @@ public class Drivetrain extends SubsystemBase {
   /**
    * Creates a new Drivetrain.
    */
-  TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
-  TalonSRX frontLeftSteer = new TalonSRX(Constants.FRONT_LEFT_STEER);
-  AnalogInput encoder1 = new AnalogInput(Constants.FRONT_LEFT_ENCODER);
-  SwerveModule module1 = new SwerveModule(frontLeftDrive, frontLeftSteer, encoder1, 1);
+  private TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
+  private TalonSRX frontLeftSteer = new TalonSRX(Constants.FRONT_LEFT_STEER);
+  private AnalogInput encoder1 = new AnalogInput(Constants.FRONT_LEFT_ENCODER);
+  private SwerveModule module1 = new SwerveModule(frontLeftDrive, frontLeftSteer, encoder1, 1);
 
 
-  TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
-  TalonSRX rearLeftSteer = new TalonSRX(Constants.REAR_LEFT_STEER);
-  AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
-  SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
+  private TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
+  private TalonSRX rearLeftSteer = new TalonSRX(Constants.REAR_LEFT_STEER);
+  private AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
+  private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
   
 
-  TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
-  TalonSRX frontRightSteer = new TalonSRX(Constants.FRONT_RIGHT_STEER);
-  AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
-  SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 1);
+  private TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
+  private TalonSRX frontRightSteer = new TalonSRX(Constants.FRONT_RIGHT_STEER);
+  private AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
+  private SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 1);
 
-  TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
-  TalonSRX rearRightSteer = new TalonSRX(Constants.REAR_RIGHT_STEER);
-  AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
-  SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
+  private TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
+  private TalonSRX rearRightSteer = new TalonSRX(Constants.REAR_RIGHT_STEER);
+  private AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
+  private SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
 
-  PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
+  private PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
 
-  SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);  
+  private SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);  
 
   public Drivetrain() {
     frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);

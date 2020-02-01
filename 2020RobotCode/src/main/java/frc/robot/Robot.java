@@ -14,6 +14,7 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorRoller;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PneumaticsSystem;
+import frc.robot.subsystems.Queuer;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -32,7 +33,8 @@ public class Robot extends TimedRobot {
   public static ColorRoller colorRoller = new ColorRoller();
   public static PneumaticsSystem pneumatics = new PneumaticsSystem();
   public static Shooter shooter = new Shooter();
-  
+  public static ActiveFloor activeFloor = new ActiveFloor();
+  public static Queuer queuer = new Queuer();
 
   /**
    * This function is run when the robot is first started up and should be used

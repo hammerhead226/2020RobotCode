@@ -8,35 +8,29 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class Climber extends SubsystemBase {
+public class Queuer extends SubsystemBase {
   /**
-   * Creates a new Drivetrain.
+   * Creates a new Queuer.
    */
-  private TalonFX climber = new TalonFX(Constants.CLIMBER);
+  private TalonSRX queuer = new TalonSRX(Constants.QUEUER);
 
-  public Climber() {
+  public Queuer() {
 
   }
 
-  public void climber(double climbSpeed) {
-    climber.set(ControlMode.PercentOutput, climbSpeed);
-  }
-
-  public void Output(){
-    SmartDashboard.putNumber("climber current", climber.getStatorCurrent());
+  public void toggleQueuer(double speed) {
+    queuer.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber(Robot.robotContainer.driver.getTriggers());
-
+    toggleQueuer(Robot.robotContainer.driver.getRightTrigger());
   }
 }
