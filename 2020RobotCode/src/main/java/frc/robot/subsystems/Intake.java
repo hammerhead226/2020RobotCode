@@ -7,8 +7,13 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,17 +24,21 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  TalonFX intake = new TalonFX(Constants.INTAKE);
+
+  private VictorSPX intake = new VictorSPX(Constants.INTAKE);
 
   public void intake(double intakeSpeed){
-    intake.set(TalonFXControlMode.PercentOutput, intakeSpeed);
+    intake.set(ControlMode.PercentOutput, intakeSpeed);
   }
+
   public Intake() {
-
+    intake.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT);
+    intake.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_ENABLE);
+    intake.setInverted(Constants.INTAKE_INVERTED);
+    intake.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void Output(){
-    SmartDashboard.putNumber("intake current", intake.getStatorCurrent());
+  public void Output() {
   }
 
   @Override
