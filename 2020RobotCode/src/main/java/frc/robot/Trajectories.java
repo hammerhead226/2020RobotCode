@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import frc.libs.util.Limelight;
 
 public class Trajectories {
-    static TrajectoryConfig config = new TrajectoryConfig(1, 0.5);
+    static TrajectoryConfig config = new TrajectoryConfig(Constants.MAX_DRIVE_VELOCITY, Constants.MAX_DRIVE_ACCELERATION);
     
     Pose2d[] targetPath;
 
