@@ -19,6 +19,7 @@ public class FollowTrajectory extends CommandBase {
   Trajectory trajectory;
   int numStates;
   double startTime;
+  
   public FollowTrajectory(Trajectory trajectory) {
     // Use addRequirements() here to declare subsystem dependencies
     addRequirements(Robot.drivetrain);

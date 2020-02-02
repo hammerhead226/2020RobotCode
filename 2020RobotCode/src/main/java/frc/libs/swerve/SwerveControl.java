@@ -43,9 +43,10 @@ public class SwerveControl {
     }
 
     public void control(Trajectory.State state){
-     double velocityX = state.poseMeters.getRotation().getCos() * (state.velocityMetersPerSecond/4);
-     double velocityY = state.poseMeters.getRotation().getSin() * (state.velocityMetersPerSecond/4);
-     control(velocityX, velocityY, 0);
+     double velocityX = state.poseMeters.getTranslation().getX() * (state.velocityMetersPerSecond/4);
+     double velocityY = state.poseMeters.getTranslation().getY() * (state.velocityMetersPerSecond/4);
+     double rotation = state.poseMeters.getRotation().getDegrees() * (state.velocityMetersPerSecond/4);
+     control(velocityX, velocityY, rotation);
     }
 
     public void control(double x, double y, double rotate) {
