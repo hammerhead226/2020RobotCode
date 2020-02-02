@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.ActiveFloor;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorRoller;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PneumaticsSystem;
 import frc.robot.subsystems.Queuer;
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
   private Command autonomousCommand;
 
   public static RobotContainer robotContainer;
+  public static Drivetrain drivetrain = new Drivetrain();
   public static Climber climber = new Climber();
   public static Intake intake = new Intake();
   public static ColorRoller colorRoller = new ColorRoller();
@@ -69,6 +71,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+  
   }
 
   /**
@@ -119,6 +122,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+   
   }
 
   @Override

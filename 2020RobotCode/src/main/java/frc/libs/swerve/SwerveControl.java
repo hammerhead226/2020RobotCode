@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import frc.robot.Constants;
 
 /**
@@ -38,6 +40,12 @@ public class SwerveControl {
         this.pigeon = pigeon;
         isDones = new ArrayList<>();
         errorTracker = new double[] {0, 0, 0, 0, 0};
+    }
+
+    public void control(Trajectory.State state){
+     double velocityX = state.poseMeters.getRotation().getCos() * (state.velocityMetersPerSecond/4);
+     double velocityY = state.poseMeters.getRotation().getSin() * (state.velocityMetersPerSecond/4);
+     control(velocityX, velocityY, 0);
     }
 
     public void control(double x, double y, double rotate) {
@@ -98,8 +106,6 @@ public class SwerveControl {
         module3.drive(r3, theta3);
         module4.drive(r4, theta4);
     }
-
-    
 
     public void toAngle(double angle) {
         double gyro = getGyro();
@@ -162,7 +168,7 @@ public class SwerveControl {
         return isReady;
     }
 
-    private double getGyro() {
+    public double getGyro() {
         double[] ypr = new double[3];
         pigeon.getYawPitchRoll(ypr);
         return ypr[0];

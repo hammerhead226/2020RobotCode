@@ -15,6 +15,11 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.libs.swerve.SwerveControl;
 import frc.libs.swerve.SwerveModule;
@@ -49,8 +54,22 @@ public class Drivetrain extends SubsystemBase {
 
   private PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
 
-  private SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);  
+  public SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);  
 
+  Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381);
+  Translation2d m_frontRightLocation = new Translation2d(0.381, -0.381);
+  Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381);
+  Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
+  
+  SwerveDriveKinematics kinematics = new SwerveDriveKinematics(
+    m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation
+  );
+
+  SwerveDriveOdometry odometry = new SwerveDriveOdometry(kinematics,
+  new Rotation2d(), new Pose2d(5.0, 13.5, new Rotation2d()));
+
+  Pose2d currentPose2d = new Pose2d();
+  
   public Drivetrain() {
     frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);
     frontRightSteer.setInverted(Constants.FRONT_RIGHT_STEER_INVERTED);
@@ -88,9 +107,17 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("rearRightDrive current", rearRightDrive.getStatorCurrent());
   }
 
+  public void control(double x, double y, double rot){
+    swerve.control(x, y, rot);
+  }
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    swerve.control(Robot.robotContainer.driver.getLeftJoystick_X(), Robot.robotContainer.driver.getLeftJoystick_Y(), Robot.robotContainer.driver.getRightJoystick_X());
+    control(Robot.robotContainer.driver.getLeftJoystick_X(), Robot.robotContainer.driver.getLeftJoystick_Y(), Robot.robotContainer.driver.getRightJoystick_X());
+
+  currentPose2d = odometry.update(new Rotation2d(swerve.getGyro()), module1.getState(), module2.getState(),
+  module3.getState(),module4.getState());
   }
 }

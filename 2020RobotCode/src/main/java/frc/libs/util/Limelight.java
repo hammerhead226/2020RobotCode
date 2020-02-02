@@ -88,4 +88,8 @@ public class Limelight {
         limelight.getEntry("snapshot").setNumber(mode);
     }
 
+    public static double distanceToTarget(){
+        return (54-28)/Math.tan(0);
+    }
+
 }
