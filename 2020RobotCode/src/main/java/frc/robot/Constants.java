@@ -150,7 +150,11 @@ public final class Constants {
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false;
     
 	public static final double MAX_DRIVE_ACCELERATION = 0;
-	public static final double MAX_DRIVE_VELOCITY = 0; 
+	public static final double MAX_DRIVE_VELOCITY = 0;
+    public static final int HIGH_GOAL_HEIGHT = 0;
+	public static final int LIMELIGHT_ANGLE = 0;
+	public static final int ANGLE_TO_TARGET = 0; 
+    public static int CAMERA_HEIGHT = 0;
 
 }
 
