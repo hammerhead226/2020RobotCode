@@ -13,17 +13,15 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class ActiveFloor extends SubsystemBase {
   /**
    * Creates a new ActiveFloor.
    */
-  private TalonSRX activeFloor = new TalonSRX(Constants.ACTIVE_FLOOR_MOTOR);
-  
+  private VictorSPX activeFloor = new VictorSPX(Constants.ACTIVE_FLOOR_MOTOR);
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
-    activeFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.ACTIVE_FLOOR_CURRENT_ENABLE, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME));
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
     activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
     activeFloor.setNeutralMode(NeutralMode.Brake);
