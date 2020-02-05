@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Queuer extends SubsystemBase {
   /**
@@ -23,13 +24,13 @@ public class Queuer extends SubsystemBase {
 
   }
 
-  public void toggleQueuer(double speed) {
+  public void runQueuer(double speed) {
     queuer.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
+    runQueuer(Robot.robotContainer.getDriverLeftTrigger());
   }
 }

@@ -18,9 +18,9 @@ public class PneumaticsSystem extends SubsystemBase {
    * Creates a new Pneumatics.
    */
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
-  private DoubleSolenoid Intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
-  private DoubleSolenoid Shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
-  private DoubleSolenoid Climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
+  private DoubleSolenoid intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
+  private DoubleSolenoid shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
+  private DoubleSolenoid climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
   private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
   private DoubleSolenoid.Value climberVal = DoubleSolenoid.Value.kForward;
@@ -43,7 +43,7 @@ public class PneumaticsSystem extends SubsystemBase {
     }else {
       intakeVal = DoubleSolenoid.Value.kForward;
     }
-    Intake.set(intakeVal);
+    intake.set(intakeVal);
   }
 
   public void toggleShooter(){
@@ -53,27 +53,38 @@ public class PneumaticsSystem extends SubsystemBase {
     else {
       shooterVal = DoubleSolenoid.Value.kReverse;
     }
-    Shooter.set(shooterVal);
+    shooter.set(shooterVal);
   }
 
   public void shooterUp() {
     shooterVal = DoubleSolenoid.Value.kForward;
-    Shooter.set(shooterVal);
+    shooter.set(shooterVal);
   }
 
   public void shooterDown() {
     shooterVal = DoubleSolenoid.Value.kReverse;
-    Shooter.set(shooterVal);
+    shooter.set(shooterVal);
   }
+
+  public void toggleClimber() {
+    if(climberVal == DoubleSolenoid.Value.kForward) {
+      climberVal = DoubleSolenoid.Value.kReverse;
+    }
+    else {
+      climberVal = DoubleSolenoid.Value.kForward;
+    }
+    climber.set(climberVal);
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(Robot.robotContainer.getDriverLeftTrigger() >= 0.2) {
+    if(Robot.robotContainer.getDriverLeftTrigger() >= Constants.DRIVER_TRIGGER_TOLERANCE) {
       intakeVal = DoubleSolenoid.Value.kForward;
     }
     else {
       intakeVal = DoubleSolenoid.Value.kReverse;
     }
-    Intake.set(intakeVal);
+    intake.set(intakeVal);
   }
 }
