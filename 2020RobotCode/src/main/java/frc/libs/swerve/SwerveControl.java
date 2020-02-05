@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import frc.robot.Constants;
 
