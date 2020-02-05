@@ -36,11 +36,5 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(Robot.robotContainer.beamBreaker.get() == false) {
-      activeFloor(Robot.robotContainer.manip.getRawAxis(5));
-    }
-    if(Robot.robotContainer.beamBreaker.get() == true) {
-      activeFloor(Robot.robotContainer.manip.getRawAxis(5));
-    }
   }
 }

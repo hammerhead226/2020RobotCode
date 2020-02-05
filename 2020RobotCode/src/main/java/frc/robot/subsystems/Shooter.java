@@ -26,8 +26,6 @@ public class Shooter extends SubsystemBase {
   private TalonFX shooter1 = new TalonFX(Constants.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
 
-  private DigitalInput beamBreaker = new DigitalInput(Constants.BEAM_BREAKER);
-
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
     shooter2.setNeutralMode(NeutralMode.Brake);

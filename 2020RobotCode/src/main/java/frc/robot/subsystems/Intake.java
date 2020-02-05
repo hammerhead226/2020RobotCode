@@ -48,12 +48,5 @@ public class Intake extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
-    if(Robot.robotContainer.beamBreaker.get() == false) {
-      intake(Robot.robotContainer.manip.getTriggers());
-    }
-    
-    if(Robot.robotContainer.beamBreaker.get() == true) {
-      intake(Robot.robotContainer.manip.getTriggers());
-    }
   }
 }
