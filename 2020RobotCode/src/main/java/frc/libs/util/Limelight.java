@@ -22,80 +22,82 @@ public class Limelight {
         return limelight.getEntry(index).getDouble(0);
     }
 
-    public static double getNumTargets(){
+    public static double getNumTargets() {
         return limelight.getEntry("tv").getDouble(0);
     }
 
-    public static double getHorizontalOffset(){
+    public static double getHorizontalOffset() {
         return limelight.getEntry("tx").getDouble(0);
     }
 
-    public static double getVerticalOffset(){
+    public static double getVerticalOffset() {
         return limelight.getEntry("ty").getDouble(0);
     }
 
-    public static double getTargetArea(){
+    public static double getTargetArea() {
         return limelight.getEntry("ta").getDouble(0);
     }
 
-    public static double getSkew(){
+    public static double getSkew() {
         return limelight.getEntry("ts").getDouble(0);
     }
-    
-    public static double getPipelineContr(){
+
+    public static double getPipelineContr() {
         return limelight.getEntry("tl").getDouble(0);
     }
 
-    public static double getShortSidelength(){
+    public static double getShortSidelength() {
         return limelight.getEntry("tshort").getDouble(0);
     }
 
-    public static double getLongSidelength(){
+    public static double getLongSidelength() {
         return limelight.getEntry("tlong").getDouble(0);
     }
 
-    public static double getHorizontalSidelength(){
+    public static double getHorizontalSidelength() {
         return limelight.getEntry("thor").getDouble(0);
     }
 
-    public static double getVerticalSidelength(){
+    public static double getVerticalSidelength() {
         return limelight.getEntry("tvert").getDouble(0);
     }
 
-    public static double getPipe(){
+    public static double getPipe() {
         return limelight.getEntry("getpipe").getDouble(0);
     }
 
-    public static double getPos(){
+    public static double getPos() {
         return limelight.getEntry("camtran").getDouble(0);
     }
 
-    public static void setLEDMode(int mode){
+    public static void setLEDMode(int mode) {
         limelight.getEntry("ledMode").setNumber(mode);
     }
 
-    public static void setCamMode(int mode){
+    public static void setCamMode(int mode) {
         limelight.getEntry("camMode").setNumber(mode);
     }
 
-    public static void setPipeline(int line){
+    public static void setPipeline(int line) {
         limelight.getEntry("pipeline").setNumber(line);
     }
 
-    public static void setStreamMode(int mode){
+    public static void setStreamMode(int mode) {
         limelight.getEntry("stream").setNumber(mode);
     }
 
-    public static void takeSnapshot(int mode){
+    public static void takeSnapshot(int mode) {
         limelight.getEntry("snapshot").setNumber(mode);
     }
 
-    public static double distanceToTarget(){
-        return (Constants.HIGH_GOAL_HEIGHT-Constants.CAMERA_HEIGHT)/Math.tan(Constants.LIMELIGHT_ANGLE + Constants.ANGLE_TO_TARGET);
+    public static double distanceToTarget() {
+        return (Constants.HIGH_GOAL_HEIGHT - Constants.CAMERA_HEIGHT)
+                / Math.tan(Constants.LIMELIGHT_ANGLE + Constants.ANGLE_TO_TARGET);
     }
 
-    public static double getTargetRotation(){
-        return Math.asin((Robot.drivetrain.currentPose2d.getTranslation().getX()-Constants.GOAL_X)/distanceToTarget());
+    public static double getTargetRotation() {
+        return Math
+                .asin((Robot.drivetrain.currentPose2d.getTranslation().getX() - Constants.GOAL_X) / distanceToTarget());
     }
 
 }
