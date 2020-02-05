@@ -68,7 +68,7 @@ public class Drivetrain extends SubsystemBase {
   SwerveDriveOdometry odometry = new SwerveDriveOdometry(kinematics,
   new Rotation2d(), new Pose2d(0, 0, new Rotation2d()));
 
-  Pose2d currentPose2d = new Pose2d();
+  public Pose2d currentPose2d = new Pose2d();
   
   public Drivetrain() {
     frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);

@@ -9,6 +9,7 @@ package frc.libs.util;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import edu.wpi.first.networktables.NetworkTable;
 
 /**
@@ -91,6 +92,10 @@ public class Limelight {
 
     public static double distanceToTarget(){
         return (Constants.HIGH_GOAL_HEIGHT-Constants.CAMERA_HEIGHT)/Math.tan(Constants.LIMELIGHT_ANGLE + Constants.ANGLE_TO_TARGET);
+    }
+
+    public static double getTargetRotation(){
+        return Math.asin((Robot.drivetrain.currentPose2d.getTranslation().getX()-Constants.GOAL_X)/distanceToTarget());
     }
 
 }

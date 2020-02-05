@@ -10,12 +10,17 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import frc.libs.util.Limelight;
 
 public class Trajectories {
-    static TrajectoryConfig config = new TrajectoryConfig(Constants.MAX_DRIVE_VELOCITY, Constants.MAX_DRIVE_ACCELERATION);
-    
+    static TrajectoryConfig config = new TrajectoryConfig(Constants.MAX_DRIVE_VELOCITY,
+            Constants.MAX_DRIVE_ACCELERATION);
+
     Pose2d[] targetPath;
 
     public Trajectory getTargetTrajectory() {
-        targetPath = new Pose2d[] { new Pose2d(), new Pose2d(Limelight.getHorizontalOffset(), Limelight.distanceToTarget(), new Rotation2d(Limelight.getSkew())) };
+        targetPath = new Pose2d[] { new Pose2d(), new Pose2d(
+                Math.sqrt(Math.pow(Limelight.distanceToTarget(), 2)
+                        + Math.pow(Robot.drivetrain.currentPose2d.getTranslation().getX() - Constants.TARGET_X, 2)),
+                Robot.drivetrain.currentPose2d.getTranslation().getX() - Constants.TARGET_X,
+                new Rotation2d(Limelight.getTargetRotation())) };
         return TrajectoryGenerator.generateTrajectory(Arrays.asList(targetPath), config);
     }
 }
