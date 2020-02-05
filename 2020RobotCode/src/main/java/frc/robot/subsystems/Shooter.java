@@ -13,9 +13,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Shooter extends SubsystemBase {
   /**
@@ -23,6 +25,8 @@ public class Shooter extends SubsystemBase {
    */
   private TalonFX shooter1 = new TalonFX(Constants.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
+
+  private DigitalInput beamBreaker = new DigitalInput(Constants.BEAM_BREAKER);
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);

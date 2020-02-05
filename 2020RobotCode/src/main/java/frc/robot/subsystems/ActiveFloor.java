@@ -7,13 +7,14 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class ActiveFloor extends SubsystemBase {
   /**
@@ -35,7 +36,11 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
-
+    if(Robot.robotContainer.beamBreaker.get() == false) {
+      activeFloor(Robot.robotContainer.manip.getRawAxis(5));
+    }
+    if(Robot.robotContainer.beamBreaker.get() == true) {
+      activeFloor(Robot.robotContainer.manip.getRawAxis(5));
+    }
   }
 }

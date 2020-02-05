@@ -31,6 +31,8 @@ public class Queuer extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    toggleQueuer(Robot.robotContainer.driver.getRightTrigger());
+    if(Robot.robotContainer.beamBreaker.get() == false) {
+      toggleQueuer(Robot.robotContainer.driver.getRightTrigger());
+    }
   }
 }
