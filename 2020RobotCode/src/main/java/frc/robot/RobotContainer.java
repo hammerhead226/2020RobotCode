@@ -49,11 +49,6 @@ public class RobotContainer {
     driver.getSTARTButton().whenPressed(new ToggleCompressor());
   }
 
-  public double getDriverLeftTrigger() {
-    return driver.getLeftTrigger();
-  }
-
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

@@ -34,6 +34,6 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    runActiveFloor(Robot.robotContainer.getDriverLeftTrigger());
+    runActiveFloor(Robot.robotContainer.driver.getLeftTrigger());
   }
 }
