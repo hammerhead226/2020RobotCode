@@ -15,6 +15,7 @@ import frc.libs.util.Controller;
 import frc.robot.commands.ShootDown;
 import frc.robot.commands.ShootUp;
 import frc.robot.commands.ToggleCompressor;
+import frc.robot.commands.ToggleClimber;
 
 
 /**
@@ -47,7 +48,8 @@ public class RobotContainer {
     driver.getAButton().whileHeld(new ShootUp());
     driver.getBButton().whileHeld(new ShootDown());
     driver.getSTARTButton().whenPressed(new ToggleCompressor());
-  }
+    manip.getYButton().whenPressed(new ToggleClimber());
+    }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
