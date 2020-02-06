@@ -31,6 +31,6 @@ public class Queuer extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    runQueuer(Robot.robotContainer.driver.getLeftTrigger());
+    runQueuer(Robot.robotContainer.driver.getTriggers());
   }
 }
