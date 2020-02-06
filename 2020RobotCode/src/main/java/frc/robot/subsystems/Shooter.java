@@ -58,7 +58,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double velocity){
-    
     shooter1.set(ControlMode.Velocity, velocity);
   }
 

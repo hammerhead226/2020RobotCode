@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -22,20 +23,18 @@ public class ActiveFloor extends SubsystemBase {
   private VictorSPX activeFloor = new VictorSPX(Constants.ACTIVE_FLOOR_MOTOR);
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
-    activeFloor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.ACTIVE_FLOOR_CURRENT_ENABLE, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_LIMIT, Constants.ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME));
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
     activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
     activeFloor.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void activeFloor(double speed){
+  public void runActiveFloor(double speed){
     activeFloor.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
-
+    runActiveFloor(Robot.robotContainer.driver.getTriggers());
   }
 }

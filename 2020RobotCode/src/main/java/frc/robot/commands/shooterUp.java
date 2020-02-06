@@ -10,12 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
 
-public class ToggleShooterHood extends InstantCommand {
+public class ShooterUp extends InstantCommand {
   /**
-   * Creates a new toggleShooter.
+   * Creates a new shooterUp.
    */
-  
-  public ToggleShooterHood() {
+  public ShooterUp() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.pneumatics);
   }
@@ -23,6 +22,6 @@ public class ToggleShooterHood extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.pneumatics.toggleShooter();
+    Robot.pneumatics.shooterUp();
   }
 }

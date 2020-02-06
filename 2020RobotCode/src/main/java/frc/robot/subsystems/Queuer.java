@@ -24,13 +24,13 @@ public class Queuer extends SubsystemBase {
 
   }
 
-  public void toggleQueuer(double speed) {
+  public void runQueuer(double speed) {
     queuer.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    toggleQueuer(Robot.robotContainer.driver.getRightTrigger());
+    runQueuer(Robot.robotContainer.driver.getTriggers());
   }
 }

@@ -87,6 +87,8 @@ public final class Constants {
     public static final double SHOOTER_2_CURRENT_THRESHOLD_TIME = 2;
     public static final double SHOOTER_2_CURRENT_THRESHOLD_LIMIT = 60;
 
+    
+    public static final double DRIVER_TRIGGER_TOLERANCE = 0.05;
 
 
     public static final double INTAKE_VOLTAGE_LIMIT = 12; 
@@ -108,7 +110,6 @@ public final class Constants {
     public static final double CLIMBER_CURRENT_THRESHOLD_LIMIT= 60;
     
 
-  
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
@@ -148,6 +149,10 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME = 2;
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false; 
+
+    public static final double ACTIVE_FLOOR_SPEED = 1;
+    public static final double QUEUER_SPEED = 1;
+    
 
 }
 
