@@ -19,7 +19,7 @@ public class Trajectories {
                 targetPath = new Pose2d[] { new Pose2d(), new Pose2d(
                                 Robot.drivetrain.currentPose2d.getTranslation().getX() - Constants.TARGET_X,
                                 Math.sqrt(Math.pow(Limelight.distanceToTarget(), 2)
-                                                + Math.pow(Robot.drivetrain.currentPose2d.getTranslation().getX()
+                                                - Math.pow(Robot.drivetrain.currentPose2d.getTranslation().getX()
                                                                 - Constants.TARGET_X, 2)),
                                 new Rotation2d(Limelight.getTargetRotation())) };
                 return TrajectoryGenerator.generateTrajectory(Arrays.asList(targetPath), config);
