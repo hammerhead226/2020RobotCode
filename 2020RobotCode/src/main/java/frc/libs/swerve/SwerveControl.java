@@ -174,4 +174,8 @@ public class SwerveControl {
         return ypr[0];
     }
 
+    public void zeroYaw(){
+        pigeon.setYaw(0);
+    }
+
 }
