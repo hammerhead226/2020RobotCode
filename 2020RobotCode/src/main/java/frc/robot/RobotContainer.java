@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
-import frc.robot.commands.ShootDown;
-import frc.robot.commands.ShootUp;
-import frc.robot.commands.ToggleCompressor;
+import frc.robot.commands.ShooterHoodDown;
+import frc.robot.commands.ShooterHoodUp;
 import frc.robot.commands.ToggleClimber;
+import frc.robot.commands.ToggleCompressor;
 
 
 /**
@@ -45,8 +45,8 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driver.getAButton().whileHeld(new ShootUp());
-    driver.getBButton().whileHeld(new ShootDown());
+    driver.getAButton().whileHeld(new ShooterHoodUp());
+    driver.getBButton().whileHeld(new ShooterHoodDown());
     driver.getSTARTButton().whenPressed(new ToggleCompressor());
     manip.getYButton().whenPressed(new ToggleClimber());
     }
