@@ -36,6 +36,6 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    activeFloor(Robot.robotContainer.manip.getRawAxis(5));
+    activeFloor(Robot.robotContainer.manip.getRightJoystick_Y());
   }
 }
