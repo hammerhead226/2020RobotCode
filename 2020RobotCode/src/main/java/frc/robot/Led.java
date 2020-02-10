@@ -16,19 +16,19 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Led {
     private static CANSparkMax leds = new CANSparkMax(1, MotorType.kBrushless);
 
-    public static void LedColorGreen(){
+    public static void green(){
         leds.set(0.77);
     }
 
-    public static void LedColorBlue(){
+    public static void blue(){
         leds.set(0.87);
     }
 
-    public static void LedColorRed(){
+    public static void red(){
         leds.set(0.61);
     }
 
-    public static void LedColorRainbow(){
+    public static void rainbow(){
         leds.set(-0.95);
     }
 
