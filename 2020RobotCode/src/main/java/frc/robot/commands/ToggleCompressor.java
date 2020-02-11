@@ -7,14 +7,15 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
 
-public class toggleIntake extends CommandBase {
+public class ToggleCompressor extends InstantCommand {
   /**
-   * Creates a new IntakeToggle.
+   * Creates a new CompressorToggle.
    */
-  public toggleIntake() {
+  public ToggleCompressor() {
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.pneumatics);
   }
@@ -22,22 +23,6 @@ public class toggleIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    Robot.pneumatics.toggleIntake();
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+    Robot.pneumatics.toggleCompressor();
   }
 }

@@ -26,7 +26,7 @@ public class Queuer extends SubsystemBase {
 
   }
 
-  public void toggleQueuer(double speed) {
+  public void runQueuer(double speed) {
     queuer.set(ControlMode.PercentOutput, speed);
   }
 
@@ -36,5 +36,6 @@ public class Queuer extends SubsystemBase {
     if(beamBreaker.get() == false) {
       toggleQueuer(Robot.robotContainer.driver.getRightTrigger());
     }
+    runQueuer(Robot.robotContainer.driver.getTriggers());
   }
 }
