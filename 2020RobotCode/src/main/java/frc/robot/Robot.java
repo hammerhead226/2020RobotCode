@@ -84,9 +84,9 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     if(DriverStation.Alliance.Red == DriverStation.getInstance().getAlliance()){
-      Led.LedColorRed();
+      Led.red();
     }else {
-      Led.LedColorBlue();
+      Led.blue();
     }
   }
 
