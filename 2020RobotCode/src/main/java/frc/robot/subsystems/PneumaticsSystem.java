@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -20,10 +21,10 @@ public class PneumaticsSystem extends SubsystemBase {
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
   private DoubleSolenoid intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
   private DoubleSolenoid shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
-  private DoubleSolenoid climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
+  private Solenoid climber = new Solenoid(Constants.CLIMBER_SHIFT);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
   private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
-  private DoubleSolenoid.Value climberVal = DoubleSolenoid.Value.kForward;
+  private boolean climberVal = false;
 
   public PneumaticsSystem() {
     compressor.start();
@@ -67,12 +68,7 @@ public class PneumaticsSystem extends SubsystemBase {
   }
 
   public void toggleClimber() {
-    if(climberVal == DoubleSolenoid.Value.kForward) {
-      climberVal = DoubleSolenoid.Value.kReverse;
-    }
-    else {
-      climberVal = DoubleSolenoid.Value.kForward;
-    }
+    climberVal = !(climberVal);
     climber.set(climberVal);
   }
   
