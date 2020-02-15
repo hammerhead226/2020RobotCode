@@ -35,7 +35,6 @@ public class SwerveControl {
     }
 
     public void control(double x, double y, double rotate) {
-        SmartDashboard.putNumber("encoder value", module2.steercoder.getValue());
         double[] ypr = new double[3];
         pigeon.getYawPitchRoll(ypr);
         double gyro = ypr[0];
