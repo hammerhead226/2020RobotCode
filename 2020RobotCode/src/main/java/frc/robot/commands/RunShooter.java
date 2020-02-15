@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class RunShooter extends CommandBase {
@@ -28,7 +29,7 @@ public class RunShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.runShooter(1);
+    Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
   }
 
   // Called once the command ends or is interrupted.
