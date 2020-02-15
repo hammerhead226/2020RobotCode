@@ -25,18 +25,18 @@ public final class Constants {
     public static int REAR_LEFT_DRIVE = 1;
     public static int REAR_LEFT_STEER = 11;
     public static int REAR_LEFT_ENCODER = 1;
-    public static final boolean REAR_LEFT_STEER_INVERTED = false;    
+    public static final boolean REAR_LEFT_STEER_INVERTED = true;    
     
 
     public static int FRONT_RIGHT_DRIVE = 0;
     public static int FRONT_RIGHT_STEER = 10;
     public static int FRONT_RIGHT_ENCODER = 0;
-    public static final boolean FRONT_RIGHT_STEER_INVERTED = false;
+    public static final boolean FRONT_RIGHT_STEER_INVERTED = true;
     
     public static int REAR_RIGHT_DRIVE = 3;
     public static int REAR_RIGHT_STEER = 13;
     public static int REAR_RIGHT_ENCODER = 3;
-    public static final boolean REAR_RIGHT_STEER_INVERTED = false;
+    public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
     public static final int PIGEON = 7;
 
@@ -46,7 +46,7 @@ public final class Constants {
     public static final double DRIVE_BASE_WIDTH = 23.5 / 12;
     public static final double DRIVE_BASE_LENGTH = 21.5 / 12;
 
-    public static final double STEER_KP = 0.0001;
+    public static final double STEER_KP = 0.0005;
     public static final double STEER_KD = 0.00005;
     public static final double DRIVE_KP = 0.05;
     public static final double DRIFT_CORRECTION_KP = 0;
@@ -126,10 +126,10 @@ public final class Constants {
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
     public static final int INTAKE_SHIFT_1 = 0;
-    public static final int INTAKE_SHIFT_2 = 0;
-    public static final int SHOOTER_SHIFT = 0;
-    public static final int CLIMBER_SHIFT_1 = 0;
-    public static final int CLIMBER_SHIFT_2 = 0;
+    public static final int INTAKE_SHIFT_2 = 1;
+    public static final int SHOOTER_SHIFT = 4;
+    public static final int CLIMBER_SHIFT_1 = 2;
+    public static final int CLIMBER_SHIFT_2 = 3;
     public static final int COMPRESSOR = 0;
 
     public static final int SHOOTER_MAX_RPM = 5000;
