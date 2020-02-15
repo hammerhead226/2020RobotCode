@@ -26,13 +26,16 @@ import frc.robot.commands.ShooterHoodUp;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public Controller driver = new Controller(0);
-  public Controller manip = new Controller(1);
+  
+  public Controller driver;
+  public Controller manip;
   
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    driver = new Controller(0);
+    manip = new Controller(1);
     // Configure the button bindings
     configureButtonBindings();
   }
