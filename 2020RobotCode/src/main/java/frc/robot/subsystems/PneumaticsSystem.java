@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -19,10 +20,10 @@ public class PneumaticsSystem extends SubsystemBase {
    */
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
   private DoubleSolenoid intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
-  private DoubleSolenoid shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
+  private Solenoid shooter = new Solenoid(Constants.SHOOTER_SHIFT);
   private DoubleSolenoid climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
-  private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
+  private boolean shooterVal = true;
   private DoubleSolenoid.Value climberVal = DoubleSolenoid.Value.kForward;
 
   public PneumaticsSystem() {
@@ -47,27 +48,22 @@ public class PneumaticsSystem extends SubsystemBase {
   }
 
   public void toggleShooter(){
-    if(shooterVal == DoubleSolenoid.Value.kReverse){
-      shooterVal = DoubleSolenoid.Value.kForward;
-    }
-    else {
-      shooterVal = DoubleSolenoid.Value.kReverse;
-    }
+    shooterVal = !(shooterVal);
     shooter.set(shooterVal);
   }
 
   public void shooterUp() {
-    shooterVal = DoubleSolenoid.Value.kForward;
+    shooterVal = true;
     shooter.set(shooterVal);
   }
 
   public void shooterDown() {
-    shooterVal = DoubleSolenoid.Value.kReverse;
+    shooterVal = false;
     shooter.set(shooterVal);
   }
 
   public void toggleClimber() {
-    if(climberVal == DoubleSolenoid.Value.kForward) {
+    if (climberVal == DoubleSolenoid.Value.kForward){
       climberVal = DoubleSolenoid.Value.kReverse;
     }
     else {
@@ -86,5 +82,5 @@ public class PneumaticsSystem extends SubsystemBase {
       intakeVal = DoubleSolenoid.Value.kReverse;
     }
     intake.set(intakeVal);
-  }
+ }
 }
