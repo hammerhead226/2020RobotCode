@@ -87,6 +87,11 @@ public class SwerveControl {
             theta4 = Utility.normalizeAngle(Math.atan2(d, a)) + Constants.MODULE_4_OFFSET;
         }
 
+        module1.drive(r1, -theta1);
+        module1.drive(r2, -theta2);
+        module1.drive(r3, -theta3);
+        module1.drive(r4, -theta4);
+
     }
 
     public double getGyro() {
