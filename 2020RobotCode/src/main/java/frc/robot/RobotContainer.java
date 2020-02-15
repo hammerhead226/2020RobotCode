@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.libs.util.Controller;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
-import frc.robot.commands.ToggleClimber;
-import frc.robot.commands.ToggleCompressor;
+
 
 
 /**
@@ -48,8 +47,6 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driver.getAButton().whileHeld(new ShooterHoodUp());
     driver.getBButton().whileHeld(new ShooterHoodDown());
-    driver.getSTARTButton().whenPressed(new ToggleCompressor());
-    manip.getYButton().whenPressed(new ToggleClimber());
     }
 
   /**
