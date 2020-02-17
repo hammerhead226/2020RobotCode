@@ -34,8 +34,8 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    driver = new Controller(0);
-    manip = new Controller(1);
+    driver = new Controller(0, 0.2);
+    manip = new Controller(1, 0.2);
     // Configure the button bindings
     configureButtonBindings();
   }

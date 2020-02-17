@@ -9,7 +9,6 @@ package frc.libs.swerve;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 /**
@@ -88,9 +87,9 @@ public class SwerveControl {
         }
 
         module1.drive(r1, -theta1);
-        module1.drive(r2, -theta2);
-        module1.drive(r3, -theta3);
-        module1.drive(r4, -theta4);
+        module2.drive(-r2, -theta2);
+        module3.drive(r3, -theta3);
+        module4.drive(-r4, -theta4);
 
     }
 

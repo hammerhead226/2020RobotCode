@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,7 +20,7 @@ public class Queuer extends SubsystemBase {
   /**
    * Creates a new Queuer.
    */
-  private TalonSRX queuer = new TalonSRX(Constants.QUEUER);
+  private VictorSPX queuer = new VictorSPX(Constants.QUEUER);
   public DigitalInput beamBreaker = new DigitalInput(Constants.BEAM_BREAKER); // Change port number
 
   public Queuer() {
@@ -27,14 +28,14 @@ public class Queuer extends SubsystemBase {
   }
 
   public void runQueuer(double speed) {
-    queuer.set(ControlMode.PercentOutput, speed);
+    queuer.set(ControlMode.PercentOutput, -speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(beamBreaker.get() == false) {
+  //  if(beamBreaker.get() == false) {
       runQueuer(Robot.robotContainer.driver.getTriggers());
-    }
+  //  }
   }
 }
