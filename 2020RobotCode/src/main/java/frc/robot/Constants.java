@@ -17,25 +17,12 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int FRONT_LEFT_DRIVE = 1;
-    public static int FRONT_LEFT_STEER = 5;
-    public static int FRONT_LEFT_ENCODER = 0;
     public static final boolean FRONT_LEFT_STEER_INVERTED = false;
 
-    public static int REAR_LEFT_DRIVE = 2;
-    public static int REAR_LEFT_STEER = 6;
-    public static int REAR_LEFT_ENCODER = 1;
     public static final boolean REAR_LEFT_STEER_INVERTED = false;    
     
-
-    public static int FRONT_RIGHT_DRIVE = 3;
-    public static int FRONT_RIGHT_STEER = 7;
-    public static int FRONT_RIGHT_ENCODER = 2;
     public static final boolean FRONT_RIGHT_STEER_INVERTED = false;
     
-    public static int REAR_RIGHT_DRIVE = 4;
-    public static int REAR_RIGHT_STEER = 8;
-    public static int REAR_RIGHT_ENCODER = 3;
     public static final boolean REAR_RIGHT_STEER_INVERTED = false;
 
     public static final int PIGEON = 7;
@@ -64,8 +51,6 @@ public final class Constants {
     public static final int MODULE_2_OFFSET = MODULE_OFFSETS[1];
     public static final int MODULE_3_OFFSET = MODULE_OFFSETS[2];
     public static final int MODULE_4_OFFSET = MODULE_OFFSETS[3];
-
-    public static final int CLIMBER_MOTOR_1 = 0;
 
     public static final boolean DRIVETRAIN_CURRENT_ENABLE = false;
     public static final double DRIVETRAIN_CURRENT_LIMIT = 40;
@@ -113,36 +98,20 @@ public final class Constants {
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
-    public static final int SHOOTER_1 = 0;
-    public static final int SHOOTER_2 = 0;
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = false;
 
-    public static final int ROLLER = 0;
-    public static final int INTAKE = 0;
     public static final boolean INTAKE_INVERTED = false;  
-    
-    public static final int CLIMBER = 0;
+ 
     public static final boolean CLIMBER_INVERTED = false;
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
-
-    public static final int INTAKE_SHIFT_1 = 0;
-    public static final int INTAKE_SHIFT_2 = 0;
-    public static final int SHOOTER_SHIFT_1 = 0;
-    public static final int SHOOTER_SHIFT_2 = 0;
-    public static final int CLIMBER_SHIFT_1 = 0;
-    public static final int CLIMBER_SHIFT_2 = 0;
-    public static final int COMPRESSOR = 0;
 
     public static final int SHOOTER_MAX_RPM = 5000;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;
-  
-    public static final int QUEUER = 0;
 
-    public static final int ACTIVE_FLOOR_MOTOR = 0;
     public static final boolean ACTIVE_FLOOR_INVERTED = false;
     public static final boolean ACTIVE_FLOOR_CURRENT_ENABLE = false;
     public static final double ACTIVE_FLOOR_CURRENT_LIMIT = 40;
@@ -152,7 +121,6 @@ public final class Constants {
 
     public static final double ACTIVE_FLOOR_SPEED = 1;
     public static final double QUEUER_SPEED = 1;
-    
 
 }
 

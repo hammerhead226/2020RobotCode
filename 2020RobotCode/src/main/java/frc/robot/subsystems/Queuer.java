@@ -11,14 +11,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class Queuer extends SubsystemBase {
   /**
    * Creates a new Queuer.
    */
-  private TalonSRX queuer = new TalonSRX(Constants.QUEUER);
+  private TalonSRX queuer = new TalonSRX(RobotMap.QUEUER);
 
   public Queuer() {
 
