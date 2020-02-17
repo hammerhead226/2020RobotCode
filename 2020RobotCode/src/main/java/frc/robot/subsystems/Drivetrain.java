@@ -38,17 +38,18 @@ public class Drivetrain extends SubsystemBase {
   private TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
   private VictorSPX rearLeftSteer = new VictorSPX(Constants.REAR_LEFT_STEER);
   private AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
-  private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
+  private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 2);
+  
 
   private TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
   private VictorSPX frontRightSteer = new VictorSPX(Constants.FRONT_RIGHT_STEER);
   private AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
-  private SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 1);
+  private SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 3);
 
   private TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
   private VictorSPX rearRightSteer = new VictorSPX(Constants.REAR_RIGHT_STEER);
   private AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
-  private SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
+  private SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 4);
 
   private PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
 

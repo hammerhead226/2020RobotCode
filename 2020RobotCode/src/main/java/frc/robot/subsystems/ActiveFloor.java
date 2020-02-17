@@ -7,12 +7,13 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class ActiveFloor extends SubsystemBase {
   /**
@@ -26,14 +27,13 @@ public class ActiveFloor extends SubsystemBase {
     activeFloor.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void activeFloor(double speed){
+  public void runActiveFloor(double speed){
     activeFloor.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
-
+    runActiveFloor(Robot.robotContainer.driver.getTriggers());
   }
 }

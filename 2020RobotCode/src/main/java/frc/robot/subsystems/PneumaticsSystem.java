@@ -9,19 +9,21 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class PneumaticsSystem extends SubsystemBase {
   /**
    * Creates a new Pneumatics.
    */
   private Compressor compressor = new Compressor(Constants.COMPRESSOR);
-  private DoubleSolenoid Intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
-  private DoubleSolenoid Shooter = new DoubleSolenoid(Constants.SHOOTER_SHIFT_1, Constants.SHOOTER_SHIFT_2);
-  private DoubleSolenoid Climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
+  private DoubleSolenoid intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
+  private Solenoid shooter = new Solenoid(Constants.SHOOTER_SHIFT);
+  private DoubleSolenoid climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
-  private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kForward;
+  private boolean shooterVal = true;
   private DoubleSolenoid.Value climberVal = DoubleSolenoid.Value.kForward;
 
   public PneumaticsSystem() {
@@ -42,30 +44,43 @@ public class PneumaticsSystem extends SubsystemBase {
     }else {
       intakeVal = DoubleSolenoid.Value.kForward;
     }
-    Intake.set(intakeVal);
+    intake.set(intakeVal);
   }
 
   public void toggleShooter(){
-    if (shooterVal == DoubleSolenoid.Value.kForward){
-      shooterVal = DoubleSolenoid.Value.kReverse;
-    }else {
-      intakeVal = DoubleSolenoid.Value.kForward;
-    }
-    Shooter.set(shooterVal);
+    shooterVal = !(shooterVal);
+    shooter.set(shooterVal);
   }
 
-  public void toggleClimber(){
+  public void shooterUp() {
+    shooterVal = true;
+    shooter.set(shooterVal);
+  }
+
+  public void shooterDown() {
+    shooterVal = false;
+    shooter.set(shooterVal);
+  }
+
+  public void toggleClimber() {
     if (climberVal == DoubleSolenoid.Value.kForward){
       climberVal = DoubleSolenoid.Value.kReverse;
-    }else {
+    }
+    else {
       climberVal = DoubleSolenoid.Value.kForward;
     }
-    Climber.set(climberVal);
-
+    climber.set(climberVal);
   }
   
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
+    if(Math.abs(Robot.robotContainer.driver.getTriggers()) >= Constants.DRIVER_TRIGGER_TOLERANCE) {
+      intakeVal = DoubleSolenoid.Value.kForward;
+    }
+    else {
+      intakeVal = DoubleSolenoid.Value.kReverse;
+    }
+    intake.set(intakeVal);
+ }
 }

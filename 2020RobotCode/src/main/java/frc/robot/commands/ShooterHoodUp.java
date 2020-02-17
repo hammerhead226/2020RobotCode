@@ -8,20 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Robot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class toggleClimber extends InstantCommand {
-  public toggleClimber() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.pneumatics);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    Robot.pneumatics.toggleClimber();
+public class ShooterHoodUp extends ParallelCommandGroup {
+  /**
+   * Creates a new parallelShooter.
+   */
+  public ShooterHoodUp() {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
+    super(new InstantCommand(Robot.pneumatics::shooterUp, Robot.pneumatics), new RunShooter());
   }
 }

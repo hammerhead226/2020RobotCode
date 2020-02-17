@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter = new Shooter();
   public static ActiveFloor activeFloor = new ActiveFloor();
   public static Queuer queuer = new Queuer();
+  public static Drivetrain driveTrain = new Drivetrain();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -83,6 +85,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    if(DriverStation.Alliance.Red == DriverStation.getInstance().getAlliance()){
+      Led.red();
+    }else {
+      Led.blue();
+    }
   }
 
   /**

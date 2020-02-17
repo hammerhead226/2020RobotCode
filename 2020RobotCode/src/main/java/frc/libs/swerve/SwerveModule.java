@@ -56,12 +56,13 @@ public class SwerveModule {
         steer.set(ControlMode.PercentOutput, error * Constants.STEER_KP);
     }
 
-    
-
     public SwerveModuleState getState(){
         //  update velocity units
         return new SwerveModuleState(drive.getSelectedSensorVelocity(), Rotation2d.fromDegrees(steercoder.getValue()));
     }
 
+    public int getAngle(){
+        return steercoder.getValue();
+    }
    
 }
