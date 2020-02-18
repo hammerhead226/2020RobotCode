@@ -153,5 +153,7 @@ public final class Constants {
     
     public static final int LED = 0;
 
+    public static final double GYRO_ORIENTATION = Math.PI;
+
 }
 
