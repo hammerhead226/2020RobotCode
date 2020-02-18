@@ -9,6 +9,7 @@ package frc.libs.swerve;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 /**
@@ -46,15 +47,17 @@ public class SwerveControl {
         } else {
             if(!isRotateZero) {
                 isRotateZero = (rotate == 0);
-                if(isRotateZero) holdAngle = gyro;
+                if(isRotateZero){
+                    holdAngle = gyro;
+                }
             } else {
                 isRotateZero = (rotate == 0);
             }
 
-            if(rotate == 0) {
-                double rotateError = holdAngle - gyro;
-                rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
-            }
+            // if(rotate == 0) {
+            //     double rotateError = holdAngle - gyro;
+            //     rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
+            // }
 
             double mag = Math.hypot(x, y);
             double controllerTheta = Math.atan2(y, x);
@@ -87,9 +90,16 @@ public class SwerveControl {
         }
 
         module1.drive(r1, -theta1);
-        module2.drive(-r2, -theta2);
+        module2.drive(r2, -theta2);
         module3.drive(r3, -theta3);
         module4.drive(-r4, -theta4);
+
+        SmartDashboard.putNumber("mod 1", module1.getAngle());
+        SmartDashboard.putNumber("mod 2", module2.getAngle());
+        SmartDashboard.putNumber("mod 3", module3.getAngle());
+        SmartDashboard.putNumber("mod 4", module4.getAngle());
+
+        SmartDashboard.putNumber("gyro", getGyro());
 
     }
 

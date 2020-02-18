@@ -17,14 +17,14 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int FRONT_LEFT_DRIVE = 2;
-    public static int FRONT_LEFT_STEER = 12;
-    public static int FRONT_LEFT_ENCODER = 2;
+    public static int FRONT_LEFT_DRIVE = 3;
+    public static int FRONT_LEFT_STEER = 13;
+    public static int FRONT_LEFT_ENCODER = 3;
     public static final boolean FRONT_LEFT_STEER_INVERTED = true;
 
-    public static int REAR_LEFT_DRIVE = 3;
-    public static int REAR_LEFT_STEER = 13;
-    public static int REAR_LEFT_ENCODER = 3;
+    public static int REAR_LEFT_DRIVE = 2;
+    public static int REAR_LEFT_STEER = 12;
+    public static int REAR_LEFT_ENCODER = 2;
     public static final boolean REAR_LEFT_STEER_INVERTED = true;    
     
     public static int FRONT_RIGHT_DRIVE = 0;
@@ -37,7 +37,7 @@ public final class Constants {
     public static int REAR_RIGHT_ENCODER = 1;
     public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
-    public static final int PIGEON = 7;
+    public static final int PIGEON = 0;
 
     public static final int ENCODER_TICKS = 4096;
     public static final double DRIVE_REV_PER_INCH = .6614404704;
@@ -57,10 +57,9 @@ public final class Constants {
     public static final double MAX_AUTO_DRIVE_ERROR = 1;
     public static final double MAX_AUTO_ROTATE_ERROR = 1;
     public static final double MAX_AUTO_STEER_ERROR = 400;
-//02, 01, 00, 03
 
-//2, 3, 0, 1
-    public static final int[] MODULE_OFFSETS = {3650, 1300, 200, 650};
+//3, 2, 0, 1
+    public static final int[] MODULE_OFFSETS = {3650, 3900, 200, 650};
 
     public static final int MODULE_1_OFFSET = MODULE_OFFSETS[0];
     public static final int MODULE_2_OFFSET = MODULE_OFFSETS[1];
