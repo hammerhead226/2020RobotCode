@@ -117,7 +117,7 @@ public final class Constants {
     public static final boolean SHOOTER_2_INVERTED = true;
 
     public static final int INTAKE = 16;
-    public static final boolean INTAKE_INVERTED = false;  
+    public static final boolean INTAKE_INVERTED = true;  
     
     public static final int CLIMBER = 6;
     public static final boolean CLIMBER_INVERTED = false;
