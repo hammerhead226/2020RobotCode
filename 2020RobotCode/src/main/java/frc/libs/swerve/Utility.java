@@ -15,7 +15,7 @@ public class Utility {
         if(r3 > max) max = r3;
         if(r4 > max) max = r4;
 
-        return new double[] {r1 / max, r2 / max, r3 / max, r4 / max};
+        return new double[] {r1 / max, r2 / max, r3 / max, r4 / max}; //Function works by finding the max of the four, then dividing the rest by the max, thus making every value a percent of the max
     }
 
 }

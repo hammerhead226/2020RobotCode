@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -79,6 +80,29 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.setNeutralMode(NeutralMode.Brake);
     rearRightDrive.setNeutralMode(NeutralMode.Brake);
     rearRightSteer.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public void brake() {
+    int fLSensPosD = frontLeftDrive.getSelectedSensorPosition();
+    int fRSensPosD = frontLeftDrive.getSelectedSensorPosition();
+    int rLSensPosD = frontLeftDrive.getSelectedSensorPosition();
+    int rRSensPosD = frontLeftDrive.getSelectedSensorPosition();
+    int fLSensPosS = module1.getAngle();
+    int fRSensPosS = module3.getAngle();
+    int rLSensPosS = module2.getAngle();
+    int rRSensPosS = module4.getAngle();
+
+    frontLeftDrive.setSelectedSensorPosition(fLSensPosD);
+    frontRightDrive.setSelectedSensorPosition(fRSensPosD);
+    rearLeftDrive.setSelectedSensorPosition(rLSensPosD);
+    rearRightDrive.setSelectedSensorPosition(rRSensPosD);
+
+
+    frontLeftSteer.set(ControlMode.PercentOutput, (fLSensPosS - module1.getAngle()) * Constants.STEER_KP);
+    rearLeftSteer.set(ControlMode.PercentOutput, (rLSensPosS - module2.getAngle()) * Constants.STEER_KP);
+    frontRightSteer.set(ControlMode.PercentOutput, (fRSensPosS - module3.getAngle()) * Constants.STEER_KP);
+    rearRightSteer.set(ControlMode.PercentOutput, (rRSensPosS - module4.getAngle()) * Constants.STEER_KP);
+    // target - acutal multiplied by the steer kp
   }
 
   public void Output(){
