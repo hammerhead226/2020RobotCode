@@ -45,7 +45,7 @@ public final class Constants {
     public static final double DRIVE_BASE_WIDTH = 23.5 / 12;
     public static final double DRIVE_BASE_LENGTH = 21.5 / 12;
 
-    public static final double STEER_KP = 0.0005;
+    public static final double STEER_KP = 0.0007;
     public static final double STEER_KD = 0.00005;
     public static final double DRIVE_KP = 0.05;
     public static final double DRIFT_CORRECTION_KP = 0;
@@ -59,7 +59,7 @@ public final class Constants {
     public static final double MAX_AUTO_STEER_ERROR = 400;
 
 //3, 2, 0, 1
-    public static final int[] MODULE_OFFSETS = {3650, 3900, 200, 650};
+    public static final int[] MODULE_OFFSETS = {3550, 3900, 200, 650};
 
     public static final int MODULE_1_OFFSET = MODULE_OFFSETS[0];
     public static final int MODULE_2_OFFSET = MODULE_OFFSETS[1];
@@ -116,9 +116,8 @@ public final class Constants {
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = true;
 
-    public static final int ROLLER = 0;
-    public static final int INTAKE = 0;
-    public static final boolean INTAKE_INVERTED = false;  
+    public static final int INTAKE = 16;
+    public static final boolean INTAKE_INVERTED = true;  
     
     public static final int CLIMBER = 6;
     public static final boolean CLIMBER_INVERTED = false;
@@ -153,6 +152,8 @@ public final class Constants {
     public static final double QUEUER_SPEED = 1;
     
     public static final int LED = 0;
+
+    public static final double GYRO_ORIENTATION = Math.PI;
 
 }
 

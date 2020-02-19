@@ -62,7 +62,7 @@ public class SwerveControl {
             double mag = Math.hypot(x, y);
             double controllerTheta = Math.atan2(y, x);
             controllerTheta = (controllerTheta + 2 * Math.PI) % (2 * Math.PI);
-            controllerTheta = controllerTheta - Math.toRadians(gyro);
+            controllerTheta = controllerTheta + Math.toRadians(gyro) + Constants.GYRO_ORIENTATION;
             x = mag * Math.cos(controllerTheta);
             y = mag * Math.sin(controllerTheta);
 
@@ -89,17 +89,17 @@ public class SwerveControl {
             theta4 = Utility.normalizeAngle(Math.atan2(d, a)) + Constants.MODULE_4_OFFSET;
         }
 
-        module1.drive(r1, -theta1);
-        module2.drive(r2, -theta2);
-        module3.drive(r3, -theta3);
-        module4.drive(-r4, -theta4);
+        module1.drive(-r1, -theta1);
+        module2.drive(-r2, -theta2);
+        module3.drive(-r3, -theta3);
+        module4.drive(r4, -theta4);
 
         SmartDashboard.putNumber("mod 1", module1.getAngle());
         SmartDashboard.putNumber("mod 2", module2.getAngle());
         SmartDashboard.putNumber("mod 3", module3.getAngle());
         SmartDashboard.putNumber("mod 4", module4.getAngle());
 
-        SmartDashboard.putNumber("gyro", getGyro());
+        SmartDashboard.putNumber("gyro", gyro);
 
     }
 
