@@ -138,6 +138,7 @@ public final class Constants {
     public static final int PID_TIMEOUT = 10;
   
     public static final int QUEUER = 14;
+    public static final boolean QUEUER_SET_INVERTED = true;
 
     public static final int ACTIVE_FLOOR_MOTOR = 15;
     public static final boolean ACTIVE_FLOOR_INVERTED = false;

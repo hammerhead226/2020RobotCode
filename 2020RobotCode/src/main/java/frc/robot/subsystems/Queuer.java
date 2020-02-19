@@ -23,11 +23,11 @@ public class Queuer extends SubsystemBase {
   public DigitalInput beamBreaker = new DigitalInput(Constants.BEAM_BREAKER); // Change port number
 
   public Queuer() {
-
+    queuer.setInverted(Constants.QUEUER_SET_INVERTED);
   }
 
   public void runQueuer(double speed) {
-    queuer.set(ControlMode.PercentOutput, -speed);
+    queuer.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
