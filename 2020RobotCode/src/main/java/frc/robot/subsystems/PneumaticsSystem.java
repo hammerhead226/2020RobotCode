@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
+//import frc.robot.Robot;
 
 public class PneumaticsSystem extends SubsystemBase {
   /**
@@ -75,12 +75,13 @@ public class PneumaticsSystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(Math.abs(Robot.robotContainer.driver.getTriggers()) >= Constants.DRIVER_TRIGGER_TOLERANCE) {
+    /*if(Math.abs(Robot.robotContainer.driver.getTriggers()) >= Constants.DRIVER_TRIGGER_TOLERANCE) {
       intakeVal = DoubleSolenoid.Value.kForward;
     }
     else {
       intakeVal = DoubleSolenoid.Value.kReverse;
     }
     intake.set(intakeVal);
+    */
  }
 }
