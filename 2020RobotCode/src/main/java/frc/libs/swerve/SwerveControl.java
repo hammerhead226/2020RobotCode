@@ -10,6 +10,7 @@ package frc.libs.swerve;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 /**
@@ -54,22 +55,23 @@ public class SwerveControl {
         } else {
             if(!isRotateZero) {
                 isRotateZero = (rotate == 0);
-                if(isRotateZero) holdAngle = gyro;
+                if(isRotateZero){
+                    holdAngle = gyro;
+                }
             } else {
                 isRotateZero = (rotate == 0);
             }
 
-            if(rotate == 0) {
-                double rotateError = holdAngle - gyro;
-                rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
-            }
-
-            double mag = Math.hypot(x, y);
-            double controllerTheta = Math.atan2(y, x);
-            controllerTheta = (controllerTheta + 2 * Math.PI) % (2 * Math.PI);
-            controllerTheta = controllerTheta - Math.toRadians(gyro);
-            x = mag * Math.cos(controllerTheta);
-            y = mag * Math.sin(controllerTheta);
+            // if(rotate == 0) {
+            //     double rotateError = holdAngle - gyro;
+            //     rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
+            // }
+            double mag = Math.hypot(x, y);//takes distance between (0,0) on the joystick and (x, y) inputted
+            double controllerTheta = Math.atan2(y, x);//calculates the angle between the x axis and the line between (0, 0) and (x, y), returns in radians
+            controllerTheta = (controllerTheta + 2 * Math.PI) % (2 * Math.PI); 
+            controllerTheta = controllerTheta - Math.toRadians(gyro) + Constants.GYRO_ORIENTATION; //calculating the distance between goal(controllertheta) and starting rotation(gyro)
+            x = mag * Math.cos(controllerTheta); //calculating the new x after changing the controller theta. Equation is hypot * (newX/hypot), the hypots cancel, giving the newX
+            y = mag * Math.sin(controllerTheta);//Same things as above, but with y
 
             double a = rotate * Constants.DRIVE_BASE_LENGTH / 2 + x;
             double b = -rotate * Constants.DRIVE_BASE_LENGTH / 2 + x;
@@ -81,9 +83,9 @@ public class SwerveControl {
                 Math.hypot(b, c), 
                 Math.hypot(b, d), 
                 Math.hypot(a, d)
-            );
+            ); //Makes it such that all the values are at max 1, and never above, see utility.java for further detail
 
-            r1 = normalizedMagnitude[0];
+            r1 = normalizedMagnitude[0]; // Each of these 4 take their respective percents of the maximum
             r2 = normalizedMagnitude[1];
             r3 = normalizedMagnitude[2];
             r4 = normalizedMagnitude[3];
@@ -94,10 +96,18 @@ public class SwerveControl {
             theta4 = Utility.normalizeAngle(Math.atan2(d, a)) + Constants.MODULE_4_OFFSET;
         }
 
-        module1.drive(r1, theta1);
-        module2.drive(r2, theta2);
-        module3.drive(r3, theta3);
-        module4.drive(r4, theta4);
+        module1.drive(-r1, -theta1);
+        module2.drive(-r2, -theta2);
+        module3.drive(-r3, -theta3);
+        module4.drive(r4, -theta4);
+
+        SmartDashboard.putNumber("mod 1", module1.getAngle());
+        SmartDashboard.putNumber("mod 2", module2.getAngle());
+        SmartDashboard.putNumber("mod 3", module3.getAngle());
+        SmartDashboard.putNumber("mod 4", module4.getAngle());
+
+        SmartDashboard.putNumber("gyro", gyro);
+
     }
 
     public double getGyro() {

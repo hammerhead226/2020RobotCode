@@ -14,13 +14,14 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
 
-  private VictorSPX intake = new VictorSPX(Constants.INTAKE);
+  private VictorSPX intake = new VictorSPX(RobotMap.INTAKE);
 
   public void intake(double intakeSpeed){
     intake.set(ControlMode.PercentOutput, intakeSpeed);
@@ -41,6 +42,5 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
     //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
     intake(Robot.robotContainer.driver.getTriggers());
-
   }
 }

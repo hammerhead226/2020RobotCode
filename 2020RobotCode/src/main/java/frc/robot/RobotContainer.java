@@ -49,9 +49,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driver.getAButton().whileHeld(new ShooterHoodUp());
     driver.getBButton().whileHeld(new ShooterHoodDown());
+    driver.getXButton().whileHeld(new InstantCommand(Robot.driveTrain::brake, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
-    
+    driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
     }
 
   /**
