@@ -16,12 +16,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class Climber extends SubsystemBase {
   /**
    * Creates a new Drivetrain.
    */
-  private TalonFX climber = new TalonFX(Constants.CLIMBER);
+  private TalonFX climber = new TalonFX(RobotMap.CLIMBER);
 
   public Climber() {
     climber.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(Constants.CLIMBER_CURRENT_ENABLE, Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_LIMIT, Constants.CLIMBER_CURRENT_THRESHOLD_TIME));

@@ -14,12 +14,13 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class ActiveFloor extends SubsystemBase {
   /**
    * Creates a new ActiveFloor.
    */
-  private VictorSPX activeFloor = new VictorSPX(Constants.ACTIVE_FLOOR_MOTOR);
+  private VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
