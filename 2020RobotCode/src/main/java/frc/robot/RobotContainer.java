@@ -34,8 +34,8 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    driver = new Controller(0);
-    manip = new Controller(1);
+    driver = new Controller(0, 0.2);
+    manip = new Controller(1, 0.2);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -49,6 +49,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driver.getAButton().whileHeld(new ShooterHoodUp());
     driver.getBButton().whileHeld(new ShooterHoodDown());
+    driver.getXButton().whileHeld(new InstantCommand(Robot.driveTrain::brake, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
