@@ -17,21 +17,21 @@ package frc.robot;
  */
 public final class RobotMap {
 
-    public static int FRONT_LEFT_DRIVE = 1;
-    public static int FRONT_LEFT_STEER = 5;
-    public static int FRONT_LEFT_ENCODER = 0;
+    public static int FRONT_LEFT_DRIVE = 3;
+    public static int FRONT_LEFT_STEER = 13;
+    public static int FRONT_LEFT_ENCODER = 3;
 
     public static int REAR_LEFT_DRIVE = 2;
-    public static int REAR_LEFT_STEER = 6;
-    public static int REAR_LEFT_ENCODER = 1;  
-
-    public static int FRONT_RIGHT_DRIVE = 3;
-    public static int FRONT_RIGHT_STEER = 7;
-    public static int FRONT_RIGHT_ENCODER = 2;
+    public static int REAR_LEFT_STEER = 12;
+    public static int REAR_LEFT_ENCODER = 2;
     
-    public static int REAR_RIGHT_DRIVE = 4;
-    public static int REAR_RIGHT_STEER = 8;
-    public static int REAR_RIGHT_ENCODER = 3;
+    public static int FRONT_RIGHT_DRIVE = 0;
+    public static int FRONT_RIGHT_STEER = 10;
+    public static int FRONT_RIGHT_ENCODER = 0;
+    
+    public static int REAR_RIGHT_DRIVE = 1;
+    public static int REAR_RIGHT_STEER = 11;
+    public static int REAR_RIGHT_ENCODER = 1;
 
     public static final int PIGEON = 7;
 
@@ -46,14 +46,17 @@ public final class RobotMap {
     public static final int CLIMBER = 0;
 
     public static final int INTAKE_SHIFT_1 = 0;
-    public static final int INTAKE_SHIFT_2 = 0;
-    public static final int SHOOTER_SHIFT_1 = 0;
-    public static final int SHOOTER_SHIFT_2 = 0;
-    public static final int CLIMBER_SHIFT_1 = 0;
-    public static final int CLIMBER_SHIFT_2 = 0;
+    public static final int INTAKE_SHIFT_2 = 1;
+    public static final int SHOOTER_SHIFT = 4;
+    public static final int CLIMBER_SHIFT_1 = 2;
+    public static final int CLIMBER_SHIFT_2 = 3;
     public static final int COMPRESSOR = 0;
   
-    public static final int QUEUER = 0;
+    public static final int QUEUER = 14;
 
-    public static final int ACTIVE_FLOOR_MOTOR = 0;
+    public static final int ACTIVE_FLOOR_MOTOR = 15;
+
+    public static final int LED = 0;
+
+    public static final int BEAM_BREAKER = 0;
 }
