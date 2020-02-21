@@ -58,11 +58,10 @@ public class SwerveControl {
             //     double rotateError = holdAngle - gyro;
             //     rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
             // }
-
             double mag = Math.hypot(x, y);//takes distance between (0,0) on the joystick and (x, y) inputted
             double controllerTheta = Math.atan2(y, x);//calculates the angle between the x axis and the line between (0, 0) and (x, y), returns in radians
             controllerTheta = (controllerTheta + 2 * Math.PI) % (2 * Math.PI); 
-            controllerTheta = controllerTheta - Math.toRadians(gyro); //calculating the distance between goal(controllertheta) and starting rotation(gyro)
+            controllerTheta = controllerTheta - Math.toRadians(gyro) + Constants.GYRO_ORIENTATION; //calculating the distance between goal(controllertheta) and starting rotation(gyro)
             x = mag * Math.cos(controllerTheta); //calculating the new x after changing the controller theta. Equation is hypot * (newX/hypot), the hypots cancel, giving the newX
             y = mag * Math.sin(controllerTheta);//Same things as above, but with y
 
@@ -89,17 +88,17 @@ public class SwerveControl {
             theta4 = Utility.normalizeAngle(Math.atan2(d, a)) + Constants.MODULE_4_OFFSET;
         }
 
-        module1.drive(r1, -theta1);
-        module2.drive(r2, -theta2);
-        module3.drive(r3, -theta3);
-        module4.drive(-r4, -theta4);
+        module1.drive(-r1, -theta1);
+        module2.drive(-r2, -theta2);
+        module3.drive(-r3, -theta3);
+        module4.drive(r4, -theta4);
 
         SmartDashboard.putNumber("mod 1", module1.getAngle());
         SmartDashboard.putNumber("mod 2", module2.getAngle());
         SmartDashboard.putNumber("mod 3", module3.getAngle());
         SmartDashboard.putNumber("mod 4", module4.getAngle());
 
-        SmartDashboard.putNumber("gyro", getGyro());
+        SmartDashboard.putNumber("gyro", gyro);
 
     }
 

@@ -13,15 +13,15 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class Queuer extends SubsystemBase {
   /**
    * Creates a new Queuer.
    */
-  private VictorSPX queuer = new VictorSPX(Constants.QUEUER);
-  public DigitalInput beamBreaker = new DigitalInput(Constants.BEAM_BREAKER); // Change port number
+  private VictorSPX queuer = new VictorSPX(RobotMap.QUEUER);
+  public DigitalInput beamBreaker = new DigitalInput(RobotMap.BEAM_BREAKER);
 
   public Queuer() {
 
