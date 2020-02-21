@@ -17,12 +17,12 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final boolean FRONT_LEFT_STEER_INVERTED = false;
-    public static final boolean REAR_LEFT_STEER_INVERTED = false;    
-    public static final boolean FRONT_RIGHT_STEER_INVERTED = false;
-    public static final boolean REAR_RIGHT_STEER_INVERTED = false;
+    public static final boolean FRONT_LEFT_STEER_INVERTED = true;
+    public static final boolean REAR_LEFT_STEER_INVERTED = true;    
+    public static final boolean FRONT_RIGHT_STEER_INVERTED = true;
+    public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
-    public static final int PIGEON = 0;
+    public static final int PIGEON = 7;
 
     public static final int ENCODER_TICKS = 4096;
     public static final double DRIVE_REV_PER_INCH = .6614404704;
@@ -99,7 +99,7 @@ public final class Constants {
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = true;
 
-    public static final boolean INTAKE_INVERTED = false;  
+    public static final boolean INTAKE_INVERTED = true;  
  
     public static final boolean CLIMBER_INVERTED = false;
 

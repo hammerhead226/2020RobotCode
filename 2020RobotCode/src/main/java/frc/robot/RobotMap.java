@@ -40,10 +40,9 @@ public final class RobotMap {
     public static final int SHOOTER_1 = 0;
     public static final int SHOOTER_2 = 0;
 
-    public static final int ROLLER = 0;
-    public static final int INTAKE = 0;
+    public static final int INTAKE = 16;
     
-    public static final int CLIMBER = 0;
+    public static final int CLIMBER = 6;
 
     public static final int INTAKE_SHIFT_1 = 0;
     public static final int INTAKE_SHIFT_2 = 1;
