@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -80,6 +81,11 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.setNeutralMode(NeutralMode.Brake);
     rearRightDrive.setNeutralMode(NeutralMode.Brake);
     rearRightSteer.setNeutralMode(NeutralMode.Brake);
+
+    frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    frontRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    rearLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    rearRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
   }
 
   public void brake() {
