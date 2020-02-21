@@ -76,12 +76,13 @@ public class PneumaticsSystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(Math.abs(Robot.robotContainer.driver.getTriggers()) >= Constants.DRIVER_TRIGGER_TOLERANCE) {
+    /*if(Math.abs(Robot.robotContainer.driver.getTriggers()) >= Constants.DRIVER_TRIGGER_TOLERANCE) {
       intakeVal = DoubleSolenoid.Value.kForward;
     }
     else {
       intakeVal = DoubleSolenoid.Value.kReverse;
     }
     intake.set(intakeVal);
+    */
  }
 }
