@@ -55,5 +55,8 @@ public class SwerveModule {
         steer.set(ControlMode.PercentOutput, error * Constants.STEER_KP);
     }
 
+    public int getAngle(){
+        return steercoder.getValue();
+    }
    
 }

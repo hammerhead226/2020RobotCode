@@ -7,10 +7,9 @@
 
 package frc.libs.swerve;
 
-import java.util.ArrayList;
-
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 /**
@@ -20,15 +19,11 @@ public class SwerveControl {
 
     private double r1, r2, r3, r4;
     private double theta1, theta2, theta3, theta4;
-    private boolean isDone1, isDone2, isDone3, isDone4;
     private SwerveModule module1, module2, module3, module4;
     private PigeonIMU pigeon;
-    private double lastX, lastY, lastTheta;
     private double holdAngle;
     private boolean isRotateZero = false;
-    private double angleIntegrator;
     public static double[] errorTracker;
-    private ArrayList<Boolean> isDones;
 
     public SwerveControl(SwerveModule module1, SwerveModule module2, SwerveModule module3, SwerveModule module4, PigeonIMU pigeon) {
         this.module1 = module1;
@@ -36,7 +31,6 @@ public class SwerveControl {
         this.module3 = module3;
         this.module4 = module4;
         this.pigeon = pigeon;
-        isDones = new ArrayList<>();
         errorTracker = new double[] {0, 0, 0, 0, 0};
     }
 
@@ -53,20 +47,22 @@ public class SwerveControl {
         } else {
             if(!isRotateZero) {
                 isRotateZero = (rotate == 0);
-                if(isRotateZero) holdAngle = gyro;
+                if(isRotateZero){
+                    holdAngle = gyro;
+                }
             } else {
                 isRotateZero = (rotate == 0);
             }
 
-            if(rotate == 0) {
-                double rotateError = holdAngle - gyro;
-                rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
-            }
+            // if(rotate == 0) {
+            //     double rotateError = holdAngle - gyro;
+            //     rotate = -rotateError * Constants.DRIFT_CORRECTION_KP;
+            // }
 
             double mag = Math.hypot(x, y);
             double controllerTheta = Math.atan2(y, x);
             controllerTheta = (controllerTheta + 2 * Math.PI) % (2 * Math.PI);
-            controllerTheta = controllerTheta - Math.toRadians(gyro);
+            controllerTheta = controllerTheta + Math.toRadians(gyro) + Constants.GYRO_ORIENTATION;
             x = mag * Math.cos(controllerTheta);
             y = mag * Math.sin(controllerTheta);
 
@@ -93,76 +89,21 @@ public class SwerveControl {
             theta4 = Utility.normalizeAngle(Math.atan2(d, a)) + Constants.MODULE_4_OFFSET;
         }
 
-        module1.drive(r1, theta1);
-        module2.drive(r2, theta2);
-        module3.drive(r3, theta3);
-        module4.drive(r4, theta4);
+        module1.drive(-r1, -theta1);
+        module2.drive(-r2, -theta2);
+        module3.drive(-r3, -theta3);
+        module4.drive(r4, -theta4);
+
+        SmartDashboard.putNumber("mod 1", module1.getAngle());
+        SmartDashboard.putNumber("mod 2", module2.getAngle());
+        SmartDashboard.putNumber("mod 3", module3.getAngle());
+        SmartDashboard.putNumber("mod 4", module4.getAngle());
+
+        SmartDashboard.putNumber("gyro", gyro);
+
     }
 
-    
-
-    public void toAngle(double angle) {
-        double gyro = getGyro();
-
-        if(angle != lastTheta) {
-            angleIntegrator = 0;
-        }
-        lastTheta = angle;
-        
-        double error = gyro - angle;
-        if(Math.abs(error) < 5) {
-            angleIntegrator += error;
-        }
-
-        isDone1 = (Math.abs(error) < Constants.MAX_AUTO_ROTATE_ERROR);
-        isDone2 = (Math.abs(error) < Constants.MAX_AUTO_ROTATE_ERROR);
-        isDone3 = (Math.abs(error) < Constants.MAX_AUTO_ROTATE_ERROR);
-        isDone4 = (Math.abs(error) < Constants.MAX_AUTO_ROTATE_ERROR);
-        control(0, 0, error * Constants.AUTO_ROTATE_KP + angleIntegrator * 0.001);
-    }
-
-    public boolean isDone() {
-        boolean result = isDone1 && isDone2 && isDone3 && isDone4;
-        if(result) {
-            isDone1 = false;
-            isDone2 = false;
-            isDone3 = false;
-            isDone4 = false;
-        }
-
-        isDones.add(result);
-        
-        boolean isTrulyDone = true;
-
-        if(isDones.size() > 10) {
-            for(int i = isDones.size() - 1; i > isDones.size() - 10; i--) {
-                isTrulyDone &= isDones.get(i);
-            }
-        } else {
-            return false;
-        }
-
-        if(isTrulyDone) {
-            for(int i = 0; i < 10; i++) {
-                isDones.add(false);
-            }
-        } 
-
-        return isTrulyDone;
-    }
-
-    public static boolean trackerError() {
-        double error = 0;
-        boolean isReady = true;
-        for(double d : errorTracker) {
-            error += d;
-            isReady = isReady && (d < Constants.MAX_AUTO_STEER_ERROR);
-        }
-        isReady = isReady && (error < 3 * Constants.MAX_AUTO_STEER_ERROR);
-        return isReady;
-    }
-
-    private double getGyro() {
+    public double getGyro() {
         double[] ypr = new double[3];
         pigeon.getYawPitchRoll(ypr);
         return ypr[0];

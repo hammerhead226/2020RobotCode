@@ -9,7 +9,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -18,19 +20,22 @@ public class Queuer extends SubsystemBase {
   /**
    * Creates a new Queuer.
    */
-  private TalonSRX queuer = new TalonSRX(RobotMap.QUEUER);
+  private VictorSPX queuer = new VictorSPX(RobotMap.QUEUER);
+  public DigitalInput beamBreaker = new DigitalInput(RobotMap.BEAM_BREAKER);
 
   public Queuer() {
 
   }
 
   public void runQueuer(double speed) {
-    queuer.set(ControlMode.PercentOutput, speed);
+    queuer.set(ControlMode.PercentOutput, -speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    runQueuer(Robot.robotContainer.driver.getTriggers());
+  //  if(beamBreaker.get() == false) {
+      runQueuer(Robot.robotContainer.driver.getTriggers());
+  //  }
   }
 }

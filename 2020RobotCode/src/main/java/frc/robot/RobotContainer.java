@@ -8,15 +8,14 @@
 package frc.robot;
 
 
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.libs.util.Controller;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
-import frc.robot.commands.ToggleClimber;
-import frc.robot.commands.ToggleCompressor;
-
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -27,13 +26,16 @@ import frc.robot.commands.ToggleCompressor;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public Controller driver = new Controller(0);
-  public Controller manip = new Controller(1);
+  
+  public Controller driver;
+  public Controller manip;
   
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    driver = new Controller(0, 0.2);
+    manip = new Controller(1, 0.2);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -47,8 +49,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driver.getAButton().whileHeld(new ShooterHoodUp());
     driver.getBButton().whileHeld(new ShooterHoodDown());
-    driver.getSTARTButton().whenPressed(new ToggleCompressor());
-    manip.getYButton().whenPressed(new ToggleClimber());
+    driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
+    manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
+    
     }
 
   /**
