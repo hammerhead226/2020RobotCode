@@ -127,8 +127,8 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("rearRightDrive current", rearRightDrive.getStatorCurrent());
   }
 
-  public void setGyroToZero(double angle) {
-    pigeon.setYaw(angle);
+  public void zeroGyro() {
+    pigeon.setYaw(0);
   }
 
   @Override
