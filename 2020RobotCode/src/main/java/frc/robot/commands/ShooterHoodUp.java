@@ -21,6 +21,6 @@ public class ShooterHoodUp extends ParallelCommandGroup {
   public ShooterHoodUp() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new InstantCommand(Robot.pneumatics::shooterUp, Robot.pneumatics), new RunShooter());
+    super(new ShooterUp(), new RunShooter());
   }
 }
