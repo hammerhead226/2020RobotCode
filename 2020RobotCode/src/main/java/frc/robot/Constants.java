@@ -105,7 +105,7 @@ public final class Constants {
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
-    public static final int SHOOTER_MAX_RPM = 3750;
+    public static final int SHOOTER_MAX_RPM = 2000;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;
