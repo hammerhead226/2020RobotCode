@@ -27,35 +27,21 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new Drivetrain.
    */
 
-  public void frontLeftDrive(double fLspeed){
-    frontLeftDrive.set(ControlMode.PercentOutput, 0.8*(fLspeed));
-  }
   private TalonFX frontLeftDrive = new TalonFX(Constants.FRONT_LEFT_DRIVE);
   private VictorSPX frontLeftSteer = new VictorSPX(Constants.FRONT_LEFT_STEER);
   private AnalogInput encoder1 = new AnalogInput(Constants.FRONT_LEFT_ENCODER);
   private SwerveModule module1 = new SwerveModule(frontLeftDrive, frontLeftSteer, encoder1, 1);
 
-
-  public void rearLefttDrive(double rLspeed){
-    rearLeftDrive.set(ControlMode.PercentOutput, 0.8*(rLspeed));
-  }
   private TalonFX rearLeftDrive = new TalonFX(Constants.REAR_LEFT_DRIVE);
   private VictorSPX rearLeftSteer = new VictorSPX(Constants.REAR_LEFT_STEER);
   private AnalogInput encoder2 = new AnalogInput(Constants.REAR_LEFT_ENCODER);
   private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 2);
 
-  public void frontRightDrive(double fRspeed){
-    frontRightDrive.set(ControlMode.PercentOutput, 0.8*(fRspeed));
-  }
   private TalonFX frontRightDrive = new TalonFX(Constants.FRONT_RIGHT_DRIVE);
   private VictorSPX frontRightSteer = new VictorSPX(Constants.FRONT_RIGHT_STEER);
   private AnalogInput encoder3 = new AnalogInput(Constants.FRONT_RIGHT_ENCODER);
   private SwerveModule module3 = new SwerveModule(frontRightDrive, frontRightSteer, encoder3, 3);
 
-
-  public void rearRightDrive(double rRspeed){
-    rearRightDrive.set(ControlMode.PercentOutput, 0.8*(rRspeed));
-  }
   private TalonFX rearRightDrive = new TalonFX(Constants.REAR_RIGHT_DRIVE);
   private VictorSPX rearRightSteer = new VictorSPX(Constants.REAR_RIGHT_STEER);
   private AnalogInput encoder4 = new AnalogInput(Constants.REAR_RIGHT_ENCODER);
@@ -116,10 +102,10 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     swerve.control(
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
-            Robot.robotContainer.driver.getLeftJoystick_X()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
-            Robot.robotContainer.driver.getLeftJoystick_Y()),
+        (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
+            Robot.robotContainer.driver.getLeftJoystick_X()))),
+        (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
+            Robot.robotContainer.driver.getLeftJoystick_Y()))),
         Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()));
   }
