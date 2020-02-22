@@ -47,6 +47,8 @@ public final class RobotMap {
     public static final int INTAKE_SHIFT_1 = 0;
     public static final int INTAKE_SHIFT_2 = 1;
     public static final int SHOOTER_SHIFT = 4;
+    public static final int SHOOTER_BRAKE_SHIFT_1 = 6;
+    public static final int SHOOTER_BRAKE_SHIFT_2 = 7;
     public static final int CLIMBER_SHIFT_1 = 2;
     public static final int CLIMBER_SHIFT_2 = 3;
     public static final int COMPRESSOR = 0;
