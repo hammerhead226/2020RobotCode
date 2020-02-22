@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.libs.util.Controller;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
+import frc.robot.commands.ZeroGyro;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -50,6 +51,7 @@ public class RobotContainer {
     driver.getAButton().whileHeld(new ShooterHoodUp());
     driver.getBButton().whileHeld(new ShooterHoodDown());
     driver.getXButton().whileHeld(new InstantCommand(Robot.driveTrain::brake, Robot.driveTrain));
+    driver.getYButton().whenPressed(new ZeroGyro());
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));

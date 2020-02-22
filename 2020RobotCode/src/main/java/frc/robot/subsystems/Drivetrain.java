@@ -127,6 +127,10 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("rearRightDrive current", rearRightDrive.getStatorCurrent());
   }
 
+  public void setGyroToZero(double angle) {
+    pigeon.setYaw(angle);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
