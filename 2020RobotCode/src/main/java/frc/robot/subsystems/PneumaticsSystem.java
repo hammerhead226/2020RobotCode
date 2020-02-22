@@ -68,14 +68,17 @@ public class PneumaticsSystem extends SubsystemBase {
     shooterBrake.set(shooterBrakeVal);
   }
 
-  public void shooterUp() {
+  public void shooterBrakeIn(){
     shooterBrakeVal = DoubleSolenoid.Value.kReverse;
+    shooterBrake.set(shooterBrakeVal);
+  }
+
+  public void shooterUp() {
     shooterVal = true;
     shooter.set(shooterVal);
   }
 
   public void shooterDown() {
-    shooterBrakeVal = DoubleSolenoid.Value.kForward;
     shooterVal = false;
     shooter.set(shooterVal);
   }

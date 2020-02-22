@@ -14,11 +14,11 @@ import frc.robot.Robot;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ToggleShooterBrake extends SequentialCommandGroup {
+public class ShooterDown extends SequentialCommandGroup {
   /**
    * Creates a new ToggleShooterBrake.
    */
-  public ToggleShooterBrake() {
+  public ShooterDown() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //super(new InstantCommand(Robot.pneumatics::shooterDown, Robot.pneumatics), new RunShooter());
