@@ -74,12 +74,12 @@ public class PneumaticsSystem extends SubsystemBase {
   }
 
   public void shooterUp() {
-    shooterVal = true;
+    shooterVal = false;
     shooter.set(shooterVal);
   }
 
   public void shooterDown() {
-    shooterVal = false;
+    shooterVal = true;
     shooter.set(shooterVal);
   }
 

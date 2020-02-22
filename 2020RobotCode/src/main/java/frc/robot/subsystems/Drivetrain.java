@@ -49,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
   private AnalogInput encoder4 = new AnalogInput(RobotMap.REAR_RIGHT_ENCODER);
   private SwerveModule module4 = new SwerveModule(rearRightDrive, rearRightSteer, encoder4, 1);
 
-  private PigeonIMU pigeon = new PigeonIMU(Constants.PIGEON);
+  private PigeonIMU pigeon = new PigeonIMU(RobotMap.PIGEON);
 
   private SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);
 
