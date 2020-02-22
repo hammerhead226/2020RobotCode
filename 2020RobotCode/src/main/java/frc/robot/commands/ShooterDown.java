@@ -22,7 +22,7 @@ public class ShooterDown extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //super(new InstantCommand(Robot.pneumatics::shooterDown, Robot.pneumatics), new RunShooter());
-    super(new InstantCommand(Robot.pneumatics::shooterDown, Robot.pneumatics), new InstantCommand(Robot.pneumatics::shooterBrakeOut, Robot.pneumatics));
+    super(new InstantCommand(Robot.pneumatics::shooterDown, Robot.pneumatics), new Wait(0.25), new InstantCommand(Robot.pneumatics::shooterBrakeOut, Robot.pneumatics));
 
   }
 }
