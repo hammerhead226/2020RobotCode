@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,10 +29,13 @@ public class Climber extends SubsystemBase {
 
     climber.configVoltageCompSaturation(Constants.CLIMBER_VOLTAGE_LIMIT);
     climber.enableVoltageCompensation(Constants.CLIMBER_VOLTAGE_ENABLE);
+    climber.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_INDEX, Constants.PID_TIMEOUT);
 
     climber.setInverted(Constants.CLIMBER_INVERTED);
     
     climber.setNeutralMode(NeutralMode.Brake);
+
+    
   }
 
   public void climber(double climbSpeed) {
@@ -42,10 +46,19 @@ public class Climber extends SubsystemBase {
     SmartDashboard.putNumber("climber current", climber.getStatorCurrent());
   }
 
+  public void climberSoftLimit(int softLimit, double currentConstant)
+  {
+    int climberPosition = climber.getSelectedSensorPosition(0);
+    double climberCurrent = climber.getStatorCurrent();
+    if(climberPosition > softLimit && climberCurrent > currentConstant)
+    {
+      climber.set(ControlMode.PercentOutput, 0);
+    }
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     climber(Robot.robotContainer.manip.getTriggers());
-
+    climberSoftLimit(Constants.CLIMBER_SOFT_LIMIT, Constants.CLIMBER_CURRENT_LIMIT);
   }
 }
