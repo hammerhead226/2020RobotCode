@@ -36,7 +36,17 @@ public class Climber extends SubsystemBase {
   }
 
   public void climber(double climbSpeed) {
-    climber.set(ControlMode.PercentOutput, climbSpeed);
+    if (Robot.robotContainer.manip.getLeftJoystick_Y() <= -.25) {
+      climber.set(ControlMode.PercentOutput, -0.6);
+    } else if (Robot.robotContainer.manip.getLeftJoystick_Y() >= -.25 && Robot.robotContainer.manip.getLeftJoystick_Y() <= 0){ 
+      climber.set(ControlMode.PercentOutput, 0);
+    } else {
+      climber.set(ControlMode.PercentOutput, climbSpeed);
+    }
+  }
+
+  public void zeroClimber() {
+    climber.set(ControlMode.Position, 0);
   }
 
   public void Output(){
@@ -46,7 +56,7 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber(Robot.robotContainer.manip.getTriggers());
+    climber(Robot.robotContainer.manip.getLeftJoystick_Y());
 
   }
 }
