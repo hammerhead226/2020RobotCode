@@ -22,7 +22,7 @@ public final class Constants {
     public static final boolean FRONT_RIGHT_STEER_INVERTED = true;
     public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
-    public static final int PIGEON = 7;
+    public static final int PIGEON = 0;
 
     public static final int ENCODER_TICKS = 4096;
     public static final double DRIVE_REV_PER_INCH = .6614404704;
@@ -33,7 +33,7 @@ public final class Constants {
     public static final double STEER_KP = 0.0007;
     public static final double STEER_KD = 0.00005;
     public static final double DRIVE_KP = 0.05;
-    public static final double DRIFT_CORRECTION_KP = 0;
+    public static final double DRIFT_CORRECTION_KP = 0.01;
     public static final double AUTO_STEER_KP = 0.0;
     public static final double AUTO_ROTATE_KP = 0.0;
 
@@ -105,7 +105,7 @@ public final class Constants {
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
-    public static final int SHOOTER_MAX_RPM = 5000;
+    public static final int SHOOTER_MAX_RPM = 2000;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;
