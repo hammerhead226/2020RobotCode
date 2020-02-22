@@ -37,8 +37,8 @@ public final class RobotMap {
 
     public static final int CLIMBER_MOTOR_1 = 0;
 
-    public static final int SHOOTER_1 = 0;
-    public static final int SHOOTER_2 = 0;
+    public static final int SHOOTER_1 = 4;
+    public static final int SHOOTER_2 = 5;
 
     public static final int INTAKE = 16;
     

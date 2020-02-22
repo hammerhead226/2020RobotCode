@@ -59,11 +59,13 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double velocity){
+    velocity = velocity * 0.75;
     shooter1.set(ControlMode.Velocity, velocity);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("shooter 4 RPM", shooter1.getSelectedSensorVelocity());
   }
 }

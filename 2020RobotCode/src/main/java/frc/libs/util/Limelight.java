@@ -92,7 +92,7 @@ public class Limelight {
 
     public static double distanceToTarget() {
         return (Constants.HIGH_GOAL_HEIGHT - Constants.CAMERA_HEIGHT)
-                / Math.tan(Constants.LIMELIGHT_ANGLE + Constants.ANGLE_TO_TARGET);
+                / Math.tan(Math.toRadians(Constants.LIMELIGHT_ANGLE + getVerticalOffset()));
     }
 
     public static double getTargetRotation() {

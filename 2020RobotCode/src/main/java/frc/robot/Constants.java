@@ -24,8 +24,6 @@ public final class Constants {
     public static final boolean FRONT_RIGHT_STEER_INVERTED = true;
     public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
-    public static final int PIGEON = 7;
-
     public static final int ENCODER_TICKS = 4096;
     public static final double DRIVE_REV_PER_INCH = .6614404704;
 
@@ -89,6 +87,8 @@ public final class Constants {
     public static final double SHOOTER_2_VOLTAGE_LIMIT = 12;
     public static final boolean SHOOTER_2_VOLTAGE_ENABLE = false;
 
+    public static final double SHOOTER_AUTO_ROTATE = 0.1;
+
     public static final boolean CLIMBER_CURRENT_ENABLE = false;
     public static final double CLIMBER_CURRENT_LIMIT = 40;
     public static final double CLIMBER_CURRENT_THRESHOLD_TIME = 2;
@@ -106,7 +106,7 @@ public final class Constants {
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
-    public static final int SHOOTER_MAX_RPM = 5000;
+    public static int SHOOTER_MAX_RPM = 5000;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;
@@ -120,12 +120,11 @@ public final class Constants {
 
     public static final double MAX_DRIVE_ACCELERATION = 0;
     public static final double MAX_DRIVE_VELOCITY = 0;
-    public static final int HIGH_GOAL_HEIGHT = 0;
-    public static final int LIMELIGHT_ANGLE = 0;
-    public static final int ANGLE_TO_TARGET = 0;
+    public static final double HIGH_GOAL_HEIGHT = 88.5;
+    public static final double LIMELIGHT_ANGLE = 24;
     public static final double GOAL_X = 0;
     public static final double TARGET_X = 0;
-    public static int CAMERA_HEIGHT = 0;
+    public static int CAMERA_HEIGHT = 21;
 
     public static final int BEAM_BREAKER = 0;
     public static final double ACTIVE_FLOOR_SPEED = 1;

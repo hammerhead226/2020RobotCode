@@ -27,7 +27,7 @@ public class Queuer extends SubsystemBase {
   }
 
   public void runQueuer(double speed) {
-    queuer.set(ControlMode.PercentOutput, -speed);
+    queuer.set(ControlMode.PercentOutput, -speed*0.8);
   }
 
   @Override
