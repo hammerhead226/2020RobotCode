@@ -46,7 +46,14 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber(Robot.robotContainer.manip.getTriggers());
 
+    double rawValue = Robot.robotContainer.manip.getLeftJoystick_Y();
+    if(rawValue <= -0.25) {
+      climber(-0.6);
+    } else if(rawValue > -0.25 && rawValue <= 0) {
+      climber(0);
+    } else {
+      climber(rawValue);
+    }
   }
 }

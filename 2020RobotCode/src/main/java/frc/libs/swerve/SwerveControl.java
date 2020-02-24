@@ -54,10 +54,10 @@ public class SwerveControl {
                 isRotateZero = (rotate == 0);
             }
 
-            // if(rotate == 0) {
-            //     double rotateError = holdAngle - gyro;
-            //     rotate = rotateError * Constants.DRIFT_CORRECTION_KP;
-            // }
+            if(rotate == 0) {
+                double rotateError = holdAngle - gyro;
+                rotate = rotateError * Constants.DRIFT_CORRECTION_KP;
+            }
 
             double mag = Math.hypot(x, y) * 0.8;//takes distance between (0,0) on the joystick and (x, y) inputted
             double controllerTheta = Math.atan2(y, x);//calculates the angle between the x axis and the line between (0, 0) and (x, y), returns in radians
