@@ -39,7 +39,7 @@ public class Climber extends SubsystemBase {
     if (Robot.robotContainer.manip.getLeftJoystick_Y() <= -.25) {
       climber.set(ControlMode.PercentOutput, -0.6);
     } else if(Robot.robotContainer.manip.getLeftJoystick_Y() >= .25){
-      climber.set(ControlMode.PercentOutput, 0.6);
+      climber.set(ControlMode.PercentOutput, climbSpeed);
     } else{
       climber.set(ControlMode.PercentOutput, 0);
     }
