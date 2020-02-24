@@ -33,12 +33,12 @@ public final class RobotMap {
     public static int REAR_RIGHT_STEER = 11;
     public static int REAR_RIGHT_ENCODER = 1;
 
-    public static final int PIGEON = 7;
+    public static final int PIGEON = 0;
 
     public static final int CLIMBER_MOTOR_1 = 0;
 
-    public static final int SHOOTER_1 = 0;
-    public static final int SHOOTER_2 = 0;
+    public static final int SHOOTER_1 = 4;
+    public static final int SHOOTER_2 = 5;
 
     public static final int INTAKE = 16;
     
@@ -47,6 +47,8 @@ public final class RobotMap {
     public static final int INTAKE_SHIFT_1 = 0;
     public static final int INTAKE_SHIFT_2 = 1;
     public static final int SHOOTER_SHIFT = 4;
+    public static final int SHOOTER_BRAKE_SHIFT_1 = 6;
+    public static final int SHOOTER_BRAKE_SHIFT_2 = 7;
     public static final int CLIMBER_SHIFT_1 = 2;
     public static final int CLIMBER_SHIFT_2 = 3;
     public static final int COMPRESSOR = 0;
