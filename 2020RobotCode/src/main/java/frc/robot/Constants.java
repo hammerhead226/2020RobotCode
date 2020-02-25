@@ -83,6 +83,11 @@ public final class Constants {
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
+    public static final double DISTANCE_SENSOR_MIN = 5; //in millimeters
+
+    public static final int MANIP_RUMBLE_ON = 1;
+    public static final int MANIP_RUMBLE_OFF = 0;
+
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = true;
 
