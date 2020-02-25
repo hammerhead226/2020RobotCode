@@ -46,11 +46,10 @@ public class Climber extends SubsystemBase {
     SmartDashboard.putNumber("climber current", climber.getStatorCurrent());
   }
 
-  public void climberSoftLimit(int softLimit, double currentConstant)
+  public void climberSoftLimit(int softLimit)
   {
     int climberPosition = climber.getSelectedSensorPosition(0);
-    double climberCurrent = climber.getStatorCurrent();
-    if(climberPosition > softLimit && climberCurrent > currentConstant)
+    if(climberPosition > softLimit)
     {
       climber.set(ControlMode.PercentOutput, 0);
     }
@@ -59,6 +58,6 @@ public class Climber extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     climber(Robot.robotContainer.manip.getTriggers());
-    climberSoftLimit(Constants.CLIMBER_SOFT_LIMIT, Constants.CLIMBER_CURRENT_LIMIT);
+    climberSoftLimit(Constants.CLIMBER_SOFT_LIMIT);
   }
 }
