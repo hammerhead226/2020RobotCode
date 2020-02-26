@@ -7,11 +7,16 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class ActiveFloorReverse extends CommandBase {
+  
+  private double startTime = Timer.getFPGATimestamp();
+  private double endTime;
+  private double seconds = Constants.JOG_ACTIVE_FLOOR_WAIT_TIME;
   /**
    * Creates a new ActiveFloorReverse.
    */
@@ -23,6 +28,7 @@ public class ActiveFloorReverse extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    endTime = startTime + seconds;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,6 +46,6 @@ public class ActiveFloorReverse extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Timer.getFPGATimestamp() >= endTime;
   }
 }
