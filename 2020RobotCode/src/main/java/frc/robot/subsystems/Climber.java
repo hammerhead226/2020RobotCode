@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -37,6 +38,18 @@ public class Climber extends SubsystemBase {
 
   public void climber(double climbSpeed) {
     climber.set(ControlMode.PercentOutput, climbSpeed);
+  }
+
+  public void wiggleClimber() {
+    if(Robot.pneumatics.getClimberState() == Value.kForward) {
+      climber.set(ControlMode.PercentOutput, 0.2);
+    } else {
+      climber.set(ControlMode.PercentOutput, -0.2);
+    }
+  }
+
+  public void stopClimber() {
+    climber.set(0);
   }
 
   public void Output(){

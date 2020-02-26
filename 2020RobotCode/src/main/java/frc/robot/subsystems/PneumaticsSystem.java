@@ -95,6 +95,10 @@ public class PneumaticsSystem extends SubsystemBase {
     SmartDashboard.putString("climber toggle", climberVal.toString());
     climber.set(climberVal);
   }
+
+  public DoubleSolenoid.Value getClimberState() {
+    return climber.get();
+  }
   
   @Override
   public void periodic() {
