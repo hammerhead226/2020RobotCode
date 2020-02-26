@@ -61,15 +61,14 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(distSensor.getRange() > Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
+    if(distSensor.getRange() <= Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
+      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_ON);
+      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_ON);
+    }
+    else {
       Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_OFF);
       Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_OFF);
       climber(Robot.robotContainer.manip.getTriggers());
     }
-    else {
-      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_ON);
-      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_ON);
-    }
-
   }
 }
