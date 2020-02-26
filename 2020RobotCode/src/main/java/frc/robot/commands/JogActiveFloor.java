@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -22,6 +23,6 @@ public class JogActiveFloor extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //super(new ActiveFloorForward(), new Wait(0.25), new ActiveFloorReverse());
-    super(new InstantCommand(Robot.activeFloor::jogActiveFloorForward, Robot.activeFloor), new Wait(0.25), new InstantCommand(Robot.activeFloor::jogActiveFloorBackward, Robot.activeFloor));
+    super(new InstantCommand(Robot.activeFloor::jogActiveFloorForward, Robot.activeFloor), new Wait(Constants.JOG_ACTIVE_FLOOR_WAIT_TIME), new InstantCommand(Robot.activeFloor::jogActiveFloorBackward, Robot.activeFloor));
   }
 }

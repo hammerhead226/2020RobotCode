@@ -105,7 +105,7 @@ public final class Constants {
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false;
     public static final double MAX_ACTIVE_FLOOR_SPEED = 0.75; 
 
-    public static final double JOG_ACTIVE_FLOOR_WAIT_TIME = 1.0;
+    public static final double JOG_ACTIVE_FLOOR_WAIT_TIME = 0.25;
 
     public static final double ACTIVE_FLOOR_SPEED = 1;
     public static final double QUEUER_SPEED = 1;
