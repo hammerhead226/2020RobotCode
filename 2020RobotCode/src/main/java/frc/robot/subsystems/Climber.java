@@ -42,14 +42,16 @@ public class Climber extends SubsystemBase {
 
   public void wiggleClimber() {
     if(Robot.pneumatics.getClimberState() == Value.kForward) {
-      climber.set(ControlMode.PercentOutput, 0.2);
+      climber.set(ControlMode.PercentOutput, .2);
+      System.out.println("out");
     } else {
-      climber.set(ControlMode.PercentOutput, -0.2);
+      climber.set(ControlMode.PercentOutput, -.2);
+      System.out.println("in");
     }
   }
 
   public void stopClimber() {
-    climber.set(0);
+    climber.set(ControlMode.PercentOutput, 0);
   }
 
   public void Output(){

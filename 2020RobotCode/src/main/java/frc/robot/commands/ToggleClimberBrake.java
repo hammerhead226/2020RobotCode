@@ -22,6 +22,6 @@ public class ToggleClimberBrake extends SequentialCommandGroup {
   public ToggleClimberBrake() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics), new InstantCommand(Robot.climber::wiggleClimber, Robot.climber), new Wait(0.25), new InstantCommand(Robot.climber::stopClimber, Robot.climber));
+    super(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics), new WiggleClimber());
   }
 }
