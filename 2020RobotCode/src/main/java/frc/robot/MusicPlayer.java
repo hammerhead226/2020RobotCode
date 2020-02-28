@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import com.ctre.phoenix.music.Orchestra;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.RobotMap;;
 
 /**
  * Add your docs here.
  */
-public class Orchestra {
+public class MusicPlayer {
      /* The orchestra object that holds all the instruments */
     private static Orchestra orchestra;
 
