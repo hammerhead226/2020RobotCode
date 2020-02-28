@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.libs.util.Controller;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
+import frc.robot.commands.JogActiveFloor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -55,6 +56,7 @@ public class RobotContainer {
     manip.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
     manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
+    manip.getRBButton().whileHeld(new JogActiveFloor());
     }
 
   /**

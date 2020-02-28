@@ -83,6 +83,11 @@ public final class Constants {
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
+    public static final double DISTANCE_SENSOR_MIN = 5; //in millimeters
+
+    public static final int MANIP_RUMBLE_ON = 1;
+    public static final int MANIP_RUMBLE_OFF = 0;
+
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = true;
 
@@ -102,7 +107,10 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_CURRENT_LIMIT = 40;
     public static final double ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME = 2;
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
-    public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false; 
+    public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false;
+    public static final double MAX_ACTIVE_FLOOR_SPEED = 0.75; 
+
+    public static final double JOG_ACTIVE_FLOOR_WAIT_TIME = 0.25;
 
     public static final double ACTIVE_FLOOR_SPEED = 1;
     public static final double QUEUER_SPEED = 1;
