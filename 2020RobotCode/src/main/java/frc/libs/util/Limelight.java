@@ -22,8 +22,8 @@ public class Limelight {
         return limelight.getEntry(index).getDouble(0);
     }
 
-    public static double getNumTargets() {
-        return limelight.getEntry("tv").getDouble(0);
+    public static boolean isTarget() {
+        return limelight.getEntry("tv").getDouble(0) == 1;
     }
 
     public static double getHorizontalOffset() {
