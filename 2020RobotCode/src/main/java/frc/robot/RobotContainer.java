@@ -48,13 +48,14 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driver.getAButton().whileHeld(new ShooterHoodUp());
-    driver.getBButton().whileHeld(new ShooterHoodDown());
+    manip.getAButton().whileHeld(new ShooterHoodUp());
+    manip.getBButton().whileHeld(new ShooterHoodDown());
     driver.getXButton().whileHeld(new InstantCommand(Robot.driveTrain::brake, Robot.driveTrain));
     driver.getYButton().whenPressed(new InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
-    manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
+    manip.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
+    manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
     manip.getRBButton().whileHeld(new JogActiveFloor());
     }
 
