@@ -21,6 +21,7 @@ public class ActiveFloor extends SubsystemBase {
    * Creates a new ActiveFloor.
    */
   private VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
+  private double speed;
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
@@ -35,6 +36,16 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    runActiveFloor(.8*Robot.robotContainer.manip.getTriggers());
+    speed();
+  }
+
+  private void speed() {
+    if(Robot.robotContainer.manip.getPOV() == 90) {
+      runActiveFloor(.5);
+    } else if(Robot.robotContainer.manip.getPOV() == 270) {
+      runActiveFloor(-.5);
+    } else {
+      runActiveFloor(.8*Robot.robotContainer.manip.getTriggers());
+    }
   }
 }
