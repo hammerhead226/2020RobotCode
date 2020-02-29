@@ -16,13 +16,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  private TalonFX shooter1 = new TalonFX(Constants.SHOOTER_1);
-  private TalonFX shooter2 = new TalonFX(Constants.SHOOTER_2);
+  private TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
+  private TalonFX shooter2 = new TalonFX(RobotMap.SHOOTER_2);
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
@@ -58,6 +59,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double velocity){
+     velocity = velocity * 0.75;
     shooter1.set(ControlMode.Velocity, velocity);
   }
 

@@ -11,16 +11,18 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
 
-  private VictorSPX intake = new VictorSPX(Constants.INTAKE);
+  private VictorSPX intake = new VictorSPX(RobotMap.INTAKE);
 
   public void intake(double intakeSpeed){
     intake.set(ControlMode.PercentOutput, 0.8*(intakeSpeed));
@@ -38,9 +40,7 @@ public class Intake extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    //climber(Robot.robotContainer.getManipLeftTrigger()+Robot.robotContainer.getManipRightTrigger());
     intake(Robot.robotContainer.driver.getTriggers());
-
+    SmartDashboard.putNumber("intake queuer", intake.getBusVoltage());
   }
 }

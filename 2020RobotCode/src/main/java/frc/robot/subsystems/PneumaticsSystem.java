@@ -10,22 +10,25 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class PneumaticsSystem extends SubsystemBase {
   /**
    * Creates a new Pneumatics.
    */
-  private Compressor compressor = new Compressor(Constants.COMPRESSOR);
-  private DoubleSolenoid intake = new DoubleSolenoid(Constants.INTAKE_SHIFT_1, Constants.INTAKE_SHIFT_2);
-  private Solenoid shooter = new Solenoid(Constants.SHOOTER_SHIFT);
-  private DoubleSolenoid climber = new DoubleSolenoid(Constants.CLIMBER_SHIFT_1, Constants.CLIMBER_SHIFT_2);
+  private Compressor compressor = new Compressor(RobotMap.COMPRESSOR);
+  private DoubleSolenoid intake = new DoubleSolenoid(RobotMap.INTAKE_SHIFT_1, RobotMap.INTAKE_SHIFT_2);
+  private Solenoid shooter = new Solenoid(RobotMap.SHOOTER_SHIFT);
+  private DoubleSolenoid climber = new DoubleSolenoid(RobotMap.CLIMBER_SHIFT_1, RobotMap.CLIMBER_SHIFT_2);
+  private DoubleSolenoid shooterBrake = new DoubleSolenoid(RobotMap.SHOOTER_BRAKE_SHIFT_1, RobotMap.SHOOTER_BRAKE_SHIFT_2);
+
   private DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kForward;
   private boolean shooterVal = true;
   private DoubleSolenoid.Value climberVal = DoubleSolenoid.Value.kForward;
-
+  private DoubleSolenoid.Value shooterBrakeVal = DoubleSolenoid.Value.kReverse;
+  
   public PneumaticsSystem() {
     compressor.start();
   }
@@ -46,19 +49,38 @@ public class PneumaticsSystem extends SubsystemBase {
     }
     intake.set(intakeVal);
   }
-
+  
   public void toggleShooter(){
     shooterVal = !(shooterVal);
     shooter.set(shooterVal);
   }
 
+  public void toggleShooterBrake(){
+    if (shooterBrakeVal == DoubleSolenoid.Value.kForward){
+      shooterBrakeVal = DoubleSolenoid.Value.kReverse;
+    }else {
+      shooterBrakeVal = DoubleSolenoid.Value.kForward;
+    }
+    shooterBrake.set(shooterBrakeVal);
+  }
+
+  public void shooterBrakeOut(){
+    shooterBrakeVal = DoubleSolenoid.Value.kForward;
+    shooterBrake.set(shooterBrakeVal);
+  }
+
+  public void shooterBrakeIn(){
+    shooterBrakeVal = DoubleSolenoid.Value.kReverse;
+    shooterBrake.set(shooterBrakeVal);
+  }
+
   public void shooterUp() {
-    shooterVal = true;
+    shooterVal = false;
     shooter.set(shooterVal);
   }
 
   public void shooterDown() {
-    shooterVal = false;
+    shooterVal = true;
     shooter.set(shooterVal);
   }
 
@@ -69,18 +91,17 @@ public class PneumaticsSystem extends SubsystemBase {
     else {
       climberVal = DoubleSolenoid.Value.kForward;
     }
+
+    SmartDashboard.putString("climber toggle", climberVal.toString());
     climber.set(climberVal);
+  }
+
+  public DoubleSolenoid.Value getClimberState() {
+    return climber.get();
   }
   
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(Math.abs(Robot.robotContainer.driver.getTriggers()) >= Constants.DRIVER_TRIGGER_TOLERANCE) {
-      intakeVal = DoubleSolenoid.Value.kForward;
-    }
-    else {
-      intakeVal = DoubleSolenoid.Value.kReverse;
-    }
-    intake.set(intakeVal);
  }
 }

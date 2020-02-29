@@ -7,9 +7,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.Robot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,6 +19,6 @@ public class ShooterHoodUp extends ParallelCommandGroup {
   public ShooterHoodUp() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new InstantCommand(Robot.pneumatics::shooterUp, Robot.pneumatics), new RunShooter());
+    super(new ShooterUp(), new RunShooter());
   }
 }

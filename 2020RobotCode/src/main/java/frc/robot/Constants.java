@@ -17,30 +17,12 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int FRONT_LEFT_DRIVE = 3;
-    public static int FRONT_LEFT_STEER = 13;
-    public static int FRONT_LEFT_ENCODER = 3;
     public static final boolean FRONT_LEFT_STEER_INVERTED = true;
-
-    public static int REAR_LEFT_DRIVE = 2;
-    public static int REAR_LEFT_STEER = 12;
-    public static int REAR_LEFT_ENCODER = 2;
     public static final boolean REAR_LEFT_STEER_INVERTED = true;    
-    
-    public static int FRONT_RIGHT_DRIVE = 0;
-    public static int FRONT_RIGHT_STEER = 10;
-    public static int FRONT_RIGHT_ENCODER = 0;
     public static final boolean FRONT_RIGHT_STEER_INVERTED = true;
-    
-    public static int REAR_RIGHT_DRIVE = 1;
-    public static int REAR_RIGHT_STEER = 11;
-    public static int REAR_RIGHT_ENCODER = 1;
     public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
-    public static final int PIGEON = 0;
-
     public static final int ENCODER_TICKS = 4096;
-    public static final double DRIVE_REV_PER_INCH = .6614404704;
 
     public static final double DRIVE_BASE_WIDTH = 23.5 / 12;
     public static final double DRIVE_BASE_LENGTH = 21.5 / 12;
@@ -48,18 +30,10 @@ public final class Constants {
     public static final double STEER_KP = 0.0007;
     public static final double STEER_KD = 0.00005;
     public static final double DRIVE_KP = 0.05;
-    public static final double DRIFT_CORRECTION_KP = 0;
-    public static final double AUTO_STEER_KP = 0.0;
-    public static final double AUTO_ROTATE_KP = 0.0;
+    public static final double DRIFT_CORRECTION_KP = 0.01;
 
-    public static final double MAX_AUTO_DRIVE_SPEED = 0.3;
-
-    public static final double MAX_AUTO_DRIVE_ERROR = 1;
-    public static final double MAX_AUTO_ROTATE_ERROR = 1;
-    public static final double MAX_AUTO_STEER_ERROR = 400;
-
-//3, 2, 0, 1
-    public static final int[] MODULE_OFFSETS = {3550, 3900, 200, 650};
+//2,3,1,0
+    public static final int[] MODULE_OFFSETS = {100, 961, 3268, 4788};
 
     public static final int MODULE_1_OFFSET = MODULE_OFFSETS[0];
     public static final int MODULE_2_OFFSET = MODULE_OFFSETS[1];
@@ -75,7 +49,6 @@ public final class Constants {
     public static final double INTAKE_CURRENT_THRESHOLD_TIME = 2;
     public static final double INTAKE_CURRENT_THRESHOLD_LIMIT = 60;
 
-
     public static final boolean SHOOTER_1_CURRENT_ENABLE = false;
     public static final double SHOOTER_1_CURRENT_LIMIT = 40; 
     public static final double SHOOTER_1_CURRENT_THRESHOLD_TIME = 2;
@@ -86,7 +59,6 @@ public final class Constants {
     public static final double SHOOTER_2_CURRENT_THRESHOLD_TIME = 2;
     public static final double SHOOTER_2_CURRENT_THRESHOLD_LIMIT = 60;
 
-    
     public static final double DRIVER_TRIGGER_TOLERANCE = 0.05;
 
 
@@ -111,48 +83,38 @@ public final class Constants {
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
-    public static final int SHOOTER_1 = 4;
-    public static final int SHOOTER_2 = 5;
+    public static final double DISTANCE_SENSOR_MIN = 5; //in millimeters
+
+    public static final int MANIP_RUMBLE_ON = 1;
+    public static final int MANIP_RUMBLE_OFF = 0;
+
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = true;
 
-    public static final int INTAKE = 16;
     public static final boolean INTAKE_INVERTED = true;  
-    
-    public static final int CLIMBER = 6;
+ 
     public static final boolean CLIMBER_INVERTED = false;
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
-    public static final int INTAKE_SHIFT_1 = 0;
-    public static final int INTAKE_SHIFT_2 = 1;
-    public static final int SHOOTER_SHIFT = 4;
-    public static final int CLIMBER_SHIFT_1 = 2;
-    public static final int CLIMBER_SHIFT_2 = 3;
-    public static final int COMPRESSOR = 0;
-
-    public static final int SHOOTER_MAX_RPM = 5000;
+    public static final int SHOOTER_MAX_RPM = 1500;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;
-  
-    public static final int QUEUER = 14;
-
-    public static final int ACTIVE_FLOOR_MOTOR = 15;
+    
     public static final boolean ACTIVE_FLOOR_INVERTED = false;
     public static final boolean ACTIVE_FLOOR_CURRENT_ENABLE = false;
     public static final double ACTIVE_FLOOR_CURRENT_LIMIT = 40;
     public static final double ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME = 2;
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
-    public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false; 
+    public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false;
+    public static final double MAX_ACTIVE_FLOOR_SPEED = 0.75; 
 
+    public static final double JOG_ACTIVE_FLOOR_WAIT_TIME = 0.25;
 
-    public static final int BEAM_BREAKER = 0;
     public static final double ACTIVE_FLOOR_SPEED = 1;
     public static final double QUEUER_SPEED = 1;
     
-    public static final int LED = 0;
-
     public static final double GYRO_ORIENTATION = Math.PI;
 
 }
