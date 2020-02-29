@@ -51,7 +51,7 @@ public class Drivetrain extends SubsystemBase {
 
   private PigeonIMU pigeon = new PigeonIMU(RobotMap.PIGEON);
 
-  private SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);
+  private SwerveControl swerve = new SwerveControl(module2, module1, module4, module3, pigeon);
 
   public Drivetrain() {
     frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);
@@ -135,11 +135,11 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     swerve.control(
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
-            Robot.robotContainer.driver.getLeftJoystick_X()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
-            Robot.robotContainer.driver.getLeftJoystick_Y()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
-            Robot.robotContainer.driver.getRightJoystick_X()));
+        (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
+            Robot.robotContainer.driver.getLeftJoystick_X()))),
+        (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
+            Robot.robotContainer.driver.getLeftJoystick_Y()))),
+        (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
+            Robot.robotContainer.driver.getRightJoystick_X()))));
   }
 }
