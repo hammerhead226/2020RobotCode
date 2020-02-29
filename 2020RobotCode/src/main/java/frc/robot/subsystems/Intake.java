@@ -25,7 +25,7 @@ public class Intake extends SubsystemBase {
   private VictorSPX intake = new VictorSPX(RobotMap.INTAKE);
 
   public void intake(double intakeSpeed){
-    intake.set(ControlMode.PercentOutput, intakeSpeed);
+    intake.set(ControlMode.PercentOutput, 0.8*(intakeSpeed));
   }
 
   public Intake() {
