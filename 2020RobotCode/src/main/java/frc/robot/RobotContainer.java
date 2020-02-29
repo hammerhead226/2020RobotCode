@@ -18,6 +18,7 @@ import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
 import frc.robot.commands.ShooterUp;
 import frc.robot.commands.ToggleClimberBrake;
+import frc.robot.commands.JogActiveFloor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -57,7 +58,10 @@ public class RobotContainer {
     driver.getYButton().whenPressed(new InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getRBButton().whenPressed(new ToggleClimberBrake());
+
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
+    manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
+    manip.getRBButton().whileHeld(new JogActiveFloor());
     }
 
   /**
