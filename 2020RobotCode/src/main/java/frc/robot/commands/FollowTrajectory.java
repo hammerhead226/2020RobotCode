@@ -37,12 +37,13 @@ public class FollowTrajectory extends CommandBase {
   public void execute() {
     double currTime = Timer.getFPGATimestamp() - startTime;
     Trajectory.State state = trajectory.sample(currTime);
-    //Robot.drivetrain.control(state);
+    Robot.drivetrain.control(state);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.drivetrain.control(0, 0, 0);
   }
 
   // Returns true when the command should end.

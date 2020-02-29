@@ -125,6 +125,7 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+    SmartDashboard.putNumber("set RPM", 0);
   }
 
   /**

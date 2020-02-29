@@ -61,7 +61,7 @@ public class RobotContainer {
     manip.getRBButton().whenPressed(new ToggleClimberBrake());
 
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
-    driver.getYButton().whenPressed(new FollowTrajectory(Trajectories.simplePath()));
+    driver.getYButton().whenPressed(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain));
     manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
     manip.getRBButton().whileHeld(new JogActiveFloor());
     }

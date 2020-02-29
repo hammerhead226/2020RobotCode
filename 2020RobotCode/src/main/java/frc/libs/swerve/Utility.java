@@ -21,4 +21,8 @@ public class Utility {
     public static double sigmoid(double angle){
         return (2/(1+Math.pow(Math.E, -angle/1.5)) - 1) ;
       } 
+
+    public static double convertVelocitytoRPM(double velocity){
+        return (velocity/204800) * 60000;
+    }
 }

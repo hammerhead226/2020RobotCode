@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.libs.swerve.Utility;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 
@@ -24,6 +25,7 @@ public class Shooter extends SubsystemBase {
    */
   private TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(RobotMap.SHOOTER_2);
+  private double lastVelocity = 0;
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
@@ -40,27 +42,52 @@ public class Shooter extends SubsystemBase {
     shooter2.configVoltageCompSaturation(Constants.SHOOTER_2_VOLTAGE_LIMIT);
     shooter2.enableVoltageCompensation(Constants.SHOOTER_2_VOLTAGE_ENABLE);
 
-
     shooter1.setInverted(Constants.SHOOTER_1_INVERTED);
     shooter2.setInverted(Constants.SHOOTER_2_INVERTED);
 
-    shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.PID_INDEX, Constants.PID_TIMEOUT);
+    shooter1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_INDEX, Constants.PID_TIMEOUT);
 
     shooter2.follow(shooter1);
   }
 
-  public void runShooter(int speed){
+  public void runShooter(double speed){
     shooter1.set(ControlMode.PercentOutput, speed);
   }
 
-  public void Output(){
-    SmartDashboard.putNumber("shooter4 rpm", shooter1.getSelectedSensorVelocity());
-    SmartDashboard.putNumber("shooter5 rpm", shooter2.getSelectedSensorVelocity());
+  public void output(){
+    SmartDashboard.putNumber("shooter4 rpm", Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333);
+    SmartDashboard.putNumber("shooter5 rpm", Utility.convertVelocitytoRPM(shooter2.getSelectedSensorVelocity())*1.33333);
   }
 
   public void setShooterSpeed(double velocity){
-     velocity = velocity * 0.75;
-    shooter1.set(ControlMode.Velocity, velocity);
+     velocity = velocity;
+    //shooter1.set(ControlMode.Velocity, velocity);
+
+    // if(Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333 <= velocity - 250) {
+    //   lastVelocity += 0.004;
+    // } else if (Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity()) * 1.333 >= velocity + 250){
+    //   lastVelocity -= 0.004;
+    // } else if(Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333 <= velocity) {
+    //   lastVelocity += 0.001;
+    // } else {
+    //   lastVelocity -= 0.001;
+    // }
+
+    double difference = velocity - Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333;
+    difference = 1 / (1 + Math.pow(Math.E, -difference / 250)) - 1/2;
+    lastVelocity += difference / 500; 
+
+    if(velocity != 0) {
+      if(lastVelocity < (velocity / 9000)) {
+        lastVelocity = (velocity / 9000);
+      }
+    } else {
+      lastVelocity = 0;
+    }
+
+    SmartDashboard.putNumber("last v", lastVelocity);
+
+    runShooter(lastVelocity);
   }
 
   @Override

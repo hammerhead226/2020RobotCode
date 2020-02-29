@@ -101,7 +101,7 @@ public static final int[] MODULE_OFFSETS = {100, 961, 3268, 4788};
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
-    public static int SHOOTER_MAX_RPM = 1500;
+    public static int SHOOTER_MAX_RPM = 6000;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;

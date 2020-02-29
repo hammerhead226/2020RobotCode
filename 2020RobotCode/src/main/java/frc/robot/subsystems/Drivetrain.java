@@ -17,6 +17,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
@@ -148,6 +149,10 @@ public class Drivetrain extends SubsystemBase {
 
   public void control(double x, double y, double rot) {
     swerve.control(x, y, rot);
+  }
+
+  public void control(Trajectory.State state){
+    swerve.control(state);
   }
   
   public void zeroGyro() {
