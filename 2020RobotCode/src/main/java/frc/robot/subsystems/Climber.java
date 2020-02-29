@@ -86,25 +86,25 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    double rawValue = Robot.robotContainer.manip.getLeftJoystick_Y();
-    if(rawValue <= -0.25) {
-      climber(-0.6);
-    } else if(rawValue > -0.25 && rawValue <= 0) {
-      climber(0);
-    } else {
-      climber(rawValue);
+    // double rawValue = Robot.robotContainer.manip.getLeftJoystick_Y();
+    // if(rawValue <= -0.25) {
+    //   climber(-0.6);
+    // } else if(rawValue > -0.25 && rawValue <= 0) {
+    //   climber(0);
+    // } else {
+    //   climber(rawValue);
       
-    climber(Robot.robotContainer.manip.getLeftJoystick_Y());
+    // climber(Robot.robotContainer.manip.getLeftJoystick_Y());
 
-    if(distSensor.getRange() <= Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
-      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_ON);
-      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_ON);
-    }
-    else {
-      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_OFF);
-      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_OFF);
-      climber(Robot.robotContainer.manip.getTriggers());
-    }
-  }
+    // if(distSensor.getRange() <= Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
+    //   Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_ON);
+    //   Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_ON);
+    // }
+    // else {
+    //   Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_OFF);
+    //   Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_OFF);
+    //   climber(Robot.robotContainer.manip.getTriggers());
+    // }
+  //}
 }
 }

@@ -54,8 +54,8 @@ public class Shooter extends SubsystemBase {
   }
 
   public void Output(){
-    SmartDashboard.putNumber("shooter1 current", shooter1.getStatorCurrent());
-    SmartDashboard.putNumber("shooter2 current", shooter2.getStatorCurrent());
+    SmartDashboard.putNumber("shooter4 rpm", shooter1.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("shooter5 rpm", shooter2.getSelectedSensorVelocity());
   }
 
   public void setShooterSpeed(double velocity){
@@ -66,6 +66,5 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("shooter 4 RPM", shooter1.getSelectedSensorVelocity());
   }
 }

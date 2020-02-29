@@ -58,6 +58,6 @@ public class ActiveFloor extends SubsystemBase {
   }
 
   private void speed() {
-    runActiveFloor(Robot.robotContainer.manip.getTriggers());
+    runActiveFloor(Robot.robotContainer.manip.getTriggers()*0.75);
   }
 }
