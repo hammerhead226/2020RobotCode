@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.libs.util.Limelight;
 
 public class RunShooter extends CommandBase {
   /**
@@ -29,6 +30,7 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
+    Limelight.setLEDMode(3);
     Robot.shooter.Output();
   }
 
@@ -36,6 +38,7 @@ public class RunShooter extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.shooter.runShooter(0);
+    Limelight.setLEDMode(1);
   }
 
   // Returns true when the command should end.
