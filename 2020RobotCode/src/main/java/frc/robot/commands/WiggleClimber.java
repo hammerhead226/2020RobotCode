@@ -7,41 +7,40 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.libs.swerve.Utility;
-import frc.libs.util.Limelight;
-import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class DrivetrainToTarget extends CommandBase {
+public class WiggleClimber extends CommandBase {
   /**
-   * Creates a new DrivetrainToTarget.
+   * Creates a new WiggleClimber.
    */
-  public DrivetrainToTarget() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.drivetrain);
+  private double endTime;
+  public WiggleClimber() {
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    endTime = Timer.getFPGATimestamp() + .1;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+    Robot.climber.wiggleClimber();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.drivetrain.control(0, 0, 0);
+    Robot.climber.stopClimber();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(Limelight.getHorizontalOffset()) <= 0.5;
+    return Timer.getFPGATimestamp() >= endTime;
   }
 }

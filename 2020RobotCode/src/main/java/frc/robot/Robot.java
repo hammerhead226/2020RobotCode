@@ -83,6 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    climber.disableDistSensor();
   }
 
   @Override
@@ -132,7 +133,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
    SmartDashboard.putNumber("Limelight distance", Limelight.distanceToTarget());
-   Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 0);
+   Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);
   }
 
   @Override

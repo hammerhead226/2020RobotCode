@@ -42,7 +42,7 @@ public class Drivetrain extends SubsystemBase {
   private VictorSPX rearLeftSteer = new VictorSPX(RobotMap.REAR_LEFT_STEER);
   private AnalogInput encoder2 = new AnalogInput(RobotMap.REAR_LEFT_ENCODER);
   private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
-
+  
   private TalonFX frontRightDrive = new TalonFX(RobotMap.FRONT_RIGHT_DRIVE);
   private VictorSPX frontRightSteer = new VictorSPX(RobotMap.FRONT_RIGHT_STEER);
   private AnalogInput encoder3 = new AnalogInput(RobotMap.FRONT_RIGHT_ENCODER);
@@ -55,7 +55,7 @@ public class Drivetrain extends SubsystemBase {
 
   private PigeonIMU pigeon = new PigeonIMU(RobotMap.PIGEON);
 
-  public SwerveControl swerve = new SwerveControl(module1, module2, module3, module4, pigeon);
+  private SwerveControl swerve = new SwerveControl(module2, module1, module4, module3, pigeon);
 
   Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381);
   Translation2d m_frontRightLocation = new Translation2d(0.381, -0.381);
@@ -149,6 +149,10 @@ public class Drivetrain extends SubsystemBase {
   public void control(double x, double y, double rot) {
     swerve.control(x, y, rot);
   }
+  
+  public void zeroGyro() {
+    pigeon.setYaw(0);
+  }
 
   @Override
   public void periodic() {
@@ -159,9 +163,9 @@ public class Drivetrain extends SubsystemBase {
     swerve.control(
         Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
             Robot.robotContainer.driver.getLeftJoystick_X()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
+        -Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
             Robot.robotContainer.driver.getLeftJoystick_Y()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
+        -Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()));
   }
 }

@@ -29,6 +29,7 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
+    Robot.shooter.Output();
   }
 
   // Called once the command ends or is interrupted.

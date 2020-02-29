@@ -25,7 +25,6 @@ public final class Constants {
     public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
     public static final int ENCODER_TICKS = 4096;
-    public static final double DRIVE_REV_PER_INCH = .6614404704;
 
     public static final double DRIVE_BASE_WIDTH = 23.5 / 12;
     public static final double DRIVE_BASE_LENGTH = 21.5 / 12;
@@ -33,18 +32,10 @@ public final class Constants {
     public static final double STEER_KP = 0.0007;
     public static final double STEER_KD = 0.00005;
     public static final double DRIVE_KP = 0.05;
-    public static final double DRIFT_CORRECTION_KP = 0;
-    public static final double AUTO_STEER_KP = 0.0;
-    public static final double AUTO_ROTATE_KP = 0.0;
+    public static final double DRIFT_CORRECTION_KP = 0.01;
 
-    public static final double MAX_AUTO_DRIVE_SPEED = 0.3;
-
-    public static final double MAX_AUTO_DRIVE_ERROR = 1;
-    public static final double MAX_AUTO_ROTATE_ERROR = 1;
-    public static final double MAX_AUTO_STEER_ERROR = 400;
-
-//3, 2, 0, 1
-    public static final int[] MODULE_OFFSETS = {3550, 3900, 200, 650};
+//2,3,1,0
+public static final int[] MODULE_OFFSETS = {100, 961, 3268, 4788};
 
     public static final int MODULE_1_OFFSET = MODULE_OFFSETS[0];
     public static final int MODULE_2_OFFSET = MODULE_OFFSETS[1];
@@ -70,7 +61,6 @@ public final class Constants {
     public static final double SHOOTER_2_CURRENT_THRESHOLD_TIME = 2;
     public static final double SHOOTER_2_CURRENT_THRESHOLD_LIMIT = 60;
 
-    
     public static final double DRIVER_TRIGGER_TOLERANCE = 0.05;
 
 
@@ -97,6 +87,11 @@ public final class Constants {
     public static final double CLIMBER_VOLTAGE_LIMIT = 12;
     public static final boolean CLIMBER_VOLTAGE_ENABLE = false;
 
+    public static final double DISTANCE_SENSOR_MIN = 5; //in millimeters
+
+    public static final int MANIP_RUMBLE_ON = 1;
+    public static final int MANIP_RUMBLE_OFF = 0;
+
     public static final boolean SHOOTER_1_INVERTED = false;
     public static final boolean SHOOTER_2_INVERTED = true;
 
@@ -106,7 +101,7 @@ public final class Constants {
 
     public static final double TICKS_PER_REV_COLORWHEEL = 0;
 
-    public static int SHOOTER_MAX_RPM = 5000;
+    public static int SHOOTER_MAX_RPM = 1500;
 
     public static final int PID_INDEX = 0;
     public static final int PID_TIMEOUT = 10;
@@ -117,6 +112,9 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_CURRENT_THRESHOLD_TIME = 2;
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false;
+    public static final double MAX_ACTIVE_FLOOR_SPEED = 0.75; 
+
+    public static final double JOG_ACTIVE_FLOOR_WAIT_TIME = 0.25;
 
     public static final double MAX_DRIVE_ACCELERATION = 4;
     public static final double MAX_DRIVE_VELOCITY = 10;

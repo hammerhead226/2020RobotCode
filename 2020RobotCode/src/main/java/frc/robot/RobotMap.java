@@ -33,7 +33,7 @@ public final class RobotMap {
     public static int REAR_RIGHT_STEER = 11;
     public static int REAR_RIGHT_ENCODER = 1;
 
-    public static final int PIGEON = 7;
+    public static final int PIGEON = 0;
 
     public static final int CLIMBER_MOTOR_1 = 0;
 
