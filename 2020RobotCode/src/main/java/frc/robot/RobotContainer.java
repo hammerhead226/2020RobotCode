@@ -7,16 +7,19 @@
 
 package frc.robot;
 
-
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.libs.util.Controller;
 import frc.robot.commands.DrivetrainToTarget;
+import frc.robot.commands.RunShooter;
+import frc.robot.commands.ShooterDown;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
+import frc.robot.commands.ShooterUp;
+import frc.robot.commands.ToggleClimberBrake;
+import frc.robot.commands.JogActiveFloor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -35,8 +38,8 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    driver = new Controller(0, 0.2);
-    manip = new Controller(1, 0.2);
+    driver = new Controller(0, 0.05);
+    manip = new Controller(1, 0.05);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -54,8 +57,11 @@ public class RobotContainer {
     driver.getXButton().whileHeld(new InstantCommand(Robot.drivetrain::brake, Robot.drivetrain));
    // driver.getSELECTButton().whenPressed(new InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
-    manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
+    manip.getRBButton().whenPressed(new ToggleClimberBrake());
+
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
+    manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
+    manip.getRBButton().whileHeld(new JogActiveFloor());
     }
 
   /**

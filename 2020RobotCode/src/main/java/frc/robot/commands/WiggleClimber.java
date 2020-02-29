@@ -9,32 +9,33 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
-public class Wait extends CommandBase {
+public class WiggleClimber extends CommandBase {
   /**
-   * Creates a new Wait.
+   * Creates a new WiggleClimber.
    */
-  private double startTime = Timer.getFPGATimestamp();
   private double endTime;
-
-  public Wait(double seconds) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    endTime = startTime + seconds;
+  public WiggleClimber() {
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    endTime = Timer.getFPGATimestamp() + .1;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.climber.wiggleClimber();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.climber.stopClimber();
   }
 
   // Returns true when the command should end.

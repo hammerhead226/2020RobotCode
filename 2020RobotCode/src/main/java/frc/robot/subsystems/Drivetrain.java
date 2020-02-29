@@ -148,6 +148,10 @@ public class Drivetrain extends SubsystemBase {
   public void control(double x, double y, double rot) {
     swerve.control(x, y, rot);
   }
+  
+  public void zeroGyro() {
+    pigeon.setYaw(0);
+  }
 
   @Override
   public void periodic() {
@@ -158,9 +162,9 @@ public class Drivetrain extends SubsystemBase {
     swerve.control(
         Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
             Robot.robotContainer.driver.getLeftJoystick_X()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
+        -Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
             Robot.robotContainer.driver.getLeftJoystick_Y()),
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
+        -Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()));
   }
 }
