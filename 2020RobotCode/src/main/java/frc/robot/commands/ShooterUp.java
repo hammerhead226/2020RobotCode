@@ -21,6 +21,6 @@ public class ShooterUp extends SequentialCommandGroup {
   public ShooterUp() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new InstantCommand(Robot.pneumatics::shooterUp, Robot.pneumatics), new Wait(0.25), new InstantCommand(Robot.pneumatics::shooterBrakeIn, Robot.pneumatics));
+    super(new InstantCommand(Robot.pneumatics::shooterBrakeIn, Robot.pneumatics), new Wait(0.25), new InstantCommand(Robot.pneumatics::shooterUp, Robot.pneumatics));
   }
 }

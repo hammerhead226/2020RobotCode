@@ -22,7 +22,7 @@ public class ActiveFloor extends SubsystemBase {
    * Creates a new ActiveFloor.
    */
   private VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
-
+  private double speed;
   private double startTime = Timer.getFPGATimestamp();
   private double endTime;
   private double seconds = 1.0;
@@ -54,6 +54,10 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    speed();
+  }
+
+  private void speed() {
     runActiveFloor(Robot.robotContainer.manip.getTriggers());
   }
 }

@@ -32,8 +32,8 @@ public final class Constants {
     public static final double DRIVE_KP = 0.05;
     public static final double DRIFT_CORRECTION_KP = 0.01;
 
-//3, 2, 0, 1
-    public static final int[] MODULE_OFFSETS = {3550, 3900, 200, 650};
+//2,3,1,0
+    public static final int[] MODULE_OFFSETS = {100, 961, 3268, 4788};
 
     public static final int MODULE_1_OFFSET = MODULE_OFFSETS[0];
     public static final int MODULE_2_OFFSET = MODULE_OFFSETS[1];

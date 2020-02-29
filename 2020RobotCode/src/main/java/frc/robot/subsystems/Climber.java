@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.Unit;
@@ -64,6 +65,20 @@ public class Climber extends SubsystemBase {
     distSensor.setAutomaticMode(false);
   }
 
+  public void wiggleClimber() {
+    if(Robot.pneumatics.getClimberState() == Value.kForward) {
+      climber.set(ControlMode.PercentOutput, .2);
+      System.out.println("out");
+    } else {
+      climber.set(ControlMode.PercentOutput, -.2);
+      System.out.println("in");
+    }
+  }
+
+  public void stopClimber() {
+    climber.set(ControlMode.PercentOutput, 0);
+  }
+
   public void Output(){
     SmartDashboard.putNumber("climber current", climber.getStatorCurrent());
   }
@@ -71,6 +86,14 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    double rawValue = Robot.robotContainer.manip.getLeftJoystick_Y();
+    if(rawValue <= -0.25) {
+      climber(-0.6);
+    } else if(rawValue > -0.25 && rawValue <= 0) {
+      climber(0);
+    } else {
+      climber(rawValue);
+      
     climber(Robot.robotContainer.manip.getLeftJoystick_Y());
 
     if(distSensor.getRange() <= Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
