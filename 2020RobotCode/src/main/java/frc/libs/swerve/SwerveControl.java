@@ -62,7 +62,7 @@ public class SwerveControl {
             double mag = Math.hypot(x, y) * 0.8;//takes distance between (0,0) on the joystick and (x, y) inputted
             double controllerTheta = Math.atan2(y, x);//calculates the angle between the x axis and the line between (0, 0) and (x, y), returns in radians
             controllerTheta = (controllerTheta + 2 * Math.PI) % (2 * Math.PI); 
-            controllerTheta = controllerTheta - Math.toRadians(gyro); //calculating the distance between goal(controllertheta) and starting rotation(gyro)
+            controllerTheta = controllerTheta - Math.toRadians(gyro) + Math.PI; //calculating the distance between goal(controllertheta) and starting rotation(gyro)
             x = mag * Math.cos(controllerTheta); //calculating the new x after changing the controller theta. Equation is hypot * (newX/hypot), the hypots cancel, giving the newX
             y = mag * Math.sin(controllerTheta);//Same things as above, but with y
 
