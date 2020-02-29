@@ -118,8 +118,8 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_VOLTAGE_LIMIT = 12;
     public static final boolean ACTIVE_FLOOR_VOLTAGE_ENABLE = false;
 
-    public static final double MAX_DRIVE_ACCELERATION = 0;
-    public static final double MAX_DRIVE_VELOCITY = 0;
+    public static final double MAX_DRIVE_ACCELERATION = 4;
+    public static final double MAX_DRIVE_VELOCITY = 10;
     public static final double HIGH_GOAL_HEIGHT = 88.5;
     public static final double LIMELIGHT_ANGLE = 24;
     public static final double GOAL_X = 0;
@@ -130,6 +130,6 @@ public final class Constants {
     public static final double ACTIVE_FLOOR_SPEED = 1;
     public static final double QUEUER_SPEED = 1;
     
-    public static final double GYRO_ORIENTATION = Math.PI;
+    public static final double GYRO_ORIENTATION = Math.PI/2;
 
 }

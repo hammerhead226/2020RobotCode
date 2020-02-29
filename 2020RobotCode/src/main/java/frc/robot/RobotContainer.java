@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.libs.util.Controller;
 import frc.robot.commands.DrivetrainToTarget;
+import frc.robot.commands.FollowTrajectory;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
 
@@ -56,6 +57,7 @@ public class RobotContainer {
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getYButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
+    driver.getYButton().whenPressed(new FollowTrajectory(Trajectories.simplePath()));
     }
 
   /**

@@ -42,7 +42,6 @@ public class Drivetrain extends SubsystemBase {
   private VictorSPX rearLeftSteer = new VictorSPX(RobotMap.REAR_LEFT_STEER);
   private AnalogInput encoder2 = new AnalogInput(RobotMap.REAR_LEFT_ENCODER);
   private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
-  
 
   private TalonFX frontRightDrive = new TalonFX(RobotMap.FRONT_RIGHT_DRIVE);
   private VictorSPX frontRightSteer = new VictorSPX(RobotMap.FRONT_RIGHT_STEER);
@@ -112,6 +111,8 @@ public class Drivetrain extends SubsystemBase {
     frontRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     rearLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     rearRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+
+    pigeon.setYaw(0);
   }
 
   public void brake() {

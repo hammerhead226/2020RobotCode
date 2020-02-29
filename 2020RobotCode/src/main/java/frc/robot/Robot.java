@@ -35,7 +35,6 @@ public class Robot extends TimedRobot {
   private Command autonomousCommand;
 
   public static RobotContainer robotContainer;
-  public static Drivetrain drivetrain = new Drivetrain();
   public static Climber climber = new Climber();
   public static Intake intake = new Intake();
   public static ColorRoller colorRoller = new ColorRoller();
@@ -43,6 +42,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter = new Shooter();
   public static ActiveFloor activeFloor = new ActiveFloor();
   public static Queuer queuer = new Queuer();
+  public static Drivetrain drivetrain = new Drivetrain();
 
   /**
    * This function is run when the robot is first started up and should be used
