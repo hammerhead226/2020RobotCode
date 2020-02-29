@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.libs.swerve.Utility;
 import frc.libs.util.Limelight;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -29,12 +30,8 @@ public class DrivetrainToTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.control(0, 0, sigggy(-Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+    Robot.drivetrain.control(0, 0, Utility.sigmoid(-Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
   }
-
-  private double sigggy(double angle){
-    return (2/(1+Math.pow(Math.E, -angle/1.5)) - 1) ;
-  } 
 
   // Called once the command ends or is interrupted.
   @Override

@@ -22,7 +22,7 @@ public class Limelight {
         return limelight.getEntry(index).getDouble(0);
     }
 
-    public static boolean isTarget() {
+    public static boolean isTargetValid() {
         return limelight.getEntry("tv").getDouble(0) == 1;
     }
 
@@ -42,15 +42,15 @@ public class Limelight {
         return limelight.getEntry("ts").getDouble(0);
     }
 
-    public static double getPipelineContr() {
+    public static double getPipelineLatency() {
         return limelight.getEntry("tl").getDouble(0);
     }
 
-    public static double getShortSidelength() {
+    public static double getShortestSidelength() {
         return limelight.getEntry("tshort").getDouble(0);
     }
 
-    public static double getLongSidelength() {
+    public static double getLongestSidelength() {
         return limelight.getEntry("tlong").getDouble(0);
     }
 
@@ -62,11 +62,11 @@ public class Limelight {
         return limelight.getEntry("tvert").getDouble(0);
     }
 
-    public static double getPipe() {
+    public static double getPipeline() {
         return limelight.getEntry("getpipe").getDouble(0);
     }
 
-    public static double getPos() {
+    public static double get3DPos() {
         return limelight.getEntry("camtran").getDouble(0);
     }
 
