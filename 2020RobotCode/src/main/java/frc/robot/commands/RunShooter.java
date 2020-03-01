@@ -35,7 +35,8 @@ public class RunShooter extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooter.runShooter(0);
+    Robot.shooter.isTrueVelocity = false;
+    Robot.shooter.setShooterSpeed(0);
   }
 
   // Returns true when the command should end.

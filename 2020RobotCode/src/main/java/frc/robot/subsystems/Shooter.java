@@ -26,6 +26,11 @@ public class Shooter extends SubsystemBase {
   private TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(RobotMap.SHOOTER_2);
   private double lastVelocity = 0;
+  private double trueVelocity = 0;
+  public boolean isTrueVelocity = false;
+  private double lastDifference = 0;
+  private double lastlastDifference = 0;
+  private double lastlastlastDifference = 0;
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
@@ -60,7 +65,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double velocity){
-     velocity = velocity;
+     //velocity = velocity;
     //shooter1.set(ControlMode.Velocity, velocity);
 
     // if(Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333 <= velocity - 250) {
@@ -74,20 +79,37 @@ public class Shooter extends SubsystemBase {
     // }
 
     double difference = velocity - Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333;
-    difference = 1 / (1 + Math.pow(Math.E, -difference / 250)) - 1/2;
-    lastVelocity += difference / 500; 
+    difference = 1 / (1 + Math.pow(Math.E, -difference / 400));
+    difference -= .5;
+    System.out.println(difference);
+    lastVelocity += difference / 600; 
 
-    if(velocity != 0) {
-      if(lastVelocity < (velocity / 9000)) {
-        lastVelocity = (velocity / 9000);
+    if(velocity > 1) {
+      if(Math.abs(difference) < 0.01) {
+        System.out.println("true");
+        if(!isTrueVelocity) trueVelocity = lastVelocity;
+        isTrueVelocity = true;
+        
       }
+      if(lastVelocity < (velocity / 10000)) {
+        lastVelocity = (velocity / 10000);
+        }
     } else {
       lastVelocity = 0;
     }
 
-    SmartDashboard.putNumber("last v", lastVelocity);
+    
+    SmartDashboard.putBoolean("true v", isTrueVelocity);
+    SmartDashboard.putNumber("last v", isTrueVelocity ? trueVelocity : lastVelocity);
+    if(isTrueVelocity) {
+      runShooter(trueVelocity);
+    } else {
+      runShooter(lastVelocity);
+    }
 
-    runShooter(lastVelocity);
+    lastDifference = difference;
+    //lastlastDifference = lastDifference;
+    //lastlastlastDifference = lastlastDifference;
   }
 
   @Override
