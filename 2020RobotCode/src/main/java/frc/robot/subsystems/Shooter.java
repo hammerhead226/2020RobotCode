@@ -60,32 +60,25 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double velocity){
-     velocity = velocity;
-    //shooter1.set(ControlMode.Velocity, velocity);
-
-    // if(Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333 <= velocity - 250) {
-    //   lastVelocity += 0.004;
-    // } else if (Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity()) * 1.333 >= velocity + 250){
-    //   lastVelocity -= 0.004;
-    // } else if(Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333 <= velocity) {
-    //   lastVelocity += 0.001;
-    // } else {
-    //   lastVelocity -= 0.001;
-    // }
 
     double difference = velocity - Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333;
-    difference = 1 / (1 + Math.pow(Math.E, -difference / 250)) - 1/2;
+    SmartDashboard.putNumber("differencebefore", difference);
+    difference = (1 / (1 + Math.pow(Math.E, -difference / 125)));
+    difference -= 1/2;
     lastVelocity += difference / 500; 
+    SmartDashboard.putNumber("differenceafter", difference);
 
     if(velocity != 0) {
-      if(lastVelocity < (velocity / 9000)) {
-        lastVelocity = (velocity / 9000);
+      if(lastVelocity < (velocity / 8500)) {
+        lastVelocity = (velocity / 8500);
       }
     } else {
       lastVelocity = 0;
     }
 
     SmartDashboard.putNumber("last v", lastVelocity);
+
+    
 
     runShooter(lastVelocity);
   }
