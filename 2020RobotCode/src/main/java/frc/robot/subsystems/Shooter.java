@@ -26,6 +26,11 @@ public class Shooter extends SubsystemBase {
   private TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(RobotMap.SHOOTER_2);
   private double lastVelocity = 0;
+  private double trueVelocity = 0;
+  public boolean isTrueVelocity = false;
+  private double lastDifference = 0;
+  private double lastlastDifference = 0;
+  private double lastlastlastDifference = 0;
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
@@ -75,10 +80,6 @@ public class Shooter extends SubsystemBase {
     } else {
       lastVelocity = 0;
     }
-
-    SmartDashboard.putNumber("last v", lastVelocity);
-
-    
 
     runShooter(lastVelocity);
   }
