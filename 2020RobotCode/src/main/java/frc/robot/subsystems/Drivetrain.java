@@ -166,11 +166,11 @@ public class Drivetrain extends SubsystemBase {
         module3.getState(), module4.getState());
         
     swerve.control(
-        Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
-            Robot.robotContainer.driver.getLeftJoystick_X()),
-        -Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
-            Robot.robotContainer.driver.getLeftJoystick_Y()),
-        -Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
-            Robot.robotContainer.driver.getRightJoystick_X()));
+        (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
+            Robot.robotContainer.driver.getLeftJoystick_X()))),
+        (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
+            Robot.robotContainer.driver.getLeftJoystick_Y()))),
+        (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
+            Robot.robotContainer.driver.getRightJoystick_X()))));
   }
 }
