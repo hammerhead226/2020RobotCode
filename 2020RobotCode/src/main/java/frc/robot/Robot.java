@@ -51,6 +51,8 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
+    MusicPlayer.LoadMusicSelection(0);
+    MusicPlayer.InitMusicRobot();
   }
 
   /**
@@ -121,6 +123,7 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+    MusicPlayer.InitMusicTeleop();
   }
 
   /**
@@ -128,6 +131,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    MusicPlayer.MusicTeleop();
   }
 
   @Override
