@@ -23,11 +23,11 @@ public class MusicPlayer {
 
      /* Talon FXs to play music through.  
      More complex music MIDIs will contain several tracks, requiring multiple instruments.  */
-    private static TalonFX [] fxes =  {new TalonFX(RobotMap.FRONT_LEFT_STEER), new TalonFX(RobotMap.FRONT_RIGHT_STEER), new TalonFX(RobotMap.REAR_LEFT_STEER), new TalonFX(RobotMap.REAR_RIGHT_STEER), new TalonFX(RobotMap.SHOOTER_1), new TalonFX(RobotMap.SHOOTER_2), new TalonFX(RobotMap.CLIMBER_MOTOR_1)};
+    private static TalonFX [] fxes =  {new TalonFX(RobotMap.FRONT_LEFT_DRIVE), new TalonFX(RobotMap.FRONT_RIGHT_DRIVE), new TalonFX(RobotMap.REAR_LEFT_DRIVE), new TalonFX(RobotMap.REAR_RIGHT_DRIVE), new TalonFX(RobotMap.SHOOTER_1), new TalonFX(RobotMap.SHOOTER_2), new TalonFX(RobotMap.CLIMBER_MOTOR_1)};
  
      /* An array of songs that are available to be playe`d, can you guess the song/artists? */
    private static String[] songs = new String[] {
-     "imperialMarch.chrp",
+     "imperialMarch.chrp"
    };
 
    /* track which song is selected for play */
