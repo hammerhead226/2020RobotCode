@@ -30,7 +30,6 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
-    Limelight.setLEDMode(3);
     Robot.shooter.Output();
   }
 

@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.libs.util.Limelight;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 
@@ -51,6 +52,10 @@ public class Shooter extends SubsystemBase {
 
   public void runShooter(int speed){
     shooter1.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void enableLimelight() {
+    Limelight.setLEDMode(3);
   }
 
   public void Output(){
