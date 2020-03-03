@@ -77,7 +77,7 @@ public static final int[] MODULE_OFFSETS = {100, 961, 3268, 4788};
     public static final double SHOOTER_2_VOLTAGE_LIMIT = 12;
     public static final boolean SHOOTER_2_VOLTAGE_ENABLE = false;
 
-    public static final double SHOOTER_AUTO_ROTATE = 0.1;
+    public static final double SHOOTER_AUTO_ROTATE = 0.13;
 
     public static final boolean CLIMBER_CURRENT_ENABLE = false;
     public static final double CLIMBER_CURRENT_LIMIT = 40;

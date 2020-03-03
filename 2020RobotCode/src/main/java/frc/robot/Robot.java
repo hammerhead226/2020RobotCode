@@ -75,6 +75,8 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("Limelight distance", Limelight.distanceToTarget());
+    Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);
   
   }
 
@@ -125,7 +127,8 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
-    SmartDashboard.putNumber("set RPM", 0);
+    SmartDashboard.putNumber("set RPM", 5600);
+    
   }
 
   /**
@@ -133,8 +136,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-   SmartDashboard.putNumber("Limelight distance", Limelight.distanceToTarget());
-   Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);
+   
   }
 
   @Override

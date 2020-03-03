@@ -30,7 +30,7 @@ public class DrivetrainToTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()+1.5) * Constants.SHOOTER_AUTO_ROTATE);
   }
 
   // Called once the command ends or is interrupted.

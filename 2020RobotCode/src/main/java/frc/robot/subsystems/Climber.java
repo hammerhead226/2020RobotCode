@@ -88,7 +88,7 @@ public class Climber extends SubsystemBase {
     // This method will be called once per scheduler run
     double rawValue = Robot.robotContainer.manip.getLeftJoystick_Y();
     if(rawValue <= -0.25) {
-      climber(-1);
+      climber(-0.6);
     } else if(rawValue > -0.25 && rawValue <= 0) {
       climber(0);
     } else {

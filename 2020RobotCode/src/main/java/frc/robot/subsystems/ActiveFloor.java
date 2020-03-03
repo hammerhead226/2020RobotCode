@@ -31,10 +31,11 @@ public class ActiveFloor extends SubsystemBase {
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
     activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
     activeFloor.setNeutralMode(NeutralMode.Brake);
+    activeFloor.configOpenloopRamp(1);
   }
 
   public void runActiveFloor(double speed){
-    activeFloor.set(ControlMode.PercentOutput, speed);
+    activeFloor.set(ControlMode.PercentOutput, speed*0.85);
   }
 
   public void jogActiveFloorForward(){

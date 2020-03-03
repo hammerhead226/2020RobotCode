@@ -24,6 +24,8 @@ public class Queuer extends SubsystemBase {
 
   public Queuer() {
 
+    queuer.configOpenloopRamp(1.5);
+
   }
 
   public void runQueuer(double speed) {
@@ -34,7 +36,7 @@ public class Queuer extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   //  if(beamBreaker.get() == false) {
-      runQueuer(Robot.robotContainer.manip.getTriggers() < -.25 ? -1 : Robot.robotContainer.manip.getTriggers());
+      runQueuer(Robot.robotContainer.manip.getTriggers() < -.25 ? -0.8 : Robot.robotContainer.manip.getTriggers());
   //  }
   }
 }

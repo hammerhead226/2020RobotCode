@@ -68,10 +68,10 @@ public class Shooter extends SubsystemBase {
 
     double difference = velocity - Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333;
     SmartDashboard.putNumber("differencebefore", difference);
-    difference = (1 / (1 + Math.pow(Math.E, -difference / 125)));
-    difference -= 1/2;
-    lastVelocity += difference / 500; 
+    difference = (1 / (1 + Math.pow(Math.E, -difference / 500))) - 0.5;
     SmartDashboard.putNumber("differenceafter", difference);
+    lastVelocity += difference / 130; 
+
 
     if(velocity != 0) {
       if(lastVelocity < (velocity / 8500)) {
