@@ -31,6 +31,7 @@ public class Shooter extends SubsystemBase {
   private double lastDifference = 0;
   private double lastlastDifference = 0;
   private double lastlastlastDifference = 0;
+  private double lastStableVelocity;
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
@@ -86,6 +87,23 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("shooter current", shooter1.getStatorCurrent());
     // This method will be called once per scheduler run
+  }
+
+  public double getVelocity() {
+
+    SmartDashboard.putNumber("shooter4 rpm", Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333);
+    SmartDashboard.putNumber("shooter5 rpm", Utility.convertVelocitytoRPM(shooter2.getSelectedSensorVelocity())*1.33333);
+
+    return Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333;
+  }
+
+  public void speed() {
+    Constants.SHOOTER_MAX_RPM = 5700;
+  }
+
+  public void slow() {
+    Constants.SHOOTER_MAX_RPM = 4800;
   }
 }

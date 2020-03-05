@@ -19,7 +19,7 @@ public class Queuer extends SubsystemBase {
   /**
    * Creates a new Queuer.
    */
-  private VictorSPX queuer = new VictorSPX(RobotMap.QUEUER);
+  public VictorSPX queuer = new VictorSPX(RobotMap.QUEUER);
   public DigitalInput beamBreaker = new DigitalInput(RobotMap.BEAM_BREAKER);
 
   public Queuer() {
@@ -34,9 +34,7 @@ public class Queuer extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-  //  if(beamBreaker.get() == false) {
-      runQueuer(Robot.robotContainer.manip.getTriggers() < -.25 ? -0.8 : Robot.robotContainer.manip.getTriggers());
-  //  }
+    if(Robot.state == Robot.State.TELEOP) runQueuer(Robot.robotContainer.manip.getTriggers() < -.25 ? -0.8 : Robot.robotContainer.manip.getTriggers());
+ 
   }
 }

@@ -40,7 +40,7 @@ public class Intake extends SubsystemBase {
 
   @Override
   public void periodic() {
-    intake(Robot.robotContainer.driver.getTriggers());
+    if(Robot.state == Robot.State.TELEOP) intake(Robot.robotContainer.driver.getTriggers());
     SmartDashboard.putNumber("intake queuer", intake.getBusVoltage());
   }
 }

@@ -49,6 +49,10 @@ public class PneumaticsSystem extends SubsystemBase {
     }
     intake.set(intakeVal);
   }
+
+  public void downIntake() {
+    intake.set(DoubleSolenoid.Value.kForward);
+  }
   
   public void toggleShooter(){
     shooterVal = !(shooterVal);

@@ -7,13 +7,21 @@
 
 package frc.robot;
 
+import javax.management.Query;
+import javax.management.QueryEval;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.libs.swerve.Utility;
 import frc.libs.util.Limelight;
+import frc.robot.commands.DrivetrainToTarget;
+import frc.robot.commands.ShooterDown;
+import frc.robot.commands.ShooterHoodDown;
 import frc.robot.subsystems.ActiveFloor;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorRoller;
@@ -43,6 +51,18 @@ public class Robot extends TimedRobot {
   public static ActiveFloor activeFloor = new ActiveFloor();
   public static Queuer queuer = new Queuer();
   public static Drivetrain drivetrain = new Drivetrain();
+  public static double timer;
+  public double angleTime = 0;
+
+  private double lastVelocity;
+
+  private boolean[] checkpoints = {false, false, false, false, false, false, false, false, false};
+  //checkpoints 5&4 are out of order
+  private Command hoodDown;
+  public enum State {
+    AUTON, TELEOP
+  }
+  public static State state;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -76,7 +96,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("Limelight distance", Limelight.distanceToTarget());
-    Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);
+    //Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);
   
   }
 
@@ -95,6 +115,7 @@ public class Robot extends TimedRobot {
     }else {
       Led.blue();
     }
+
   }
 
   /**
@@ -109,6 +130,16 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.schedule();
     }
+
+    drivetrain.zeroGyro();
+    timer = Timer.getFPGATimestamp();
+
+    hoodDown = new ShooterDown();
+    hoodDown.schedule();
+    pneumatics.downIntake();
+    shooter.setShooterSpeed(5500);
+    state = State.AUTON;
+    resetCheckpoints();
   }
 
   /**
@@ -116,6 +147,111 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    if(!checkpoints[0]) {
+      drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+      shooter.setShooterSpeed(5500);
+    }
+
+    double currentVelocity = shooter.getVelocity();
+    if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5300)) {
+      checkpoints[0] = true;
+      shooter.setShooterSpeed(5500);
+    }
+
+    if(checkpoints[0] && !checkpoints[2]) {
+      activeFloor.runActiveFloor(-0.7);
+      queuer.runQueuer(-0.8);
+      shooter.setShooterSpeed(5500);
+    }
+
+    if(getCurrentTime() > 6.5) {
+      checkpoints[1] = true;
+      shooter.setShooterSpeed(5500);
+    }
+
+    if(checkpoints[1] && !checkpoints[2]) {
+      drivetrain.control(0, 0, (drivetrain.getGyro() - 90) / 125); 
+      shooter.setShooterSpeed(5500);
+    }
+
+    System.out.println(Math.abs(drivetrain.getGyro() - 90));
+
+    if(Math.abs(drivetrain.getGyro() - 90) < 10) {
+      checkpoints[2] = true;
+      System.out.println("done turn");
+      if(angleTime == 0) {
+        angleTime = getCurrentTime();
+      }
+      shooter.setShooterSpeed(5500);
+    }
+
+    System.out.println(angleTime);
+
+    if(checkpoints[2] && getCurrentTime() < (angleTime + 2.2)) {
+      drivetrain.control(-.36, .2, 0);
+      intake.intake(-.7);
+      activeFloor.runActiveFloor(0);
+      queuer.runQueuer(0);
+      shooter.setShooterSpeed(5800);
+    }
+
+    if(checkpoints[2] && getCurrentTime() > (angleTime + 2.2)) {
+      drivetrain.control(0, 0, 0);
+      checkpoints[3] = true;
+      shooter.setShooterSpeed(5800);
+    }
+
+    if(checkpoints[3] && getCurrentTime() < (angleTime + 2.7)) {
+      drivetrain.control(0.3, 0, 0);
+      shooter.setShooterSpeed(5800);
+    }
+
+    if(checkpoints[3] && getCurrentTime() > (angleTime + 2.7) && getCurrentTime() < (angleTime + 4.25)) {
+      drivetrain.control(0, 0, 0);
+      shooter.setShooterSpeed(5800);
+      checkpoints[6] = true;
+    } 
+
+    if(checkpoints[6] && getCurrentTime() < (angleTime + 8.2)) {
+      drivetrain.control(0, 0.3, 0);
+      intake.intake(-.7);
+      activeFloor.runActiveFloor(0);
+      queuer.runQueuer(0);
+      shooter.setShooterSpeed(5800);
+    }
+
+    if(checkpoints[6] && getCurrentTime() > (angleTime + 8.2)) {
+      drivetrain.control(0, 0, 0);
+      shooter.setShooterSpeed(5800);
+    }
+
+    // if(getCurrentTime() > 10.54 && !checkpoints[5]) {
+    //   drivetrain.control(0, 0, (drivetrain.getGyro() + 5) / 100); 
+    //   shooter.setShooterSpeed(5400);
+    // }
+
+    // if(Math.abs(drivetrain.getGyro() + 5) < 1) {
+    //   checkpoints[5] = true;
+    //   shooter.setShooterSpeed(5400);
+    // }
+
+    // if(getCurrentTime() > 10.54 && checkpoints[5]) {
+    //   drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset() + 1.5) * Constants.SHOOTER_AUTO_ROTATE);
+    //   shooter.setShooterSpeed(5800);
+    // }
+
+    // if(checkpoints[3] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5800)) {
+    //   checkpoints[4] = true;
+    //   shooter.setShooterSpeed(5800);
+    // }
+
+    // if(checkpoints[4]) {
+    //   activeFloor.runActiveFloor(-0.7);
+    //   queuer.runQueuer(-0.8);
+    //   shooter.setShooterSpeed(5800);
+    // }
+
+    lastVelocity = shooter.getVelocity();
   }
 
   @Override
@@ -136,7 +272,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-   
+    state = state.TELEOP;
   }
 
   @Override
@@ -150,5 +286,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  private double getCurrentTime() {
+    return Timer.getFPGATimestamp() - timer;
+  }
+
+  private void resetCheckpoints() {
+    for(int i = 0; i < checkpoints.length; i++) {
+      checkpoints[i] = false;
+    }
   }
 }

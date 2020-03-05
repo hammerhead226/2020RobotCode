@@ -21,7 +21,7 @@ public class ActiveFloor extends SubsystemBase {
   /**
    * Creates a new ActiveFloor.
    */
-  private VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
+  public VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
   private double speed;
   private double startTime = Timer.getFPGATimestamp();
   private double endTime;
@@ -31,7 +31,7 @@ public class ActiveFloor extends SubsystemBase {
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
     activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
     activeFloor.setNeutralMode(NeutralMode.Brake);
-    activeFloor.configOpenloopRamp(1);
+    activeFloor.configOpenloopRamp(2);
   }
 
   public void runActiveFloor(double speed){
@@ -55,7 +55,7 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    speed();
+    if(Robot.state == Robot.State.TELEOP) speed();
   }
 
   private void speed() {

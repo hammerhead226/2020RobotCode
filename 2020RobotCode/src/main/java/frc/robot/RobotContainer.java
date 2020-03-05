@@ -53,7 +53,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     manip.getAButton().whileHeld(new ShooterHoodUp());
+    manip.getAButton().whenPressed(new InstantCommand(Robot.shooter::slow));
     manip.getBButton().whileHeld(new ShooterHoodDown());
+    manip.getBButton().whenPressed(new InstantCommand(Robot.shooter::speed));
     driver.getAButton().whileHeld(new DrivetrainToTarget());
     driver.getXButton().whileHeld(new InstantCommand(Robot.drivetrain::brake, Robot.drivetrain));
    // driver.getSELECTButton().whenPressed(new InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));

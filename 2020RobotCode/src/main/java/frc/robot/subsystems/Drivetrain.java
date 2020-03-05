@@ -162,15 +162,23 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    currentPose2d = odometry.update(new Rotation2d(swerve.getGyro()), module1.getState(), module2.getState(),
-        module3.getState(), module4.getState());
+    // currentPose2d = odometry.update(new Rotation2d(swerve.getGyro()), module1.getState(), module2.getState(),
+    //     module3.getState(), module4.getState());
         
-    swerve.control(
+    if(Robot.state == Robot.State.TELEOP) control(
         (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
             Robot.robotContainer.driver.getLeftJoystick_X()))),
         (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
             Robot.robotContainer.driver.getLeftJoystick_Y()))),
         (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()))));
+  }
+
+  public double getGyro() {
+    double[] ypr = new double[3];
+    pigeon.getYawPitchRoll(ypr);
+    double gyro = ypr[0];
+
+    return gyro;
   }
 }
