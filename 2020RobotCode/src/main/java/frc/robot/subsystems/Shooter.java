@@ -58,6 +58,10 @@ public class Shooter extends SubsystemBase {
     Limelight.setLEDMode(3);
   }
 
+  public void disableLimelight() {
+    Limelight.setLEDMode(1);
+  }
+
   public void Output(){
     SmartDashboard.putNumber("shooter4 rpm", shooter1.getSelectedSensorVelocity());
     SmartDashboard.putNumber("shooter5 rpm", shooter2.getSelectedSensorVelocity());
