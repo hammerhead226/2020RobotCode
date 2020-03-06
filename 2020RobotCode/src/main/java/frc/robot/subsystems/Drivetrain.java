@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -70,6 +71,7 @@ public class Drivetrain extends SubsystemBase {
       new Pose2d(0, 0, new Rotation2d()));
 
   public Pose2d currentPose2d = new Pose2d();
+  public boolean isLocked = false;
 
   public Drivetrain() {
     frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);
@@ -172,6 +174,11 @@ public class Drivetrain extends SubsystemBase {
             Robot.robotContainer.driver.getLeftJoystick_Y()))),
         (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()))));
+
+    if(isLocked) {
+      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, 1);
+      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, 1);
+    }
   }
 
   public double getGyro() {

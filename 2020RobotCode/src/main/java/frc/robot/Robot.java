@@ -79,8 +79,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
     chooser = new SendableChooser<String>();
-    chooser.addOption("Off Line", "OL");
+    chooser.setDefaultOption("Off Line", "OL");
     chooser.addOption("Position 3", "P3");
+    chooser.addOption("Position 2", "P2");
     SmartDashboard.putData(chooser);
     Limelight.setLEDMode(1);
   }
@@ -239,7 +240,7 @@ public class Robot extends TimedRobot {
         drivetrain.control(0, 0, 0);
         shooter.setShooterSpeed(5800);
       }
-    } else {
+    } else if(autoType.equals("OL")){
       drivetrain.control(0, 0.3, 0);
 
       if(getCurrentTime() > 2) {
@@ -249,33 +250,40 @@ public class Robot extends TimedRobot {
       if(getCurrentTime() > 10) {
         shooter.setShooterSpeed(4500);
       }
+    } else if(autoType.equals("P2")) {
+      if(!checkpoints[0]) {
+        Limelight.setLEDMode(3);
+        drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+        shooter.setShooterSpeed(5500);
+      }
+  
+      double currentVelocity = shooter.getVelocity();
+      if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5300)) {
+        checkpoints[0] = true;
+        shooter.setShooterSpeed(5500);
+      }
+  
+      if(checkpoints[0] && !checkpoints[2]) {
+        activeFloor.runActiveFloor(-0.7);
+        queuer.runQueuer(-0.8);
+        shooter.setShooterSpeed(5500);
+      }
+
+      if(getCurrentTime() > 6.5) {
+        checkpoints[1] = true;
+        shooter.setShooterSpeed(5500);
+      }
+
+      if(checkpoints[1] && !checkpoints[2]) {
+        Limelight.setLEDMode(1);
+        drivetrain.control(0, 0.5, 0);
+        shooter.setShooterSpeed(5500);
+      }
+
+      if(getCurrentTime() > 7.5) {
+        drivetrain.control(0, 0, 0);
+      }
     }
-
-    // if(getCurrentTime() > 10.54 && !checkpoints[5]) {
-    //   drivetrain.control(0, 0, (drivetrain.getGyro() + 5) / 100); 
-    //   shooter.setShooterSpeed(5400);
-    // }
-
-    // if(Math.abs(drivetrain.getGyro() + 5) < 1) {
-    //   checkpoints[5] = true;
-    //   shooter.setShooterSpeed(5400);
-    // }
-
-    // if(getCurrentTime() > 10.54 && checkpoints[5]) {
-    //   drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset() + 1.5) * Constants.SHOOTER_AUTO_ROTATE);
-    //   shooter.setShooterSpeed(5800);
-    // }
-
-    // if(checkpoints[3] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5800)) {
-    //   checkpoints[4] = true;
-    //   shooter.setShooterSpeed(5800);
-    // }
-
-    // if(checkpoints[4]) {
-    //   activeFloor.runActiveFloor(-0.7);
-    //   queuer.runQueuer(-0.8);
-    //   shooter.setShooterSpeed(5800);
-    // }
 
     lastVelocity = shooter.getVelocity();
   }

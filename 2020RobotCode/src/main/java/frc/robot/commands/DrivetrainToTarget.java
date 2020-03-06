@@ -31,7 +31,12 @@ public class DrivetrainToTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()+1.5) * Constants.SHOOTER_AUTO_ROTATE);
+    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+    if(Math.abs(Limelight.getHorizontalOffset()) < 1 ) {
+      Robot.drivetrain.isLocked = true;
+    } else {
+      Robot.drivetrain.isLocked = false;
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +44,7 @@ public class DrivetrainToTarget extends CommandBase {
   public void end(boolean interrupted) {
     Robot.drivetrain.control(0, 0, 0);
     Limelight.setLEDMode(1);
+    Robot.drivetrain.isLocked = false;
   }
 
   // Returns true when the command should end.
