@@ -159,6 +159,7 @@ public class Drivetrain extends SubsystemBase {
   
   public void zeroGyro() {
     pigeon.setYaw(0);
+    control(0,0,0.01);
   }
 
   @Override

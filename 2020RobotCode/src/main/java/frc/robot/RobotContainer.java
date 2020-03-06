@@ -30,10 +30,10 @@ import frc.robot.commands.JogActiveFloor;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  
+
   public Controller driver;
   public Controller manip;
-  
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -58,7 +58,8 @@ public class RobotContainer {
     manip.getBButton().whenPressed(new InstantCommand(Robot.shooter::speed));
     driver.getAButton().whileHeld(new DrivetrainToTarget());
     driver.getXButton().whileHeld(new InstantCommand(Robot.drivetrain::brake, Robot.drivetrain));
-   // driver.getSELECTButton().whenPressed(new InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
+    // driver.getSELECTButton().whenPressed(new
+    // InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
 
@@ -66,7 +67,7 @@ public class RobotContainer {
     driver.getYButton().whenPressed(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain));
     manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
     manip.getRBButton().whileHeld(new JogActiveFloor());
-    }
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
