@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -64,6 +65,9 @@ public class Robot extends TimedRobot {
   }
   public static State state;
 
+  public SendableChooser chooser;
+  public String autoType;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -74,6 +78,11 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
+    chooser = new SendableChooser<String>();
+    chooser.addOption("Off Line", "OL");
+    chooser.addOption("Position 3", "P3");
+    SmartDashboard.putData(chooser);
+    Limelight.setLEDMode(1);
   }
 
   /**
@@ -125,6 +134,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autonomousCommand = robotContainer.getAutonomousCommand();
+    autoType = chooser.getSelected().toString();
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
@@ -134,10 +144,12 @@ public class Robot extends TimedRobot {
     drivetrain.zeroGyro();
     timer = Timer.getFPGATimestamp();
 
-    hoodDown = new ShooterDown();
-    hoodDown.schedule();
+    if(autoType.equals("P3")) {
+      hoodDown = new ShooterDown();
+      hoodDown.schedule();
+      shooter.setShooterSpeed(5500);
+    }
     pneumatics.downIntake();
-    shooter.setShooterSpeed(5500);
     state = State.AUTON;
     resetCheckpoints();
   }
@@ -147,82 +159,96 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    if(!checkpoints[0]) {
-      drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
-      shooter.setShooterSpeed(5500);
-    }
-
-    double currentVelocity = shooter.getVelocity();
-    if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5300)) {
-      checkpoints[0] = true;
-      shooter.setShooterSpeed(5500);
-    }
-
-    if(checkpoints[0] && !checkpoints[2]) {
-      activeFloor.runActiveFloor(-0.7);
-      queuer.runQueuer(-0.8);
-      shooter.setShooterSpeed(5500);
-    }
-
-    if(getCurrentTime() > 6.5) {
-      checkpoints[1] = true;
-      shooter.setShooterSpeed(5500);
-    }
-
-    if(checkpoints[1] && !checkpoints[2]) {
-      drivetrain.control(0, 0, (drivetrain.getGyro() - 90) / 125); 
-      shooter.setShooterSpeed(5500);
-    }
-
-    System.out.println(Math.abs(drivetrain.getGyro() - 90));
-
-    if(Math.abs(drivetrain.getGyro() - 90) < 10) {
-      checkpoints[2] = true;
-      System.out.println("done turn");
-      if(angleTime == 0) {
-        angleTime = getCurrentTime();
+    if(autoType.equals("P3")) {
+      if(!checkpoints[0]) {
+        Limelight.setLEDMode(3);
+        drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+        shooter.setShooterSpeed(5500);
       }
-      shooter.setShooterSpeed(5500);
-    }
-
-    System.out.println(angleTime);
-
-    if(checkpoints[2] && getCurrentTime() < (angleTime + 2.2)) {
-      drivetrain.control(-.36, .2, 0);
-      intake.intake(-.7);
-      activeFloor.runActiveFloor(0);
-      queuer.runQueuer(0);
-      shooter.setShooterSpeed(5800);
-    }
-
-    if(checkpoints[2] && getCurrentTime() > (angleTime + 2.2)) {
-      drivetrain.control(0, 0, 0);
-      checkpoints[3] = true;
-      shooter.setShooterSpeed(5800);
-    }
-
-    if(checkpoints[3] && getCurrentTime() < (angleTime + 2.7)) {
-      drivetrain.control(0.3, 0, 0);
-      shooter.setShooterSpeed(5800);
-    }
-
-    if(checkpoints[3] && getCurrentTime() > (angleTime + 2.7) && getCurrentTime() < (angleTime + 4.25)) {
-      drivetrain.control(0, 0, 0);
-      shooter.setShooterSpeed(5800);
-      checkpoints[6] = true;
-    } 
-
-    if(checkpoints[6] && getCurrentTime() < (angleTime + 8.2)) {
+  
+      double currentVelocity = shooter.getVelocity();
+      if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5300)) {
+        checkpoints[0] = true;
+        shooter.setShooterSpeed(5500);
+      }
+  
+      if(checkpoints[0] && !checkpoints[2]) {
+        activeFloor.runActiveFloor(-0.7);
+        queuer.runQueuer(-0.8);
+        shooter.setShooterSpeed(5500);
+      }
+  
+      if(getCurrentTime() > 6.5) {
+        checkpoints[1] = true;
+        shooter.setShooterSpeed(5500);
+      }
+  
+      if(checkpoints[1] && !checkpoints[2]) {
+        Limelight.setLEDMode(1);
+        drivetrain.control(0, 0, (drivetrain.getGyro() - 90) / 125); 
+        shooter.setShooterSpeed(5500);
+      }
+  
+      System.out.println(Math.abs(drivetrain.getGyro() - 90));
+  
+      if(Math.abs(drivetrain.getGyro() - 90) < 10) {
+        checkpoints[2] = true;
+        System.out.println("done turn");
+        if(angleTime == 0) {
+          angleTime = getCurrentTime();
+        }
+        shooter.setShooterSpeed(5500);
+      }
+  
+      System.out.println(angleTime);
+  
+      if(checkpoints[2] && getCurrentTime() < (angleTime + 2.2)) {
+        drivetrain.control(-.36, .2, 0);
+        intake.intake(-.7);
+        activeFloor.runActiveFloor(0);
+        queuer.runQueuer(0);
+        shooter.setShooterSpeed(5800);
+      }
+  
+      if(checkpoints[2] && getCurrentTime() > (angleTime + 2.2)) {
+        drivetrain.control(0, 0, 0);
+        checkpoints[3] = true;
+        shooter.setShooterSpeed(5800);
+      }
+  
+      if(checkpoints[3] && getCurrentTime() < (angleTime + 2.7)) {
+        drivetrain.control(0.3, 0, 0);
+        shooter.setShooterSpeed(5800);
+      }
+  
+      if(checkpoints[3] && getCurrentTime() > (angleTime + 2.7) && getCurrentTime() < (angleTime + 4.25)) {
+        drivetrain.control(0, 0, 0);
+        shooter.setShooterSpeed(5800);
+        checkpoints[6] = true;
+      } 
+  
+      if(checkpoints[6] && getCurrentTime() < (angleTime + 8.2)) {
+        drivetrain.control(0, 0.3, 0);
+        intake.intake(-.7);
+        activeFloor.runActiveFloor(0);
+        queuer.runQueuer(0);
+        shooter.setShooterSpeed(5800);
+      }
+  
+      if(checkpoints[6] && getCurrentTime() > (angleTime + 8.2)) {
+        drivetrain.control(0, 0, 0);
+        shooter.setShooterSpeed(5800);
+      }
+    } else {
       drivetrain.control(0, 0.3, 0);
-      intake.intake(-.7);
-      activeFloor.runActiveFloor(0);
-      queuer.runQueuer(0);
-      shooter.setShooterSpeed(5800);
-    }
 
-    if(checkpoints[6] && getCurrentTime() > (angleTime + 8.2)) {
-      drivetrain.control(0, 0, 0);
-      shooter.setShooterSpeed(5800);
+      if(getCurrentTime() > 2) {
+        drivetrain.control(0, 0, 0);
+      }
+
+      if(getCurrentTime() > 10) {
+        shooter.setShooterSpeed(4500);
+      }
     }
 
     // if(getCurrentTime() > 10.54 && !checkpoints[5]) {

@@ -19,7 +19,6 @@ import frc.robot.commands.ShooterDown;
 import frc.robot.commands.ShooterHoodDown;
 import frc.robot.commands.ShooterHoodUp;
 import frc.robot.commands.ShooterUp;
-import frc.robot.commands.ToggleClimberBrake;
 import frc.robot.commands.JogActiveFloor;
 
 /**
@@ -60,7 +59,7 @@ public class RobotContainer {
     driver.getXButton().whileHeld(new InstantCommand(Robot.drivetrain::brake, Robot.drivetrain));
    // driver.getSELECTButton().whenPressed(new InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
-    manip.getRBButton().whenPressed(new ToggleClimberBrake());
+    manip.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
 
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
     driver.getYButton().whenPressed(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain));

@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.libs.swerve.Utility;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
@@ -88,6 +89,13 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("shooter current", shooter1.getStatorCurrent());
+    if(Robot.robotContainer.manip.getPOV() == 0) {
+      Constants.SHOOTER_MAX_RPM += 200;
+    }
+
+    if(Robot.robotContainer.manip.getPOV() == 180) {
+      Constants.SHOOTER_MAX_RPM -= 200;
+    }
     // This method will be called once per scheduler run
   }
 
@@ -104,6 +112,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void slow() {
-    Constants.SHOOTER_MAX_RPM = 4800;
+    Constants.SHOOTER_MAX_RPM = 4500;
   }
+
 }

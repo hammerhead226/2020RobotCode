@@ -25,6 +25,7 @@ public class DrivetrainToTarget extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Limelight.setLEDMode(3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -37,6 +38,7 @@ public class DrivetrainToTarget extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.drivetrain.control(0, 0, 0);
+    Limelight.setLEDMode(1);
   }
 
   // Returns true when the command should end.
