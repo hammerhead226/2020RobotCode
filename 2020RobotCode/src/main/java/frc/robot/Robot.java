@@ -160,7 +160,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    if(autoType.equals("P3")) {
+    if(autoType.equals("P3")||autoType.equals("P2")) {
       if(!checkpoints[0]) {
         Limelight.setLEDMode(3);
         drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
