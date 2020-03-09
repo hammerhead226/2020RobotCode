@@ -10,9 +10,11 @@ package frc.robot;
 import javax.management.Query;
 import javax.management.QueryEval;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -80,10 +82,14 @@ public class Robot extends TimedRobot {
     robotContainer = new RobotContainer();
     chooser = new SendableChooser<String>();
     chooser.setDefaultOption("Off Line", "OL");
-    chooser.addOption("Position 3", "P3");
+    chooser.addOption("Position 1", "P1");
     chooser.addOption("Position 2", "P2");
+    chooser.addOption("nerds", "fthis");
     SmartDashboard.putData(chooser);
-    Limelight.setLEDMode(1);
+    SmartDashboard.putNumber("climber current", Robot.climber.climber.getStatorCurrent());
+    SmartDashboard.putNumber("shooter4 rpm", Utility.convertVelocitytoRPM(Robot.shooter.shooter1.getSelectedSensorVelocity())*1.33333);
+    SmartDashboard.putNumber("nominal velocity", Constants.SHOOTER_MAX_RPM);
+    //CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**
@@ -106,8 +112,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("Limelight distance", Limelight.distanceToTarget());
-    //Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);
-  
+    //Constants.SHOOTER_MAX_RPM = (int)SmartDashboard.getNumber("set RPM", 6000);  
   }
 
   /**
@@ -132,6 +137,7 @@ public class Robot extends TimedRobot {
    * This autonomous runs the autonomous command selected by your
    * {@link RobotContainer} class.
    */
+
   @Override
   public void autonomousInit() {
     autonomousCommand = robotContainer.getAutonomousCommand();
@@ -145,14 +151,21 @@ public class Robot extends TimedRobot {
     drivetrain.zeroGyro();
     timer = Timer.getFPGATimestamp();
 
-    if(autoType.equals("P3")) {
+    if(autoType.equals("P1")||autoType.equals("P2")) {
       hoodDown = new ShooterDown();
       hoodDown.schedule();
       shooter.setShooterSpeed(5500);
+      intake.intake(-0.5);
     }
     pneumatics.downIntake();
+
+    if(autoType.equals("fthis")) {
+      pneumatics.upIntake();
+    }
     state = State.AUTON;
     resetCheckpoints();
+    Limelight.setLEDMode(3);
+    pneumatics.offCompressor();
   }
 
   /**
@@ -160,34 +173,60 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    if(autoType.equals("P3")||autoType.equals("P2")) {
+
+    // negative demand = positive drive xD
+    if(autoType.equals("fthis")){
+      if(getCurrentTime() < 2){
+        intake.intake(0.6);
+      }else if (getCurrentTime() < 2.5){
+        intake.intake(0);
+      }else if (getCurrentTime() < 3.5){
+        intake.intake(-0.2);
+      }else if(getCurrentTime() < 4){
+        intake.intake(0);
+      }else if (getCurrentTime() < 4.5){
+        pneumatics.downIntake();
+      }else if (getCurrentTime() < 5){
+        intake.intake(0);
+      }else if (getCurrentTime() < 7){
+        intake.intake(0.6);
+      }else if (getCurrentTime() < 8){
+        pneumatics.upIntake();
+        intake.intake(0);
+      } else if(getCurrentTime() < 9) {
+        drivetrain.control(0, .3, 0);
+      } else {
+        drivetrain.control(0, 0, 0);
+      }
+    }
+    if(autoType.equals("P1")) {
       if(!checkpoints[0]) {
         Limelight.setLEDMode(3);
-        drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
-        shooter.setShooterSpeed(5500);
+        //drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+        shooter.setShooterSpeed(6000);
       }
   
       double currentVelocity = shooter.getVelocity();
-      if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5300)) {
+      if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5500)) {
         checkpoints[0] = true;
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(6000);
       }
   
       if(checkpoints[0] && !checkpoints[2]) {
         activeFloor.runActiveFloor(-0.7);
         queuer.runQueuer(-0.8);
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(6000);
       }
   
       if(getCurrentTime() > 6.5) {
         checkpoints[1] = true;
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(6000);
       }
   
       if(checkpoints[1] && !checkpoints[2]) {
         Limelight.setLEDMode(1);
         drivetrain.control(0, 0, (drivetrain.getGyro() - 90) / 125); 
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(6000);
       }
   
       System.out.println(Math.abs(drivetrain.getGyro() - 90));
@@ -198,7 +237,7 @@ public class Robot extends TimedRobot {
         if(angleTime == 0) {
           angleTime = getCurrentTime();
         }
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(6000);
       }
   
       System.out.println(angleTime);
@@ -208,23 +247,23 @@ public class Robot extends TimedRobot {
         intake.intake(-.7);
         activeFloor.runActiveFloor(0);
         queuer.runQueuer(0);
-        shooter.setShooterSpeed(5800);
+        shooter.setShooterSpeed(6000);
       }
   
       if(checkpoints[2] && getCurrentTime() > (angleTime + 2.2)) {
         drivetrain.control(0, 0, 0);
         checkpoints[3] = true;
-        shooter.setShooterSpeed(5800);
+        shooter.setShooterSpeed(6000);
       }
   
       if(checkpoints[3] && getCurrentTime() < (angleTime + 2.7)) {
         drivetrain.control(0.3, 0, 0);
-        shooter.setShooterSpeed(5800);
+        shooter.setShooterSpeed(6000);
       }
   
       if(checkpoints[3] && getCurrentTime() > (angleTime + 2.7) && getCurrentTime() < (angleTime + 4.25)) {
         drivetrain.control(0, 0, 0);
-        shooter.setShooterSpeed(5800);
+        shooter.setShooterSpeed(6000);
         checkpoints[6] = true;
       } 
   
@@ -233,59 +272,61 @@ public class Robot extends TimedRobot {
         intake.intake(-.7);
         activeFloor.runActiveFloor(0);
         queuer.runQueuer(0);
-        shooter.setShooterSpeed(5800);
+        shooter.setShooterSpeed(6000);
       }
   
       if(checkpoints[6] && getCurrentTime() > (angleTime + 8.2)) {
         drivetrain.control(0, 0, 0);
-        shooter.setShooterSpeed(5800);
+        shooter.setShooterSpeed(0);
       }
     } else if(autoType.equals("OL")){
       drivetrain.control(0, 0.3, 0);
 
-      if(getCurrentTime() > 2) {
+      if(getCurrentTime() > 1.5) {
         drivetrain.control(0, 0, 0);
       }
 
       if(getCurrentTime() > 10) {
-        shooter.setShooterSpeed(4500);
+        shooter.setShooterSpeed(0);
       }
     } else if(autoType.equals("P2")) {
+
       if(!checkpoints[0]) {
         Limelight.setLEDMode(3);
         drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(5700);
+        drivetrain.control(0, 0, 0);
       }
   
       double currentVelocity = shooter.getVelocity();
-      if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5300)) {
+      if(!checkpoints[0] && Math.abs(currentVelocity - lastVelocity) < 5 && (shooter.getVelocity() > 5700)) {
         checkpoints[0] = true;
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(5700);
       }
   
-      if(checkpoints[0] && !checkpoints[2]) {
-        activeFloor.runActiveFloor(-0.7);
-        queuer.runQueuer(-0.8);
-        shooter.setShooterSpeed(5500);
+      if(checkpoints[0]) {
+        activeFloor.runActiveFloor(-0.6);
+        queuer.runQueuer(-0.7);
+        shooter.setShooterSpeed(5700);
       }
 
-      if(getCurrentTime() > 6.5) {
+      if(getCurrentTime() > 12) {
         checkpoints[1] = true;
-        shooter.setShooterSpeed(5500);
+        shooter.setShooterSpeed(5700);
+        drivetrain.control(0, 0.3, 0);
+        intake.intake(0);
+        pneumatics.upIntake();
       }
 
-      if(checkpoints[1] && !checkpoints[2]) {
-        Limelight.setLEDMode(1);
-        drivetrain.control(0, 0.5, 0);
-        shooter.setShooterSpeed(5500);
-      }
-
-      if(getCurrentTime() > 7.5) {
+      if(getCurrentTime() > 13.5) {
         drivetrain.control(0, 0, 0);
-      }
+        shooter.setShooterSpeed(0);
+      } 
     }
 
     lastVelocity = shooter.getVelocity();
+    System.out.println(getCurrentTime());
+    
   }
 
   @Override
@@ -298,7 +339,8 @@ public class Robot extends TimedRobot {
       autonomousCommand.cancel();
     }
     SmartDashboard.putNumber("set RPM", 5600);
-    
+    Limelight.setLEDMode(3);
+    pneumatics.offCompressor();
   }
 
   /**
@@ -307,6 +349,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     state = state.TELEOP;
+    if(getCurrentTime()>15 && getCurrentTime() < 45){
+      pneumatics.onCompressor();
+    }else if (getCurrentTime()>45 && getCurrentTime() < 47){
+      pneumatics.offCompressor();
+    }
   }
 
   @Override

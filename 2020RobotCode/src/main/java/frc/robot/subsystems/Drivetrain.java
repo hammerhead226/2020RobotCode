@@ -167,18 +167,19 @@ public class Drivetrain extends SubsystemBase {
     // This method will be called once per scheduler run
     // currentPose2d = odometry.update(new Rotation2d(swerve.getGyro()), module1.getState(), module2.getState(),
     //     module3.getState(), module4.getState());
-        
-    if(Robot.state == Robot.State.TELEOP) control(
+    double adjustment;
+    if(Robot.robotContainer.driver.getLBButtonPressed()) {
+      adjustment = .2;
+    } else {
+      adjustment = .7;
+    }
+    if(Robot.state == Robot.State.TELEOP) {control(
         (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
             Robot.robotContainer.driver.getLeftJoystick_X()))),
         (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
             Robot.robotContainer.driver.getLeftJoystick_Y()))),
-        (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
+        (adjustment*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()))));
-
-    if(isLocked) {
-      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, 1);
-      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, 1);
     }
   }
 

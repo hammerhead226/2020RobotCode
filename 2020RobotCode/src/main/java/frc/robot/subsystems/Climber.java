@@ -28,7 +28,7 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Drivetrain.
    */
-  private TalonFX climber = new TalonFX(RobotMap.CLIMBER);
+  public TalonFX climber = new TalonFX(RobotMap.CLIMBER);
   private Rev2mDistanceSensor distSensor = new Rev2mDistanceSensor(Port.kOnboard);
 
   public Climber() {

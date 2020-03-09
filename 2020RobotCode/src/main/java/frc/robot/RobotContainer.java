@@ -38,8 +38,8 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    driver = new Controller(0, 0.05);
-    manip = new Controller(1, 0.05);
+    driver = new Controller(0, 0.1);
+    manip = new Controller(1, 0.08);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -53,7 +53,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     manip.getAButton().whileHeld(new ShooterHoodUp());
     manip.getAButton().whenPressed(new InstantCommand(Robot.shooter::slow));
-    manip.getAButton().whenReleased(new ShooterHoodDown());
+    manip.getAButton().whenReleased(new ShooterDown());
     manip.getBButton().whileHeld(new ShooterHoodDown());
     manip.getBButton().whenPressed(new InstantCommand(Robot.shooter::speed));
     driver.getAButton().whileHeld(new DrivetrainToTarget());
@@ -62,11 +62,9 @@ public class RobotContainer {
     // InstantCommand(Robot.driveTrain::zeroGyro, Robot.driveTrain));
     driver.getSTARTButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleCompressor, Robot.pneumatics));
     manip.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleClimber, Robot.pneumatics));
-
     driver.getRBButton().whenPressed(new InstantCommand(Robot.pneumatics::toggleIntake, Robot.pneumatics));
     driver.getYButton().whenPressed(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain));
     manip.getSTARTButton().whenPressed(new InstantCommand(Robot.climber::zeroClimber, Robot.climber));
-    manip.getRBButton().whileHeld(new JogActiveFloor());
   }
 
   /**

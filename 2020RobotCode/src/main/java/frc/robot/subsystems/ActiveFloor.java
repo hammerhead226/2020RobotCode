@@ -35,7 +35,7 @@ public class ActiveFloor extends SubsystemBase {
   }
 
   public void runActiveFloor(double speed){
-    activeFloor.set(ControlMode.PercentOutput, speed*0.85);
+    activeFloor.set(ControlMode.PercentOutput, speed*0.8);
   }
 
   public void jogActiveFloorForward(){

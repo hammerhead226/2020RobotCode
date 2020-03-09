@@ -30,8 +30,8 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
-    Robot.activeFloor.activeFloor.configOpenloopRamp(1.5);
-    Robot.queuer.queuer.configOpenloopRamp(1);
+    Robot.activeFloor.activeFloor.configOpenloopRamp(1);
+    Robot.queuer.queuer.configOpenloopRamp(.75);
     Robot.shooter.output();
   }
 

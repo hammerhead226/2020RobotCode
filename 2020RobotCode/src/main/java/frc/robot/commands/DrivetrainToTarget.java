@@ -43,7 +43,6 @@ public class DrivetrainToTarget extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.drivetrain.control(0, 0, 0);
-    Limelight.setLEDMode(1);
     Robot.drivetrain.isLocked = false;
   }
 

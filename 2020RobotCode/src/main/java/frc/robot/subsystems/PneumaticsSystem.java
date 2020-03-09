@@ -41,6 +41,14 @@ public class PneumaticsSystem extends SubsystemBase {
     }
   }
 
+  public void offCompressor() {
+    compressor.stop();
+  }
+
+  public void onCompressor() {
+    compressor.start();
+  }
+
   public void toggleIntake(){
     if (intakeVal == DoubleSolenoid.Value.kForward){
       intakeVal = DoubleSolenoid.Value.kReverse;
@@ -52,6 +60,10 @@ public class PneumaticsSystem extends SubsystemBase {
 
   public void downIntake() {
     intake.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void upIntake() {
+    intake.set(DoubleSolenoid.Value.kReverse);
   }
   
   public void toggleShooter(){

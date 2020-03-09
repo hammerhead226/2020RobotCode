@@ -19,12 +19,13 @@ import frc.libs.swerve.Utility;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.Robot.State;
 
 public class Shooter extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  private TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
+  public TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(RobotMap.SHOOTER_2);
   private double lastVelocity = 0;
   private double trueVelocity = 0;
@@ -33,6 +34,7 @@ public class Shooter extends SubsystemBase {
   private double lastlastDifference = 0;
   private double lastlastlastDifference = 0;
   private double lastStableVelocity;
+  private int lastPOV = -1;
 
   public Shooter() {
     shooter1.setNeutralMode(NeutralMode.Brake);
@@ -89,13 +91,25 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("shooter current", shooter1.getStatorCurrent());
-    if(Robot.robotContainer.manip.getPOV() == 0) {
-      Constants.SHOOTER_MAX_RPM += 200;
-    }
-
-    if(Robot.robotContainer.manip.getPOV() == 180) {
-      Constants.SHOOTER_MAX_RPM -= 200;
-    }
+      if(Robot.state == State.TELEOP) {
+        if(lastPOV != Robot.robotContainer.manip.getPOV() && Robot.robotContainer.manip.getPOV() == 0) {
+          Constants.SHOOTER_MAX_RPM += 100;
+        }
+    
+        if(lastPOV != Robot.robotContainer.manip.getPOV() && Robot.robotContainer.manip.getPOV() == 180) {
+          Constants.SHOOTER_MAX_RPM -= 100;
+        }
+    
+        if(Robot.robotContainer.manip.getTriggers() > 0.1 && !Robot.robotContainer.manip.getAButtonPressed() && !Robot.robotContainer.manip.getBButtonPressed()) {
+          shooter1.set(ControlMode.PercentOutput, -Robot.robotContainer.manip.getTriggers() / 3);
+        } else if(!Robot.robotContainer.manip.getAButtonPressed() && !Robot.robotContainer.manip.getBButtonPressed()) {
+          shooter1.set(ControlMode.PercentOutput, 0);
+        }
+    
+        lastPOV = Robot.robotContainer.manip.getPOV();
+    
+      }
+    SmartDashboard.putNumber("nominal velocity", Constants.SHOOTER_MAX_RPM);
     // This method will be called once per scheduler run
   }
 
@@ -108,11 +122,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void speed() {
-    Constants.SHOOTER_MAX_RPM = 5700;
+    Constants.SHOOTER_MAX_RPM = 6000;
   }
 
   public void slow() {
-    Constants.SHOOTER_MAX_RPM = 4500;
+    Constants.SHOOTER_MAX_RPM = 4400;
   }
 
 }
