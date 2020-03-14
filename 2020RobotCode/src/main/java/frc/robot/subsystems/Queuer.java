@@ -30,6 +30,8 @@ public class Queuer extends SubsystemBase {
     queuer.set(ControlMode.PercentOutput, speed);
   }
 
+  public void output(){}
+
   @Override
   public void periodic() {
     if (Robot.state == Robot.State.TELEOP)

@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -14,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.libs.util.Utility;
 import frc.libs.util.Limelight;
 import frc.robot.auton.OffLine;
@@ -50,10 +54,6 @@ public class Robot extends TimedRobot {
   public static Queuer queuer = new Queuer();
   public static Drivetrain drivetrain = new Drivetrain();
   public static double timer;
-  public double angleTime = 0;
-  private double lastVelocity;
-  private boolean[] checkpoints = {false, false, false, false, false, false, false, false, false};
-  private Command hoodDown;
   public enum State {
     AUTON, TELEOP
   }

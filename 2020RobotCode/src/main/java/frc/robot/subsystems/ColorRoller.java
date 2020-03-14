@@ -49,6 +49,7 @@ public class ColorRoller extends SubsystemBase {
 
   public void output(){
     SmartDashboard.putString("Current Color", currentColorString);
+    SmartDashboard.putString("Needed Color", neededColorString);
   }
 
   public void getNameOfColor(Color color) {
@@ -72,6 +73,25 @@ public class ColorRoller extends SubsystemBase {
       neededColor = kRedTarget;
     } else if (color == "Y") {
       neededColor = kYellowTarget;
+    }
+  }
+
+  public void moveMotor(){
+    colorRoller.set(ControlMode.PercentOutput, 0.5);
+    if (colorSensor.getColor() == currentColor) {
+      counter++;
+    }
+    if (counter == 6) {
+      colorRoller.set(ControlMode.PercentOutput, 0);
+    }
+  }
+
+
+  public void colorAlignment(double speed) {
+    if (currentColor == neededColor) {
+      speed = 0;
+    } else {
+      speed = speed/2;
     }
   }
 
