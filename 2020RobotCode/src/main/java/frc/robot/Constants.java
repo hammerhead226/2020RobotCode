@@ -25,10 +25,10 @@ public final class Constants {
     public static final boolean FRONT_RIGHT_STEER_INVERTED = true;
     public static final boolean REAR_RIGHT_STEER_INVERTED = true;
 
-    public static final boolean FRONT_LEFT_DRIVE_INVERTED = true;
-    public static final boolean REAR_LEFT_DRIVE_INVERTED = true;
-    public static final boolean FRONT_RIGHT_DRIVE_INVERTED = true;
-    public static final boolean REAR_RIGHT_DRIVE_INVERTED = true;
+    public static final boolean FRONT_LEFT_DRIVE_INVERTED = false;
+    public static final boolean REAR_LEFT_DRIVE_INVERTED = false;
+    public static final boolean FRONT_RIGHT_DRIVE_INVERTED = false;
+    public static final boolean REAR_RIGHT_DRIVE_INVERTED = false;
 
     public static final int ENCODER_TICKS = 4096;
 
