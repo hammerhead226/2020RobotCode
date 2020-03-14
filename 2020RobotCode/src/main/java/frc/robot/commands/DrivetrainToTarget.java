@@ -8,44 +8,47 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.libs.util.Utility;
+import frc.libs.util.Limelight;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class RunShooter extends CommandBase {
+public class DrivetrainToTarget extends CommandBase {
   /**
-   * Creates a new Shoots.
+   * Creates a new DrivetrainToTarget.
    */
-  public RunShooter() {
+  public DrivetrainToTarget() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.shooter);
+    addRequirements(Robot.drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Limelight.setLEDMode(3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
-    Robot.activeFloor.activeFloor.configOpenloopRamp(1);
-    Robot.queuer.queuer.configOpenloopRamp(.75);
-    Robot.shooter.output();
+    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.STEER_AUTO_KP);
+    if(Math.abs(Limelight.getHorizontalOffset()) < 1 ) {
+      Robot.drivetrain.isLocked = true;
+    } else {
+      Robot.drivetrain.isLocked = false;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooter.isTrueVelocity = false;
-    Robot.activeFloor.activeFloor.configOpenloopRamp(0);
-    Robot.queuer.queuer.configOpenloopRamp(0);
-    Robot.shooter.setShooterSpeed(0);
+    Robot.drivetrain.control(0, 0, 0);
+    Robot.drivetrain.isLocked = false;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Math.abs(Limelight.getHorizontalOffset()) <= 0.5;
   }
 }

@@ -7,10 +7,23 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.libs.util.Utility;
+import frc.libs.util.Limelight;
+import frc.robot.auton.OffLine;
+import frc.robot.auton.PositionOne;
+import frc.robot.auton.PositionTwo;
+import frc.robot.commands.ShooterDown;
 import frc.robot.subsystems.ActiveFloor;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorRoller;
@@ -39,7 +52,15 @@ public class Robot extends TimedRobot {
   public static Shooter shooter = new Shooter();
   public static ActiveFloor activeFloor = new ActiveFloor();
   public static Queuer queuer = new Queuer();
-  public static Drivetrain driveTrain = new Drivetrain();
+  public static Drivetrain drivetrain = new Drivetrain();
+  public static double timer;
+  public enum State {
+    AUTON, TELEOP
+  }
+  public static State state;
+
+  public SendableChooser chooser;
+  public String autoType;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -51,6 +72,11 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
+    chooser = new SendableChooser<String>();
+    chooser.setDefaultOption("Off Line", new OffLine());
+    chooser.addOption("Position 1", new PositionOne());
+    chooser.addOption("Position 2", new PositionTwo());
+    SmartDashboard.putData(chooser);
   }
 
   /**
@@ -72,6 +98,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    chooser.getSelected();
   }
 
   /**
@@ -89,20 +116,30 @@ public class Robot extends TimedRobot {
     }else {
       Led.blue();
     }
+
   }
 
   /**
    * This autonomous runs the autonomous command selected by your
    * {@link RobotContainer} class.
    */
+
   @Override
   public void autonomousInit() {
-    autonomousCommand = robotContainer.getAutonomousCommand();
+    autonomousCommand = (Command)chooser.getSelected();
+    autoType = chooser.getSelected().toString();
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
       autonomousCommand.schedule();
     }
+
+    timer = Timer.getFPGATimestamp();
+    pneumatics.downIntake();
+
+    state = State.AUTON;
+    Limelight.setLEDMode(3);
+    pneumatics.offCompressor();
   }
 
   /**
@@ -110,6 +147,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    
   }
 
   @Override
@@ -121,6 +159,8 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+    Limelight.setLEDMode(3);
+    pneumatics.offCompressor();
   }
 
   /**
@@ -128,6 +168,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    state = State.TELEOP;
+    if(getCurrentTime()>15 && getCurrentTime() < 45){
+      pneumatics.onCompressor();
+    }else if (getCurrentTime()>45 && getCurrentTime() < 47){
+      pneumatics.offCompressor();
+    }
   }
 
   @Override
@@ -142,4 +188,9 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  public static double getCurrentTime() {
+    return Timer.getFPGATimestamp() - timer;
+  }
+
 }

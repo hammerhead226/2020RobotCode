@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
@@ -17,13 +18,14 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 
 public class ColorRoller extends SubsystemBase {
   /**
    * Creates a new ColorRoller.
    */
 
-  VictorSPX colorRoller = new VictorSPX(0);
+  VictorSPX colorRoller = new VictorSPX(17);
   ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
   public boolean completedRotations;
@@ -42,7 +44,12 @@ public class ColorRoller extends SubsystemBase {
   private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
   public ColorRoller() {
+    colorRoller.setNeutralMode(NeutralMode.Brake);
+  }
 
+  public void output(){
+    SmartDashboard.putString("Current Color", currentColorString);
+    SmartDashboard.putString("Needed Color", neededColorString);
   }
 
   public void getNameOfColor(Color color) {
@@ -55,7 +62,6 @@ public class ColorRoller extends SubsystemBase {
     } else if (colorSensor.getColor() == kRedTarget){
       currentColorString = "Y";
     }
-    SmartDashboard.putString("Current Color", currentColorString);
   }
 
   public void getColorValue(String color) {
@@ -69,7 +75,7 @@ public class ColorRoller extends SubsystemBase {
       neededColor = kYellowTarget;
     }
   }
-  
+
   public void moveMotor(){
     colorRoller.set(ControlMode.PercentOutput, 0.5);
     if (colorSensor.getColor() == currentColor) {
@@ -82,7 +88,6 @@ public class ColorRoller extends SubsystemBase {
 
 
   public void colorAlignment(double speed) {
-    SmartDashboard.putString("Needed Color", neededColorString);
     if (currentColor == neededColor) {
       speed = 0;
     } else {
@@ -90,8 +95,14 @@ public class ColorRoller extends SubsystemBase {
     }
   }
 
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    if(Robot.robotContainer.manip.getLBButtonPressed()) {
+      colorRoller.set(ControlMode.PercentOutput, .35);
+    } else {
+      colorRoller.set(ControlMode.PercentOutput, 0);
+    }
   }
 }

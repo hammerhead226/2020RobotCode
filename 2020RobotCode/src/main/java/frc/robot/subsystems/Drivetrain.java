@@ -17,6 +17,12 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.libs.swerve.SwerveControl;
 import frc.libs.swerve.SwerveModule;
@@ -38,7 +44,6 @@ public class Drivetrain extends SubsystemBase {
   private AnalogInput encoder2 = new AnalogInput(RobotMap.REAR_LEFT_ENCODER);
   private SwerveModule module2 = new SwerveModule(rearLeftDrive, rearLeftSteer, encoder2, 1);
   
-
   private TalonFX frontRightDrive = new TalonFX(RobotMap.FRONT_RIGHT_DRIVE);
   private VictorSPX frontRightSteer = new VictorSPX(RobotMap.FRONT_RIGHT_STEER);
   private AnalogInput encoder3 = new AnalogInput(RobotMap.FRONT_RIGHT_ENCODER);
@@ -52,6 +57,20 @@ public class Drivetrain extends SubsystemBase {
   private PigeonIMU pigeon = new PigeonIMU(RobotMap.PIGEON);
 
   private SwerveControl swerve = new SwerveControl(module2, module1, module4, module3, pigeon);
+
+  Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381);
+  Translation2d m_frontRightLocation = new Translation2d(0.381, -0.381);
+  Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381);
+  Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
+
+  SwerveDriveKinematics kinematics = new SwerveDriveKinematics(m_frontLeftLocation, m_frontRightLocation,
+      m_backLeftLocation, m_backRightLocation);
+
+  SwerveDriveOdometry odometry = new SwerveDriveOdometry(kinematics, new Rotation2d(),
+      new Pose2d(0, 0, new Rotation2d()));
+
+  public Pose2d currentPose2d = new Pose2d();
+  public boolean isLocked = false;
 
   public Drivetrain() {
     frontLeftSteer.setInverted(Constants.FRONT_LEFT_STEER_INVERTED);
@@ -94,6 +113,13 @@ public class Drivetrain extends SubsystemBase {
     frontRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     rearLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     rearRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+
+    frontLeftDrive.setInverted(Constants.FRONT_LEFT_DRIVE_INVERTED);
+    frontRightDrive.setInverted(Constants.FRONT_RIGHT_DRIVE_INVERTED);
+    rearLeftDrive.setInverted(Constants.REAR_LEFT_DRIVE_INVERTED);
+    rearRightDrive.setInverted(Constants.REAR_RIGHT_DRIVE_INVERTED);
+
+    pigeon.setYaw(0);
   }
 
   public void brake() {
@@ -116,30 +142,56 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.set(ControlMode.PercentOutput, (rLSensPosS - module2.getAngle()) * Constants.STEER_KP);
     frontRightSteer.set(ControlMode.PercentOutput, (fRSensPosS - module3.getAngle()) * Constants.STEER_KP);
     rearRightSteer.set(ControlMode.PercentOutput, (rRSensPosS - module4.getAngle()) * Constants.STEER_KP);
-    // target - acutal multiplied by the steer kp
+
     pigeon.setYaw(0);
   }
 
-  public void Output() {
+  public void output() {
     SmartDashboard.putNumber("frontLeftDrive current", frontLeftDrive.getStatorCurrent());
     SmartDashboard.putNumber("frontRightDrive current", frontRightDrive.getStatorCurrent());
     SmartDashboard.putNumber("rearLeftDrive current", rearLeftDrive.getStatorCurrent());
     SmartDashboard.putNumber("rearRightDrive current", rearRightDrive.getStatorCurrent());
   }
 
+  public void control(double x, double y, double rot) {
+    swerve.control(x, y, rot);
+  }
+
+  public void control(Trajectory.State state){
+    swerve.control(state);
+  }
+  
   public void zeroGyro() {
     pigeon.setYaw(0);
+    control(0,0,0.01);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    swerve.control(
+    // currentPose2d = odometry.update(new Rotation2d(swerve.getGyro()), module1.getState(), module2.getState(),
+    //     module3.getState(), module4.getState());
+    double adjustment;
+    if(Robot.robotContainer.driver.getLBButtonPressed()) {
+      adjustment = .2;
+    } else {
+      adjustment = .7;
+    }
+    if(Robot.state == Robot.State.TELEOP) {control(
         (0.8*(Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_X(), 2),
             Robot.robotContainer.driver.getLeftJoystick_X()))),
         (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getLeftJoystick_Y(), 2),
             Robot.robotContainer.driver.getLeftJoystick_Y()))),
-        (0.8*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
+        (adjustment*(-Math.copySign(Math.pow(Robot.robotContainer.driver.getRightJoystick_X(), 2),
             Robot.robotContainer.driver.getRightJoystick_X()))));
+    }
+  }
+
+  public double getGyro() {
+    double[] ypr = new double[3];
+    pigeon.getYawPitchRoll(ypr);
+    double gyro = ypr[0];
+
+    return gyro;
   }
 }

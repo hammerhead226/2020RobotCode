@@ -13,6 +13,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.kinematics.SwerveModuleState;
 import frc.robot.Constants;
 
 
@@ -53,6 +55,11 @@ public class SwerveModule {
         }
         drive.set(TalonFXControlMode.PercentOutput, r);
         steer.set(ControlMode.PercentOutput, error * Constants.STEER_KP);
+    }
+
+    public SwerveModuleState getState(){
+        //  update velocity units
+        return new SwerveModuleState(drive.getSelectedSensorVelocity(), Rotation2d.fromDegrees(steercoder.getValue()));
     }
 
     public int getAngle(){

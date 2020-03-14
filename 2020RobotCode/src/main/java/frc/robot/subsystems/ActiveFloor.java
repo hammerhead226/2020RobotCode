@@ -21,20 +21,21 @@ public class ActiveFloor extends SubsystemBase {
   /**
    * Creates a new ActiveFloor.
    */
-  private VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
-  private double speed;
+  public VictorSPX activeFloor = new VictorSPX(RobotMap.ACTIVE_FLOOR_MOTOR);
   private double startTime = Timer.getFPGATimestamp();
   private double endTime;
   private double seconds = 1.0;
+
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
     activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
     activeFloor.setNeutralMode(NeutralMode.Brake);
+    activeFloor.configOpenloopRamp(Constants.ACTIVE_FLOOR_RAMP_RATE);
   }
 
   public void runActiveFloor(double speed){
-    activeFloor.set(ControlMode.PercentOutput, speed);
+    activeFloor.set(ControlMode.PercentOutput, speed*0.8);
   }
 
   public void jogActiveFloorForward(){
@@ -54,10 +55,10 @@ public class ActiveFloor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    speed();
+    if(Robot.state == Robot.State.TELEOP) speed();
   }
 
   private void speed() {
-    runActiveFloor(Robot.robotContainer.manip.getTriggers() - Robot.robotContainer.manip.getRightJoystick_X());
+    runActiveFloor(Robot.robotContainer.manip.getTriggers()*.75 - Robot.robotContainer.manip.getRightJoystick_X());
   }
 }

@@ -7,45 +7,48 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class RunShooter extends CommandBase {
+public class FollowTrajectory extends CommandBase {
   /**
-   * Creates a new Shoots.
+   * Creates a new FollowTrajectory.
    */
-  public RunShooter() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.shooter);
+  Trajectory trajectory;
+  int numStates;
+  double startTime;
+  
+  public FollowTrajectory(Trajectory trajectory) {
+    // Use addRequirements() here to declare subsystem dependencies
+    addRequirements(Robot.drivetrain);
+    this.trajectory = trajectory;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    startTime = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setShooterSpeed(Constants.SHOOTER_MAX_RPM);
-    Robot.activeFloor.activeFloor.configOpenloopRamp(1);
-    Robot.queuer.queuer.configOpenloopRamp(.75);
-    Robot.shooter.output();
+    double currTime = Timer.getFPGATimestamp() - startTime;
+    Trajectory.State state = trajectory.sample(currTime);
+    Robot.drivetrain.control(state);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooter.isTrueVelocity = false;
-    Robot.activeFloor.activeFloor.configOpenloopRamp(0);
-    Robot.queuer.queuer.configOpenloopRamp(0);
-    Robot.shooter.setShooterSpeed(0);
+    Robot.drivetrain.control(0, 0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Timer.getFPGATimestamp() - startTime >= trajectory.getTotalTimeSeconds();
   }
 }

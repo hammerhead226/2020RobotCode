@@ -7,8 +7,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,12 +35,12 @@ public class Intake extends SubsystemBase {
     intake.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void Output() {
+  public void output() {
+    SmartDashboard.putNumber("intake queuer", intake.getBusVoltage());
   }
 
   @Override
   public void periodic() {
-    intake(Robot.robotContainer.driver.getTriggers());
-    SmartDashboard.putNumber("intake queuer", intake.getBusVoltage());
+    if(Robot.state == Robot.State.TELEOP) intake(Robot.robotContainer.driver.getTriggers());
   }
 }

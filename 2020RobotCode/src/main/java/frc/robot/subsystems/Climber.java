@@ -17,7 +17,6 @@ import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.Unit;
 
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -28,7 +27,7 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Drivetrain.
    */
-  private TalonFX climber = new TalonFX(RobotMap.CLIMBER);
+  public TalonFX climber = new TalonFX(RobotMap.CLIMBER);
   private Rev2mDistanceSensor distSensor = new Rev2mDistanceSensor(Port.kOnboard);
 
   public Climber() {
@@ -79,7 +78,7 @@ public class Climber extends SubsystemBase {
     climber.set(ControlMode.PercentOutput, 0);
   }
 
-  public void Output(){
+  public void output(){
     SmartDashboard.putNumber("climber current", climber.getStatorCurrent());
   }
 
@@ -93,18 +92,6 @@ public class Climber extends SubsystemBase {
       climber(0);
     } else {
       climber(rawValue);
-      
-    climber(Robot.robotContainer.manip.getLeftJoystick_Y());
-
-    if(distSensor.getRange() <= Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
-      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_ON);
-      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_ON);
-    }
-    else {
-      Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_OFF);
-      Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_OFF);
-      climber(Robot.robotContainer.manip.getTriggers());
     }
   }
-}
 }
