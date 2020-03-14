@@ -31,7 +31,7 @@ public class DrivetrainToTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+    Robot.drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.STEER_AUTO_KP);
     if(Math.abs(Limelight.getHorizontalOffset()) < 1 ) {
       Robot.drivetrain.isLocked = true;
     } else {

@@ -76,7 +76,6 @@ public class Robot extends TimedRobot {
     chooser.setDefaultOption("Off Line", "OL");
     chooser.addOption("Position 1", "P1");
     chooser.addOption("Position 2", "P2");
-    chooser.addOption("nerds", "fthis");
     SmartDashboard.putData(chooser);
     SmartDashboard.putNumber("climber current", Robot.climber.climber.getStatorCurrent());
     SmartDashboard.putNumber("shooter4 rpm", Utility.convertVelocitytoRPM(Robot.shooter.shooter1.getSelectedSensorVelocity())*1.33333);
@@ -167,34 +166,10 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
 
     // negative demand = positive drive xD
-    if(autoType.equals("fthis")){
-      if(getCurrentTime() < 2){
-        intake.intake(0.6);
-      }else if (getCurrentTime() < 2.5){
-        intake.intake(0);
-      }else if (getCurrentTime() < 3.5){
-        intake.intake(-0.2);
-      }else if(getCurrentTime() < 4){
-        intake.intake(0);
-      }else if (getCurrentTime() < 4.5){
-        pneumatics.downIntake();
-      }else if (getCurrentTime() < 5){
-        intake.intake(0);
-      }else if (getCurrentTime() < 7){
-        intake.intake(0.6);
-      }else if (getCurrentTime() < 8){
-        pneumatics.upIntake();
-        intake.intake(0);
-      } else if(getCurrentTime() < 9) {
-        drivetrain.control(0, .3, 0);
-      } else {
-        drivetrain.control(0, 0, 0);
-      }
-    }
     if(autoType.equals("P1")) {
       if(!checkpoints[0]) {
         Limelight.setLEDMode(3);
-        //drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+        drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.STEER_AUTO_KP);
         shooter.setShooterSpeed(6000);
       }
   
@@ -206,7 +181,7 @@ public class Robot extends TimedRobot {
   
       if(checkpoints[0] && !checkpoints[2]) {
         activeFloor.runActiveFloor(-0.7);
-        queuer.runQueuer(-0.8);
+        queuer.runQueuer(0.8);
         shooter.setShooterSpeed(6000);
       }
   
@@ -285,7 +260,7 @@ public class Robot extends TimedRobot {
 
       if(!checkpoints[0]) {
         Limelight.setLEDMode(3);
-        drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.SHOOTER_AUTO_ROTATE);
+        drivetrain.control(0, 0, Utility.sigmoid(Limelight.getHorizontalOffset()) * Constants.STEER_AUTO_KP);
         shooter.setShooterSpeed(5700);
         drivetrain.control(0, 0, 0);
       }
@@ -298,7 +273,7 @@ public class Robot extends TimedRobot {
   
       if(checkpoints[0]) {
         activeFloor.runActiveFloor(-0.6);
-        queuer.runQueuer(-0.7);
+        queuer.runQueuer(0.7);
         shooter.setShooterSpeed(5700);
       }
 

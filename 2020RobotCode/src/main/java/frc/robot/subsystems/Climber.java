@@ -17,7 +17,6 @@ import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.Unit;
 
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -94,16 +93,5 @@ public class Climber extends SubsystemBase {
     } else {
       climber(rawValue);
     }
-
-    output();
-    // if(distSensor.getRange() <= Constants.DISTANCE_SENSOR_MIN && distSensor.isRangeValid()) {
-    //   Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_ON);
-    //   Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_ON);
-    // }
-    // else {
-    //   Robot.robotContainer.manip.setRumble(RumbleType.kLeftRumble, Constants.MANIP_RUMBLE_OFF);
-    //   Robot.robotContainer.manip.setRumble(RumbleType.kRightRumble, Constants.MANIP_RUMBLE_OFF);
-    //   climber(Robot.robotContainer.manip.getTriggers());
-    // }
   }
 }

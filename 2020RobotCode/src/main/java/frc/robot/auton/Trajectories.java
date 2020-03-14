@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.auton;
 
 import java.util.Arrays;
 
@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import frc.libs.util.Limelight;
+import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Trajectories {
         static TrajectoryConfig config = new TrajectoryConfig(Constants.MAX_DRIVE_VELOCITY,
@@ -22,10 +24,6 @@ public class Trajectories {
                                                 - Math.pow(Robot.drivetrain.currentPose2d.getTranslation().getX()
                                                                 - Constants.TARGET_X, 2)),
                                 new Rotation2d(Limelight.getTargetRotation())) };
-                return TrajectoryGenerator.generateTrajectory(Arrays.asList(targetPath), config);
-        }
-        public static Trajectory simplePath(){
-                targetPath = new Pose2d[]{ new Pose2d(), new Pose2d(0, 5, new Rotation2d())};
                 return TrajectoryGenerator.generateTrajectory(Arrays.asList(targetPath), config);
         }
 }

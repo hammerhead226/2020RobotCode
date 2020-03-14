@@ -114,6 +114,11 @@ public class Drivetrain extends SubsystemBase {
     rearLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     rearRightDrive.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
 
+    frontLeftDrive.setInverted(Constants.FRONT_LEFT_DRIVE_INVERTED);
+    frontRightDrive.setInverted(Constants.FRONT_RIGHT_DRIVE_INVERTED);
+    rearLeftDrive.setInverted(Constants.REAR_LEFT_DRIVE_INVERTED);
+    rearRightDrive.setInverted(Constants.REAR_RIGHT_DRIVE_INVERTED);
+
     pigeon.setYaw(0);
   }
 
@@ -137,11 +142,11 @@ public class Drivetrain extends SubsystemBase {
     rearLeftSteer.set(ControlMode.PercentOutput, (rLSensPosS - module2.getAngle()) * Constants.STEER_KP);
     frontRightSteer.set(ControlMode.PercentOutput, (fRSensPosS - module3.getAngle()) * Constants.STEER_KP);
     rearRightSteer.set(ControlMode.PercentOutput, (rRSensPosS - module4.getAngle()) * Constants.STEER_KP);
-    // target - acutal multiplied by the steer kp
+
     pigeon.setYaw(0);
   }
 
-  public void Output() {
+  public void output() {
     SmartDashboard.putNumber("frontLeftDrive current", frontLeftDrive.getStatorCurrent());
     SmartDashboard.putNumber("frontRightDrive current", frontRightDrive.getStatorCurrent());
     SmartDashboard.putNumber("rearLeftDrive current", rearLeftDrive.getStatorCurrent());

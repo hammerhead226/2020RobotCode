@@ -35,12 +35,12 @@ public class Intake extends SubsystemBase {
     intake.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void Output() {
+  public void output() {
+    SmartDashboard.putNumber("intake queuer", intake.getBusVoltage());
   }
 
   @Override
   public void periodic() {
     if(Robot.state == Robot.State.TELEOP) intake(Robot.robotContainer.driver.getTriggers());
-    SmartDashboard.putNumber("intake queuer", intake.getBusVoltage());
   }
 }

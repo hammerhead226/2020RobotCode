@@ -15,9 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class PneumaticsSystem extends SubsystemBase {
-  /**
-   * Creates a new Pneumatics.
-   */
+
   private Compressor compressor = new Compressor(RobotMap.COMPRESSOR);
   private DoubleSolenoid intake = new DoubleSolenoid(RobotMap.INTAKE_SHIFT_1, RobotMap.INTAKE_SHIFT_2);
   private Solenoid shooter = new Solenoid(RobotMap.SHOOTER_SHIFT);

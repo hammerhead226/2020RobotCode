@@ -28,12 +28,7 @@ public class Shooter extends SubsystemBase {
   public TalonFX shooter1 = new TalonFX(RobotMap.SHOOTER_1);
   private TalonFX shooter2 = new TalonFX(RobotMap.SHOOTER_2);
   private double lastVelocity = 0;
-  private double trueVelocity = 0;
   public boolean isTrueVelocity = false;
-  private double lastDifference = 0;
-  private double lastlastDifference = 0;
-  private double lastlastlastDifference = 0;
-  private double lastStableVelocity;
   private int lastPOV = -1;
 
   public Shooter() {
@@ -66,6 +61,7 @@ public class Shooter extends SubsystemBase {
   public void output(){
     SmartDashboard.putNumber("shooter4 rpm", Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333);
     SmartDashboard.putNumber("shooter5 rpm", Utility.convertVelocitytoRPM(shooter2.getSelectedSensorVelocity())*1.33333);
+    SmartDashboard.putNumber("nominal velocity", Constants.SHOOTER_MAX_RPM);
   }
 
   public void setShooterSpeed(double velocity){
@@ -76,7 +72,6 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("differenceafter", difference);
     lastVelocity += difference / 130; 
 
-
     if(velocity != 0) {
       if(lastVelocity < (velocity / 8500)) {
         lastVelocity = (velocity / 8500);
@@ -84,7 +79,6 @@ public class Shooter extends SubsystemBase {
     } else {
       lastVelocity = 0;
     }
-
     runShooter(lastVelocity);
   }
 
@@ -105,12 +99,8 @@ public class Shooter extends SubsystemBase {
         } else if(!Robot.robotContainer.manip.getAButtonPressed() && !Robot.robotContainer.manip.getBButtonPressed()) {
           shooter1.set(ControlMode.PercentOutput, 0);
         }
-    
         lastPOV = Robot.robotContainer.manip.getPOV();
-    
       }
-    SmartDashboard.putNumber("nominal velocity", Constants.SHOOTER_MAX_RPM);
-    // This method will be called once per scheduler run
   }
 
   public double getVelocity() {
@@ -118,7 +108,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("shooter4 rpm", Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333);
     SmartDashboard.putNumber("shooter5 rpm", Utility.convertVelocitytoRPM(shooter2.getSelectedSensorVelocity())*1.33333);
 
-    return Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333;
+    return Utility.convertVelocitytoRPM(shooter1.getSelectedSensorVelocity())*1.33333; // 1.33 accounts for gear ratio from motor to flywheel
   }
 
   public void speed() {

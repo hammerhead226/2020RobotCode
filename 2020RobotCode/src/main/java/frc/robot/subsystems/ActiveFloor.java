@@ -25,12 +25,13 @@ public class ActiveFloor extends SubsystemBase {
   private double startTime = Timer.getFPGATimestamp();
   private double endTime;
   private double seconds = 1.0;
+
   public ActiveFloor() {
     activeFloor.setInverted(Constants.ACTIVE_FLOOR_INVERTED);
     activeFloor.configVoltageCompSaturation(Constants.ACTIVE_FLOOR_VOLTAGE_LIMIT);
     activeFloor.enableVoltageCompensation(Constants.ACTIVE_FLOOR_VOLTAGE_ENABLE);
     activeFloor.setNeutralMode(NeutralMode.Brake);
-    activeFloor.configOpenloopRamp(2);
+    activeFloor.configOpenloopRamp(Constants.ACTIVE_FLOOR_RAMP_RATE);
   }
 
   public void runActiveFloor(double speed){
