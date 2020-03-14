@@ -138,7 +138,6 @@ public class Robot extends TimedRobot {
     pneumatics.downIntake();
 
     state = State.AUTON;
-    resetCheckpoints();
     Limelight.setLEDMode(3);
     pneumatics.offCompressor();
   }
@@ -169,7 +168,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    state = state.TELEOP;
+    state = State.TELEOP;
     if(getCurrentTime()>15 && getCurrentTime() < 45){
       pneumatics.onCompressor();
     }else if (getCurrentTime()>45 && getCurrentTime() < 47){
@@ -194,9 +193,4 @@ public class Robot extends TimedRobot {
     return Timer.getFPGATimestamp() - timer;
   }
 
-  private void resetCheckpoints() {
-    for(int i = 0; i < checkpoints.length; i++) {
-      checkpoints[i] = false;
-    }
-  }
 }

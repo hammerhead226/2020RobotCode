@@ -65,7 +65,7 @@ public class PositionOne extends CommandBase {
 
     if(checkpoints[1] && !checkpoints[2]) {
       Limelight.setLEDMode(1);
-      Robot.drivetrain.control(0, 0, -(Robot.drivetrain.getGyro() - 90) / 125); 
+      Robot.drivetrain.control(0, 0, (Robot.drivetrain.getGyro() - 90) / 125); 
       Robot.shooter.setShooterSpeed(6000);
     }
 
@@ -79,7 +79,7 @@ public class PositionOne extends CommandBase {
     }
 
     if(checkpoints[2] && Robot.getCurrentTime() < (angleTime + 2.2)) {
-      Robot.drivetrain.control(-.36, -.2, 0);
+      Robot.drivetrain.control(-.36, .2, 0);
       Robot.intake.intake(-.7);
       Robot.activeFloor.runActiveFloor(0);
       Robot.queuer.runQueuer(0);
@@ -104,7 +104,7 @@ public class PositionOne extends CommandBase {
     } 
 
     if(checkpoints[6] && Robot.getCurrentTime() < (angleTime + 8.2)) {
-      Robot.drivetrain.control(0, -0.3, 0);
+      Robot.drivetrain.control(0, 0.3, 0);
       Robot.intake.intake(-.7);
       Robot.activeFloor.runActiveFloor(0);
       Robot.queuer.runQueuer(0);

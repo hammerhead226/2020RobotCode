@@ -15,6 +15,7 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
@@ -44,6 +45,34 @@ public class ColorRoller extends SubsystemBase {
 
   public ColorRoller() {
     colorRoller.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public void output(){
+    SmartDashboard.putString("Current Color", currentColorString);
+  }
+
+  public void getNameOfColor(Color color) {
+    if (colorSensor.getColor() == kBlueTarget) {
+      currentColorString = "B";
+    } else if (colorSensor.getColor() == kGreenTarget) {
+      currentColorString = "G";
+    } else if (colorSensor.getColor() == kRedTarget) {
+      currentColorString = "R";
+    } else if (colorSensor.getColor() == kRedTarget){
+      currentColorString = "Y";
+    }
+  }
+
+  public void getColorValue(String color) {
+    if (color == "B") {
+      neededColor = kBlueTarget;
+    } else if (color == "G") {
+      neededColor = kGreenTarget;
+    } else if (color == "R") {
+      neededColor = kRedTarget;
+    } else if (color == "Y") {
+      neededColor = kYellowTarget;
+    }
   }
 
   
